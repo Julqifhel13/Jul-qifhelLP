@@ -229,14 +229,14 @@ export default function Home() {
                             title="Workflow Automation Works"
                             tags={["Automation", "GHL"]}
                             description="See all my Workflow Automation Works"
-                            image="/Asset/enterprise_workflow.png"
+                            image="/Asset/workflow_new.png"
                             linkTo="/project/enterprise-workflow"
                         />
                         <ProjectCard
                             title="Landing Pages"
                             tags={["Landing Pages", "UI/UX"]}
                             description="See all my works in Landing Pages Sample works. I built some using GoHighLevel, some using custom html css, some using AI tools and etc."
-                            image="/Asset/conversion_funnel.png"
+                            image="/Asset/landing_pages_new.png"
                             linkTo="/project/landing-pages"
                         />
                     </div>
