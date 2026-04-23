@@ -115,7 +115,7 @@ export default function Home() {
                             </div>
                             <div className="relative z-10">
                                 <h3 className="font-display text-3xl md:text-4xl font-bold mb-4">GHL Workflow Automation</h3>
-                                <p className="text-[#636e72] leading-relaxed max-w-lg text-sm md:text-base">Orchestrating multi-stage logic, lead routing, and dynamic data syncs for complex CRM architectures.</p>
+                                <p className="text-[#636e72] leading-relaxed max-w-lg text-sm md:text-base">A fully automated system built inside GoHighLevel that streamlines lead management, follow-ups, and client communication. It removes manual tasks by triggering actions based on user behavior, ensuring every lead is properly nurtured and responded to on time. This setup improves efficiency, increases conversion rates, and helps businesses scale without adding extra workload.</p>
                             </div>
                         </div>
 
