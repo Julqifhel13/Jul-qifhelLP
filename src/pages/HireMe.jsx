@@ -43,7 +43,7 @@ export default function HireMe() {
         const body = encodeURIComponent(
             `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nService: ${form.service}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`
         );
-        window.location.href = `mailto:hello@julqifhel.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:cjulqifhel@gmail.com?subject=${subject}&body=${body}`;
         setSubmitted(true);
     };
 
@@ -104,7 +104,7 @@ export default function HireMe() {
                         </div>
                         <div>
                             <span className="text-[10px] tracking-widest uppercase font-bold text-white/50 block mb-1">Direct Email</span>
-                            <p className="font-display text-xl font-bold">hello@julqifhel.com</p>
+                            <p className="font-display text-xl font-bold">cjulqifhel@gmail.com</p>
                         </div>
                     </div>
                 </motion.div>
@@ -191,7 +191,7 @@ export default function HireMe() {
                         <div className="border-t border-[#f2f4f4] pt-8 space-y-4">
                             <div>
                                 <span className="text-[10px] tracking-widest uppercase font-bold text-[#636e72] block mb-1">Prefer Email?</span>
-                                <a href="mailto:hello@julqifhel.com" className="font-display text-lg font-bold hover:text-[#636e72] transition-colors">hello@julqifhel.com</a>
+                                <a href="mailto:cjulqifhel@gmail.com" className="font-display text-lg font-bold hover:text-[#636e72] transition-colors">cjulqifhel@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ export default function HireMe() {
                                     <CheckCircle2 size={28} className="text-white" />
                                 </div>
                                 <h3 className="font-display text-3xl font-bold mb-4">Message Drafted</h3>
-                                <p className="text-[#636e72] max-w-md">Your email client should have opened with the message ready to send. If it didn't, email me directly at hello@julqifhel.com.</p>
+                                <p className="text-[#636e72] max-w-md">Your email client should have opened with the message ready to send. If it didn't, email me directly at cjulqifhel@gmail.com</p>
                             </div>
                         ) : (
                             <div className="space-y-6">
