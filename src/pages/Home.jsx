@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Network, Sparkles, Database, ChevronDown, Folder } from 'lucide-react';
 import Hero from '../components/Hero';
 import ProjectCard from '../components/ProjectCard';
@@ -256,7 +257,7 @@ export default function Home() {
                     <div className="text-center mb-16">
                         <span className="text-[10px] tracking-[0.2em] uppercase text-white/50 font-bold block mb-4">The Professional Evolution</span>
                         <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold">
-                            From IT Specialist to GoHighLevel Specialist
+                            From IT Specialist to Vibe coder & GoHighLevel Specialist
                         </h2>
                     </div>
 
@@ -323,7 +324,7 @@ export default function Home() {
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
                     <h2 className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold mb-12 tracking-tighter text-[#2d3435] leading-[0.85]">Ready to<br />Scale?</h2>
-                    <button className="bg-[#2d3435] text-white px-12 py-6 rounded-full font-bold text-xs uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(45,52,53,0.4)] transition-all duration-300 flex items-center gap-4 mx-auto group relative overflow-hidden">
+                    <Link to="/hire-me" className="bg-[#2d3435] text-white px-12 py-6 rounded-full font-bold text-xs uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(45,52,53,0.4)] transition-all duration-300 inline-flex items-center gap-4 group relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
                         <span className="relative z-10">Initiate Project</span>
                         <motion.span
@@ -331,7 +332,7 @@ export default function Home() {
                             animate={{ x: [0, 5, 0] }}
                             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                         >→</motion.span>
-                    </button>
+                    </Link>
                 </motion.div>
             </section>
         </main>

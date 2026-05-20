@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
     return (
@@ -17,12 +18,12 @@ export default function Hero() {
                     A results-driven GoHighLevel automation specialist, focused on building data-driven systems that streamline complex workflows, optimize lead management, and improve overall business efficiency.
                 </p>
                 <div className="flex justify-center gap-4 mt-12">
-                    <button className="bg-text text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform">
+                    <Link to="/hire-me" className="bg-text text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform">
                         Hire Me
-                    </button>
-                    <button className="bg-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest text-accent hover:bg-contrast transition-colors">
+                    </Link>
+                    <Link to="/project/landing-pages" className="bg-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest text-accent hover:bg-contrast transition-colors">
                         View Systems
-                    </button>
+                    </Link>
                 </div>
             </motion.div>
         </section>

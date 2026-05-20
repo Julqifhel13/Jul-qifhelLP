@@ -8,11 +8,11 @@ export default function Navbar() {
             <div className="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest text-accent">
                 <Link to="/" className="hover:text-text transition-colors">Home</Link>
                 <a href="/#work" className="hover:text-text transition-colors">Project</a>
-                <a href="/#research" className="hover:text-text transition-colors">Research Activity</a>
+                <Link to="/hire-me" className="hover:text-text transition-colors">Contact</Link>
             </div>
-            <button className="bg-text text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">
-                Consultation
-            </button>
+            <Link to="/hire-me" className="bg-text text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">
+                Work with Me
+            </Link>
         </nav>
     );
 }
