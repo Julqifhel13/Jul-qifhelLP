@@ -42,12 +42,12 @@ export default function LandingPages() {
         <main className="bg-[#f9f9f9] min-h-screen text-[#2d3435]">
             <article className="pt-44">
                 {/* Header */}
-                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-16">
-                    <div className="flex justify-between items-end mb-4">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-12 md:mb-16">
+                    <div className="flex flex-wrap justify-between items-end gap-3 mb-4">
                         <span className="text-[10px] tracking-widest uppercase font-bold text-[#636e72]">UI/UX EXPERTISE</span>
                         <span className="text-[10px] tracking-widest uppercase font-bold text-[#636e72] italic">Portfolio<br /><span className="not-italic text-sm">2024-2026</span></span>
                     </div>
-                    <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter max-w-4xl">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter max-w-4xl">
                         HIGH-CONVERTING LANDING PAGES
                     </h1>
                 </div>
@@ -100,8 +100,8 @@ export default function LandingPages() {
                 </div>
 
                 {/* Footer Navigation */}
-                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-24 border-t border-[#f2f4f4] flex justify-between items-center">
-                    <a href="/project/enterprise-workflow" className="flex items-center gap-4 group">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-24 border-t border-[#f2f4f4] flex flex-wrap justify-between items-center gap-6">
+                    <a href="/project/enterprise-workflow" className="flex items-center gap-4 group order-1">
                         <ArrowLeft size={16} className="text-[#636e72] group-hover:-translate-x-2 transition-transform" />
                         <div>
                             <div className="text-[8px] uppercase tracking-widest text-[#636e72] mb-1">Previous Project</div>
@@ -109,17 +109,17 @@ export default function LandingPages() {
                         </div>
                     </a>
 
-                    <a href="/" className="text-[10px] font-bold uppercase tracking-widest border-b border-[#2d3435] pb-1 hover:text-[#636e72] hover:border-[#636e72] transition-colors">
-                        Back to Home
-                    </a>
-
-                    <div className="flex items-center gap-4 text-right opacity-30 cursor-not-allowed">
+                    <div className="flex items-center gap-4 text-right opacity-30 cursor-not-allowed order-2">
                         <div>
                             <div className="text-[8px] uppercase tracking-widest text-[#636e72] mb-1">Next Project</div>
                             <div className="font-bold text-sm">Coming Soon</div>
                         </div>
                         <ArrowRight size={16} className="text-[#636e72]" />
                     </div>
+
+                    <a href="/" className="order-3 w-full md:w-auto md:order-none text-center text-[10px] font-bold uppercase tracking-widest border-b border-[#2d3435] pb-1 hover:text-[#636e72] hover:border-[#636e72] transition-colors">
+                        Back to Home
+                    </a>
                 </div>
             </article>
 

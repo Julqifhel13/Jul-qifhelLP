@@ -65,12 +65,12 @@ export default function CaseStudy() {
         <main className="bg-[#f9f9f9] min-h-screen text-[#2d3435]">
             <article className="pt-44">
                 {/* Header */}
-                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-16">
-                    <div className="flex justify-between items-end mb-4">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-12 md:mb-16">
+                    <div className="flex flex-wrap justify-between items-end gap-3 mb-4">
                         <span className="text-[10px] tracking-widest uppercase font-bold text-[#636e72]">GOHIGHLEVEL WORKFLOW ARCHITECTURE</span>
                         <span className="text-[10px] tracking-widest uppercase font-bold text-[#636e72] italic">Case Study<br /><span className="not-italic text-sm">2024</span></span>
                     </div>
-                    <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter max-w-4xl">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tighter max-w-4xl">
                         ADVANCED CRM AUTOMATIONS
                     </h1>
                 </div>
@@ -101,21 +101,21 @@ export default function CaseStudy() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                         {/* Conditional Logic */}
-                        <div className="md:col-span-2 bg-white rounded-[2.5rem] p-10 flex flex-col justify-between overflow-hidden shadow-sm h-[480px]">
+                        <div className="md:col-span-2 bg-white rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between overflow-hidden shadow-sm min-h-[420px] md:h-[480px]">
                             <div className="mb-8">
                                 <span className="inline-block px-4 py-1.5 bg-[#f2f4f4] rounded-full text-[10px] font-bold mb-6">01</span>
-                                <h3 className="font-display text-3xl font-bold mb-4">Conditional Logic</h3>
+                                <h3 className="font-display text-2xl md:text-3xl font-bold mb-4">Conditional Logic</h3>
                                 <p className="text-[#636e72] text-sm leading-relaxed max-w-md">
                                     GoHighLevel conditional logic workflow featuring interconnected decision nodes, if/else branching paths, trigger-based actions, smart lead routing, dynamic automation sequences, and personalized workflow logic.
                                 </p>
                             </div>
-                            <div className="mt-auto -mx-10 -mb-10 h-64 bg-[#f2f4f4]">
+                            <div className="mt-auto -mx-8 md:-mx-10 -mb-8 md:-mb-10 h-48 md:h-64 bg-[#f2f4f4]">
                                 <img src="/Asset/cs_nodes.png" alt="Nodes" className="w-full h-full object-cover" />
                             </div>
                         </div>
 
                         {/* Tools List */}
-                        <div className="md:col-span-1 bg-[#2d3435] text-white rounded-[2.5rem] p-10 shadow-sm flex flex-col justify-between h-[480px]">
+                        <div className="md:col-span-1 bg-[#2d3435] text-white rounded-[2.5rem] p-8 md:p-10 shadow-sm flex flex-col justify-between min-h-[420px] md:h-[480px]">
                             <span className="text-[10px] tracking-widest uppercase font-bold text-white/50 mb-12 block">Tools I've Always Used</span>
                             <div className="flex flex-col gap-6">
                                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
@@ -208,8 +208,8 @@ export default function CaseStudy() {
                 </div>
 
                 {/* Footer Navigation */}
-                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-24 border-t border-[#f2f4f4] flex justify-between items-center">
-                    <a href="#" className="flex items-center gap-4 group">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-24 border-t border-[#f2f4f4] flex flex-wrap justify-between items-center gap-6">
+                    <a href="/" className="flex items-center gap-4 group order-1">
                         <ArrowLeft size={16} className="text-[#636e72] group-hover:-translate-x-2 transition-transform" />
                         <div>
                             <div className="text-[8px] uppercase tracking-widest text-[#636e72] mb-1">Previous</div>
@@ -217,16 +217,16 @@ export default function CaseStudy() {
                         </div>
                     </a>
 
-                    <a href="/" className="text-[10px] font-bold uppercase tracking-widest border-b border-[#2d3435] pb-1 hover:text-[#636e72] hover:border-[#636e72] transition-colors">
-                        Back to Home
-                    </a>
-
-                    <a href="/project/landing-pages" className="flex items-center gap-4 group text-right">
+                    <a href="/project/landing-pages" className="flex items-center gap-4 group text-right order-2">
                         <div>
                             <div className="text-[8px] uppercase tracking-widest text-[#636e72] mb-1">Next Project</div>
                             <div className="font-bold text-sm">Landing Pages</div>
                         </div>
                         <ArrowRight size={16} className="text-[#636e72] group-hover:translate-x-2 transition-transform" />
+                    </a>
+
+                    <a href="/" className="order-3 w-full md:w-auto md:order-none text-center text-[10px] font-bold uppercase tracking-widest border-b border-[#2d3435] pb-1 hover:text-[#636e72] hover:border-[#636e72] transition-colors">
+                        Back to Home
                     </a>
                 </div>
             </article>

@@ -166,7 +166,7 @@ export default function Home() {
                             <motion.div
                                 animate={{ x: [-10, 10, -10] }}
                                 transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-                                className="absolute -right-8 top-1/2 -translate-y-1/2 text-[140px] md:text-[200px] font-display font-bold text-[#f4f5f6] select-none z-0 pointer-events-none leading-none group-hover:text-[#e4e7e7] transition-colors duration-500"
+                                className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 text-[80px] sm:text-[110px] md:text-[200px] font-display font-bold text-[#f4f5f6] select-none z-0 pointer-events-none leading-none group-hover:text-[#e4e7e7] transition-colors duration-500"
                             >
                                 UI.UX
                             </motion.div>
@@ -315,7 +315,7 @@ export default function Home() {
             </section>
 
             {/* 5. Credentials & CTA */}
-            <section className="py-44 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto text-center relative">
+            <section className="py-28 md:py-44 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto text-center relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#e4e7e7]/50 via-transparent to-transparent blur-3xl pointer-events-none -z-10"></div>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 40 }}
@@ -323,8 +323,8 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
-                    <h2 className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold mb-12 tracking-tighter text-[#2d3435] leading-[0.85]">Ready to<br />Scale?</h2>
-                    <Link to="/hire-me" className="bg-[#2d3435] text-white px-12 py-6 rounded-full font-bold text-xs uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(45,52,53,0.4)] transition-all duration-300 inline-flex items-center gap-4 group relative overflow-hidden">
+                    <h2 className="font-display text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-bold mb-10 md:mb-12 tracking-tighter text-[#2d3435] leading-[0.85]">Ready to<br />Scale?</h2>
+                    <Link to="/hire-me" className="bg-[#2d3435] text-white px-8 sm:px-12 py-5 sm:py-6 rounded-full font-bold text-xs uppercase tracking-widest hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(45,52,53,0.4)] transition-all duration-300 inline-flex items-center gap-3 sm:gap-4 group relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
                         <span className="relative z-10">Initiate Project</span>
                         <motion.span
