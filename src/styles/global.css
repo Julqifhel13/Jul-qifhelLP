@@ -137,6 +137,12 @@ ol {
   list-style: none;
 }
 
+/* The browser's own [hidden] rule loses to any author `display` declaration,
+   so scripts that toggle `el.hidden` need this to actually hide anything. */
+[hidden] {
+  display: none !important;
+}
+
 p {
   margin: 0;
 }

@@ -55,9 +55,8 @@ export const ticker = [
 
 /* ---------------------------------------------------------------------- hero */
 export const hero = {
-  // Availability badge + credential label sitting above the headline
+  // Availability badge sitting above the headline
   availability: 'Available for Full-time, Part-time & Contract Roles',
-  credentialLabel: 'GHL Certified Architect',
   headlineLead: 'Scaling Business Operations Through',
   headlineAccent: 'High-Performing Workflows',
   headlineAccentSuffix: ',', // stays white, outside the cyan fill
@@ -275,15 +274,6 @@ export const projects = {
         'Custom GoHighLevel landing system built for legal retainers. Combines custom CSS form overlays with a scored intake pipeline, instant follow-up SMS triggers and automated qualification routing to the right attorney.',
       tags: ['GoHighLevel', 'CSS', 'Automation'],
       preview: 'funnel',
-    },
-    {
-      badge: 'Concept / Prototype',
-      tone: 'secondary',
-      title: 'Enterprise IT Hardware & Asset Portal',
-      body:
-        'Modernised high-scale device deployment management for BPO environments. Handles asset barcode labelling, provisioning diagnostics and device lifecycle logic in a single operational view.',
-      tags: ['IT Systems', 'Inventory', 'Ops'],
-      preview: 'portal',
     },
     {
       badge: 'Automation',
