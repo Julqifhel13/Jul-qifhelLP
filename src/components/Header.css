@@ -1,106 +1,3 @@
----
-import Icon from './Icon.astro';
-import { navLinks, profile, ticker } from '../data/site.js';
----
-
-<header class="header" data-header>
-  <div class="header__bar">
-    <div class="container header__inner">
-      <a href="#top" class="brand" aria-label={`${profile.name} — home`}>
-        <span class="brand__mark">{profile.initials}</span>
-        <span class="brand__status">
-          <span class="dot dot--pulse"></span>
-          {profile.availability}
-        </span>
-      </a>
-
-      <nav class="nav" aria-label="Primary">
-        {
-          navLinks.map((link) => (
-            <a class="nav__link" href={link.href} data-nav-link>
-              {link.label}
-            </a>
-          ))
-        }
-      </nav>
-
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-        data-nav-toggle
-      >
-        <span class="sr-only">Toggle navigation</span>
-        <Icon name="menu" size={20} class="nav-toggle__open" />
-        <Icon name="close" size={20} class="nav-toggle__close" />
-      </button>
-    </div>
-
-    <div class="ticker" role="note">
-      <div class="container ticker__inner no-scrollbar">
-        {
-          ticker.map((item) => (
-            <span class="ticker__item">
-              {item.status && <span class="dot" />}
-              <span class="ticker__label">{item.label}</span>
-              <span class="ticker__value">{item.value}</span>
-            </span>
-          ))
-        }
-      </div>
-    </div>
-  </div>
-
-  <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
-    <div class="container mobile-nav__inner">
-      {
-        navLinks.map((link) => (
-          <a class="mobile-nav__link" href={link.href} data-mobile-link>
-            <span>{link.label}</span>
-            <Icon name="arrow" size={16} />
-          </a>
-        ))
-      }
-      <a class="btn btn--primary mobile-nav__cta" href="#contact" data-mobile-link>
-        Hire Me
-        <Icon name="arrow" size={16} />
-      </a>
-    </div>
-  </div>
-</header>
-
-<script>
-  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
-  const panel = document.querySelector<HTMLElement>('[data-mobile-nav]');
-
-  if (toggle && panel) {
-    const setOpen = (open: boolean) => {
-      toggle.setAttribute('aria-expanded', String(open));
-      panel.hidden = !open;
-      document.documentElement.classList.toggle('nav-open', open);
-    };
-
-    toggle.addEventListener('click', () => {
-      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-    });
-
-    panel.querySelectorAll('[data-mobile-link]').forEach((link) => {
-      link.addEventListener('click', () => setOpen(false));
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') setOpen(false);
-    });
-
-    // Close the panel if the viewport grows into desktop territory
-    window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
-      if (e.matches) setOpen(false);
-    });
-  }
-</script>
-
-<style>
   .header {
     position: sticky;
     top: 0;
@@ -224,16 +121,16 @@ import { navLinks, profile, ticker } from '../data/site.js';
       display: none;
     }
   }
-  .nav-toggle :global(svg) {
+  .nav-toggle svg {
     grid-area: 1 / 1;
   }
-  .nav-toggle :global(.nav-toggle__close) {
+  .nav-toggle .nav-toggle__close {
     display: none;
   }
-  .nav-toggle[aria-expanded='true'] :global(.nav-toggle__open) {
+  .nav-toggle[aria-expanded='true'] .nav-toggle__open {
     display: none;
   }
-  .nav-toggle[aria-expanded='true'] :global(.nav-toggle__close) {
+  .nav-toggle[aria-expanded='true'] .nav-toggle__close {
     display: block;
   }
 
@@ -321,7 +218,7 @@ import { navLinks, profile, ticker } from '../data/site.js';
     background: rgba(255, 255, 255, 0.04);
     border-color: var(--border);
   }
-  .mobile-nav__link :global(svg) {
+  .mobile-nav__link svg {
     color: var(--text-3);
   }
 
@@ -329,10 +226,3 @@ import { navLinks, profile, ticker } from '../data/site.js';
     margin-top: var(--sp-sm);
     width: 100%;
   }
-</style>
-
-<style is:global>
-  html.nav-open {
-    overflow: hidden;
-  }
-</style>

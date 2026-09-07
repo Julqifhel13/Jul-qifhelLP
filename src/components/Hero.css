@@ -1,166 +1,3 @@
----
-import Icon from './Icon.astro';
-import { hero, profile, stats } from '../data/site.js';
-
-// Resolve the optional headshot against the configured base path
-const photo = profile.photo
-  ? `${import.meta.env.BASE_URL}/${profile.photo}`.replace(/\/{2,}/g, '/')
-  : '';
----
-
-<section class="hero section section--flush" id="top">
-  <div class="glow glow--primary hero__glow-a"></div>
-  <div class="glow glow--secondary hero__glow-b"></div>
-
-  <div class="container hero__grid">
-    <!-- ------------------------------------------------------------ copy -->
-    <div class="hero__copy">
-      <div class="hero__status" data-reveal>
-        <span class="hero__available">
-          <span class="dot dot--pulse"></span>
-          {hero.availability}
-        </span>
-      </div>
-
-      <h1 class="t-hero hero__title" data-reveal data-reveal-delay="60">
-        {hero.headlineLead}{' '}
-        <span class="hero__accent">{hero.headlineAccent}</span>{hero.headlineAccentSuffix}{' '}
-        {hero.headlineTail}
-      </h1>
-
-      <p class="t-lead hero__intro" data-reveal data-reveal-delay="120">{hero.intro}</p>
-
-      <ul class="hero__chips" data-reveal data-reveal-delay="180">
-        {
-          hero.chips.map((chip) => (
-            <li class={`hero__chip${chip.tone ? ` hero__chip--${chip.tone}` : ''}`}>
-              <Icon name={chip.icon} size={13} />
-              {chip.label}
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="hero__actions" data-reveal data-reveal-delay="240">
-        <a class="btn btn--primary hero__cta" href={hero.primaryCta.href}>
-          <Icon name={hero.primaryCta.icon} size={16} />
-          {hero.primaryCta.label}
-        </a>
-      </div>
-
-      <p class="hero__direct t-code" data-reveal data-reveal-delay="280">
-        <Icon name="phone" size={13} />
-        {hero.directLine}
-      </p>
-    </div>
-
-    <!-- ------------------------------------------------------ profile card -->
-    <aside class="hero__card card card--glass" data-reveal data-reveal-delay="140">
-      <div class="hero__chrome" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-
-      <div class="hero__card-head">
-        {
-          photo ? (
-            <img class="hero__photo" src={photo} alt={profile.name} width="156" height="156" />
-          ) : (
-            <div class="hero__photo hero__photo--fallback" aria-hidden="true">
-              {profile.initials}
-            </div>
-          )
-        }
-
-        <div class="hero__id">
-          <p class="hero__name">{profile.name}</p>
-          <p class="hero__role">{hero.card.role}</p>
-          <p class="hero__cred">{hero.card.credential}</p>
-        </div>
-      </div>
-
-      <div class="hero__engine">
-        <p class="hero__engine-label">{hero.card.status}</p>
-
-        <ol class="pipe">
-          {
-            hero.card.pipeline.map((stage, i) => (
-              <>
-                {i > 0 && <li class="pipe__link" aria-hidden="true" />}
-                <li class={`pipe__node pipe__node--${stage.tone}`}>
-                  <span class="pipe__title">{stage.title}</span>
-                  <span class="pipe__meta">{stage.meta}</span>
-                </li>
-              </>
-            ))
-          }
-        </ol>
-      </div>
-
-      <div class="hero__card-foot">
-        <p class="hero__verified">
-          <Icon name="shield" size={15} />
-          {hero.card.verified}
-        </p>
-        <button
-          class="hero__copy-email"
-          type="button"
-          data-copy-email={profile.email}
-          data-copied-label={hero.card.copiedLabel}
-        >
-          {hero.card.copyLabel}
-        </button>
-      </div>
-    </aside>
-  </div>
-
-  <!-- ---------------------------------------------------------- stat strip -->
-  <div class="container">
-    <div class="stats" data-reveal>
-      {
-        stats.map((stat) => (
-          <div class="stats__cell">
-            <p class="stats__value">{stat.value}</p>
-            <p class="stats__label">{stat.label}</p>
-            <p class="stats__note">{stat.note}</p>
-          </div>
-        ))
-      }
-    </div>
-  </div>
-</section>
-
-<script>
-  const copyBtn = document.querySelector<HTMLButtonElement>('[data-copy-email]');
-
-  if (copyBtn) {
-    const email = copyBtn.dataset.copyEmail ?? '';
-    const idle = copyBtn.textContent?.trim() ?? 'Copy Email';
-    const done = copyBtn.dataset.copiedLabel ?? 'Copied';
-    let timer: number | undefined;
-
-    const flash = () => {
-      copyBtn.textContent = done;
-      copyBtn.classList.add('is-copied');
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        copyBtn.textContent = idle;
-        copyBtn.classList.remove('is-copied');
-      }, 1800);
-    };
-
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(email);
-        flash();
-      } catch {
-        // Clipboard API needs a secure context — fall back to the mail client
-        window.location.href = `mailto:${email}`;
-      }
-    });
-  }
-</script>
-
-<style>
   .hero {
     overflow: hidden;
     padding-top: clamp(2rem, 3.5vw, 3.25rem);
@@ -262,11 +99,11 @@ const photo = profile.photo
     letter-spacing: -0.005em;
     white-space: nowrap;
   }
-  .hero__chip :global(svg) {
+  .hero__chip svg {
     color: var(--secondary-bright);
     flex: none;
   }
-  .hero__chip--tertiary :global(svg) {
+  .hero__chip--tertiary svg {
     color: var(--tertiary-bright);
   }
 
@@ -296,7 +133,7 @@ const photo = profile.photo
     color: var(--text-3);
     text-transform: none;
   }
-  .hero__direct :global(svg) {
+  .hero__direct svg {
     color: var(--secondary);
     flex: none;
   }
@@ -549,7 +386,7 @@ const photo = profile.photo
     line-height: 1.35;
     color: var(--text-2);
   }
-  .hero__verified :global(svg) {
+  .hero__verified svg {
     color: var(--secondary-bright);
     flex: none;
   }
@@ -631,4 +468,3 @@ const photo = profile.photo
     line-height: 1.5;
     color: var(--text-3);
   }
-</style>

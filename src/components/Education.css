@@ -1,53 +1,3 @@
----
-import Icon from './Icon.astro';
-import { education } from '../data/site.js';
-
-const { main, aside } = education;
----
-
-<section class="section" id="education">
-  <div class="container">
-    <div class="edu">
-      <article class="edu__main card" data-reveal>
-        <p class="eyebrow">{education.eyebrow}</p>
-
-        <h2 class="t-h3 edu__degree">{main.degree}</h2>
-
-        <ul class="edu__meta">
-          <li><Icon name="building" size={14} />{main.school}</li>
-          <li><Icon name="pin" size={14} />{main.place}</li>
-          <li><Icon name="calendar" size={14} />{main.period}</li>
-        </ul>
-
-        <p class="edu__body">{main.body}</p>
-
-        <hr class="rule" />
-
-        <ul class="edu__tags">
-          {main.tags.map((tag) => <li class="pill pill--muted">{tag}</li>)}
-        </ul>
-      </article>
-
-      <aside class="edu__aside card" data-reveal data-reveal-delay="100">
-        <span class="icon-tile icon-tile--primary">
-          <Icon name="cap" size={18} />
-        </span>
-        <h3 class="edu__aside-title">{aside.title}</h3>
-        <p class="edu__aside-body">{aside.body}</p>
-
-        <div class="edu__aside-foot">
-          <span class="tag">{main.period}</span>
-          <span class="edu__aside-status">
-            <span class="dot"></span>
-            Completed
-          </span>
-        </div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<style>
   .edu {
     display: grid;
     gap: var(--sp-md);
@@ -90,7 +40,7 @@ const { main, aside } = education;
     font-size: 0.75rem;
     color: var(--text-2);
   }
-  .edu__meta :global(svg) {
+  .edu__meta svg {
     color: var(--secondary);
     flex: none;
   }
@@ -157,4 +107,3 @@ const { main, aside } = education;
     text-transform: uppercase;
     color: var(--tertiary-bright);
   }
-</style>

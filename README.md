@@ -1,8 +1,8 @@
 # Jul-qifhel M. Cana — Executive Portfolio
 
 A premium, single-page resume and portfolio site built on the **Kinetic Executive
-Portfolio** design system. Built with [Astro](https://astro.build) — component-based
-to keep it maintainable, but it compiles to plain static HTML, so it loads fast and
+Portfolio** design system. Built with **React** and [Vite](https://vite.dev) —
+component-based to keep it maintainable, compiled to a fast static bundle that
 deploys anywhere.
 
 ---
@@ -11,12 +11,16 @@ deploys anywhere.
 
 ```bash
 npm install       # once
-npm run dev       # local dev server → http://localhost:4321/Jul-qifhelLP
+npm run dev       # local dev server → http://localhost:5173/Jul-qifhelLP/
 npm run build     # production build → ./dist
 npm run preview   # preview the production build
 ```
 
-Node 18.20+ (or 20.3+ / 22+) is required.
+Node 20.19+ (or 22.12+) is required.
+
+> **Note the `/Jul-qifhelLP/` in the dev URL.** The site is configured with that
+> base path so it works on GitHub Pages. Plain `http://localhost:5173` returns a
+> blank page.
 
 ---
 
@@ -24,16 +28,15 @@ Node 18.20+ (or 20.3+ / 22+) is required.
 
 **Almost everything lives in one file: [`src/data/site.js`](src/data/site.js).**
 
-You do not need to touch any HTML or CSS to update the site. Open that file, change
-the text between the quote marks, save, and the page updates.
+You do not need to touch any JSX or CSS to update the site. Open that file,
+change the text between the quote marks, save, and the page updates instantly.
 
 | What you want to change | Where in `src/data/site.js` |
 | --- | --- |
-| Name, email, phone, location, availability | `profile` |
-| Browser tab title & Google description | `seo` |
+| Name, email, phone, location, headshot | `profile` |
 | Menu items | `navLinks` |
 | The thin status strip under the menu | `ticker` |
-| Headline, intro paragraph, chips, buttons | `hero` |
+| Availability badge, headline, intro, chips, CTA, profile card | `hero` |
 | The four number cards (15+, 18+, …) | `stats` |
 | About copy, career objective, four capability cards | `about` |
 | Jobs, bullet points, tech tags | `experience.roles` |
@@ -52,58 +55,68 @@ Append one line to `certifications.items`:
 { title: 'Your New Certification', issuer: 'Provider', cat: 'cloud', year: '2026' },
 ```
 
-`cat` must be one of the ids listed in `certifications.filters` — `cloud`, `data`,
-`agile` or `leadership`. The filter counts update automatically.
+`cat` must be one of the ids in `certifications.filters` — `cloud`, `data`,
+`agile` or `leadership`. The filter tabs and their counts update automatically.
 
-### Adding a job
+### Adding your headshot
 
-Append an object to `experience.roles` following the shape of the existing ones.
-Set `current: true` on whichever role should show the live green indicator.
+1. Drop the image into `public/`, e.g. `public/jul-qifhel.jpg`.
+2. Set `photo: 'jul-qifhel.jpg'` in the `profile` block.
+
+It renders in the hero card; leave it empty and the card falls back to the
+gradient "JC" monogram. A square crop of 300×300 or larger works best.
 
 ### Adding your CV as a download
 
-1. Drop the PDF into the `public/` folder, e.g. `public/Jul-qifhel-Cana-Resume.pdf`.
-2. Set `resumeUrl: 'Jul-qifhel-Cana-Resume.pdf'` in the `profile` block.
+1. Drop the PDF into `public/`, e.g. `public/Jul-qifhel-Cana-Resume.pdf`.
+2. Set `resumeUrl: 'Jul-qifhel-Cana-Resume.pdf'` in `profile`.
 
 A "Download CV" button appears in the Contact section automatically.
-
----
-
-## Design system
-
-Design tokens (colours, type scale, spacing, radii) are defined once as CSS custom
-properties at the top of [`src/styles/global.css`](src/styles/global.css) and come
-straight from `Kinetic-Executive-Portfolio.md`. Change a token there and it
-propagates across every component.
-
-Layout follows the spec's responsive rules:
-
-| Breakpoint | Behaviour |
-| --- | --- |
-| **Desktop ≥ 1024px** | 2rem gutters, 7/5 hero split, 4-column card grids, experience timeline with a glowing central rail |
-| **Tablet 768–1023px** | 1.5rem gutters, cards reflow to 2 columns, metrics collapse to 2×2 |
-| **Mobile ≤ 767px** | 1rem gutters, full-width linear stack, slide-down navigation, horizontally scrollable filter chips |
 
 ---
 
 ## Project structure
 
 ```
+index.html                 ← page shell: fonts, meta tags, SEO
 src/
-├── data/site.js          ← all content (edit this)
-├── styles/global.css     ← design tokens + shared component styles
-├── layouts/Base.astro    ← <head>, fonts, SEO, scroll-reveal + scroll-spy scripts
-├── components/           ← one file per section
-│   ├── Icon.astro        ← inline SVG icon set
-│   ├── Header.astro      ├── Hero.astro       ├── About.astro
-│   ├── Experience.astro  ├── Projects.astro   ├── Skills.astro
-│   ├── Certifications.astro ├── Education.astro
-│   ├── Contact.astro     └── Footer.astro
-└── pages/index.astro     ← assembles the sections in order
+├── main.jsx               ← entry point
+├── App.jsx                ← assembles the sections in order
+├── data/site.js           ← all content (edit this)
+├── styles/global.css      ← design tokens + shared component styles
+├── hooks/
+│   ├── useScrollReveal.js ← fade-in on scroll
+│   └── useScrollSpy.js    ← highlights the current nav link
+└── components/            ← one .jsx + matching .css per section
+    ├── Icon.jsx           ← inline SVG icon set
+    ├── Header.jsx  Hero.jsx      About.jsx
+    ├── Experience.jsx  Projects.jsx  Skills.jsx
+    ├── Certifications.jsx  Education.jsx
+    ├── Contact.jsx  Footer.jsx
 ```
 
-Each component keeps its own styles in a scoped `<style>` block, so editing one
-section can't break another.
+### A note on CSS order
+
+[`src/main.jsx`](src/main.jsx) imports `global.css` **before** `App.jsx`. That
+order matters: component rules and global rules often share the same
+specificity, so whichever comes last in the bundle wins. Keeping globals first
+lets a component override a shared rule. Don't reorder those imports.
+
+---
+
+## Design system
+
+Design tokens (colours, type scale, spacing, radii, elevation) are defined once
+as CSS custom properties at the top of
+[`src/styles/global.css`](src/styles/global.css) and come straight from
+`Kinetic-Executive-Portfolio.md`. Change a token there and it propagates
+everywhere.
+
+| Breakpoint | Behaviour |
+| --- | --- |
+| **Desktop ≥ 1024px** | 2rem gutters, 7/5 hero split, 4-column card grids, experience timeline with a glowing rail |
+| **Tablet 768–1023px** | 1.5rem gutters, cards reflow to 2 columns, metrics collapse to 2×2 |
+| **Mobile ≤ 767px** | 1rem gutters, full-width stack, slide-down navigation, scrollable filter chips |
 
 ---
 
@@ -111,31 +124,22 @@ section can't break another.
 
 ### GitHub Pages (configured and ready)
 
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and publishes
-on every push to `main`. One-time setup:
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds and
+publishes on every push to `main`. One-time setup:
 
-1. Push this repository to `https://github.com/Julqifhel13/Jul-qifhelLP`.
-2. On GitHub go to **Settings → Pages → Build and deployment**, and set
-   **Source** to **GitHub Actions**.
+1. On GitHub go to **Settings → Pages → Build and deployment**.
+2. Set **Source** to **GitHub Actions**.
 
-The site then goes live at `https://julqifhel13.github.io/Jul-qifhelLP/`, and
-redeploys automatically each time you push a content change.
+The site goes live at `https://julqifhel13.github.io/Jul-qifhelLP/` and
+redeploys automatically on every content change you push.
 
 ### Custom domain, Vercel or Netlify
 
-The site is served from a sub-path on GitHub Pages, so it's built with a
-`base` of `/Jul-qifhelLP`. If you move it to a root domain, edit
-[`astro.config.mjs`](astro.config.mjs):
-
-```js
-const SITE_URL = 'https://yourdomain.com';
-const BASE_PATH = '/';
-```
-
-Or override without editing the file:
+The base path is set in [`vite.config.js`](vite.config.js). For a root domain,
+build with:
 
 ```bash
-BASE_PATH=/ SITE_URL=https://yourdomain.com npm run build
+BASE_PATH=/ npm run build
 ```
 
 ---
@@ -144,6 +148,5 @@ BASE_PATH=/ SITE_URL=https://yourdomain.com npm run build
 
 - Fully keyboard navigable, with a skip link and visible focus rings.
 - All motion is disabled under `prefers-reduced-motion: reduce`.
-- Zero client-side frameworks — only a few kilobytes of vanilla JS for the mobile
-  menu, certification filters, scroll-spy and reveal animations.
 - Semantic landmarks and `Person` structured data for search engines.
+- No UI or animation libraries — just React and hand-written CSS.

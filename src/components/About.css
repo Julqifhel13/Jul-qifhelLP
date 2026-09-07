@@ -1,59 +1,3 @@
----
-import Icon from './Icon.astro';
-import { about } from '../data/site.js';
----
-
-<section class="section" id="about">
-  <div class="container">
-    <div class="about__top">
-      <div data-reveal>
-        <p class="eyebrow">{about.eyebrow}</p>
-        <h2 class="t-h2 about__title">
-          {about.heading.map((line) => <span class="about__line">{line}</span>)}
-        </h2>
-        <p class="t-lead about__body">{about.body}</p>
-      </div>
-
-      <figure class="about__objective card" data-reveal data-reveal-delay="100">
-        <figcaption class="about__objective-label">
-          <Icon name="target" size={14} />
-          {about.objective.label}
-        </figcaption>
-        <blockquote class="about__quote">{about.objective.quote}</blockquote>
-        <hr class="rule" />
-        <ul class="about__meta">
-          {about.objective.meta.map((m) => <li class="tag">{m}</li>)}
-        </ul>
-      </figure>
-    </div>
-
-    <ul class="about__pillars">
-      {
-        about.pillars.map((pillar, i) => (
-          <li
-            class="about__pillar card card--hover"
-            data-reveal
-            data-reveal-delay={String(i * 70)}
-          >
-            <span class={`icon-tile icon-tile--${pillar.accent}`}>
-              <Icon name={pillar.icon} size={18} />
-            </span>
-            <h3 class="about__pillar-title">{pillar.title}</h3>
-            <p class="about__pillar-body">{pillar.body}</p>
-            <hr class="rule" />
-            <ul class="about__pillar-tags">
-              {pillar.tags.map((tag) => (
-                <li class="tag">{tag}</li>
-              ))}
-            </ul>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
-
-<style>
   .about__top {
     display: grid;
     gap: var(--sp-xl);
@@ -180,4 +124,3 @@ import { about } from '../data/site.js';
     gap: var(--sp-sm);
     margin-top: var(--sp-md);
   }
-</style>

@@ -1,64 +1,3 @@
----
-import Icon from './Icon.astro';
-import { projects } from '../data/site.js';
----
-
-<section class="section" id="projects">
-  <div class="container">
-    <header class="section-head">
-      <div data-reveal>
-        <p class="eyebrow">{projects.eyebrow}</p>
-        <h2 class="t-h2 section-head__title">{projects.heading}</h2>
-      </div>
-      <p class="t-body section-head__note" data-reveal data-reveal-delay="80">{projects.note}</p>
-    </header>
-
-    <ul class="pj">
-      {
-        projects.items.map((item, i) => (
-          <li class="pj__item card card--hover" data-reveal data-reveal-delay={String(i * 80)}>
-            <!-- abstract build preview -->
-            <div class={`pj__preview pj__preview--${item.preview}`} aria-hidden="true">
-              <div class="pj__chrome">
-                <span /><span /><span />
-                <div class="pj__url" />
-              </div>
-              <div class="pj__mock">
-                <div class="pj__mock-row pj__mock-row--wide" />
-                <div class="pj__mock-row" />
-                <div class="pj__mock-grid">
-                  <div /><div /><div />
-                </div>
-                <div class="pj__mock-row pj__mock-row--short" />
-              </div>
-            </div>
-
-            <div class="pj__body">
-              <span class={`pill pill--${item.tone} pj__badge`}>{item.badge}</span>
-              <h3 class="pj__title">{item.title}</h3>
-              <p class="pj__text">{item.body}</p>
-            </div>
-
-            <hr class="rule" />
-
-            <footer class="pj__footer">
-              <ul class="pj__tags">
-                {item.tags.map((tag) => (
-                  <li class="tag">{tag}</li>
-                ))}
-              </ul>
-              <span class="pj__arrow" aria-hidden="true">
-                <Icon name="arrow" size={15} />
-              </span>
-            </footer>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
-
-<style>
   .pj {
     display: grid;
     gap: var(--sp-md);
@@ -69,8 +8,11 @@ import { projects } from '../data/site.js';
     }
   }
   @media (min-width: 1024px) {
+    /* auto-fit + centre keeps a full row of three identical to before, but
+       centres the row when there are fewer cards than columns. */
     .pj {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
+      justify-content: center;
       gap: var(--sp-lg);
     }
   }
@@ -215,4 +157,3 @@ import { projects } from '../data/site.js';
     border-color: var(--border-accent);
     transform: translateX(2px);
   }
-</style>

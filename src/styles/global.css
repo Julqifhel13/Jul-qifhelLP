@@ -593,3 +593,26 @@ h4 {
 .stack-sm > * + * { margin-top: var(--sp-sm); }
 .stack-md > * + * { margin-top: var(--sp-md); }
 .stack-lg > * + * { margin-top: var(--sp-lg); }
+/* from Header.astro */
+html.nav-open {
+    overflow: hidden;
+  }
+
+/* from Base.astro layout */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 200;
+  padding: 0.625rem 1rem;
+  background: var(--surface-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 0 0 var(--r) var(--r);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: transform 180ms var(--ease);
+}
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}

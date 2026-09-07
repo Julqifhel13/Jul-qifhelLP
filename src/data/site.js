@@ -473,5 +473,5 @@ export const footer = {
     },
   ],
   legal: 'All rights reserved.',
-  builtWith: 'Designed & built with Astro',
+  builtWith: 'Designed & built with React',
 };
