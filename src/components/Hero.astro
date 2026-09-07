@@ -15,11 +15,17 @@ const photo = profile.photo
   <div class="container hero__grid">
     <!-- ------------------------------------------------------------ copy -->
     <div class="hero__copy">
-      <p class="eyebrow" data-reveal>{hero.eyebrow}</p>
+      <div class="hero__status" data-reveal>
+        <span class="hero__available">
+          <span class="dot dot--pulse"></span>
+          {hero.availability}
+        </span>
+        <span class="hero__credential">{hero.credentialLabel}</span>
+      </div>
 
       <h1 class="t-hero hero__title" data-reveal data-reveal-delay="60">
         {hero.headlineLead}{' '}
-        <span class="accent-text">{hero.headlineAccent}</span>{' '}
+        <span class="hero__accent">{hero.headlineAccent}</span>{hero.headlineAccentSuffix}{' '}
         {hero.headlineTail}
       </h1>
 
@@ -28,7 +34,7 @@ const photo = profile.photo
       <ul class="hero__chips" data-reveal data-reveal-delay="180">
         {
           hero.chips.map((chip) => (
-            <li class="pill pill--muted hero__chip">
+            <li class={`hero__chip${chip.tone ? ` hero__chip--${chip.tone}` : ''}`}>
               <Icon name={chip.icon} size={13} />
               {chip.label}
             </li>
@@ -37,17 +43,14 @@ const photo = profile.photo
       </ul>
 
       <div class="hero__actions" data-reveal data-reveal-delay="240">
-        <a class="btn btn--primary" href={hero.primaryCta.href}>
+        <a class="btn btn--primary hero__cta" href={hero.primaryCta.href}>
+          <Icon name={hero.primaryCta.icon} size={16} />
           {hero.primaryCta.label}
-          <Icon name="arrow" size={16} />
-        </a>
-        <a class="btn btn--ghost" href={hero.secondaryCta.href}>
-          {hero.secondaryCta.label}
         </a>
       </div>
 
       <p class="hero__direct t-code" data-reveal data-reveal-delay="280">
-        <span class="dot"></span>
+        <Icon name="phone" size={13} />
         {hero.directLine}
       </p>
     </div>
@@ -100,7 +103,7 @@ const photo = profile.photo
           {hero.card.verified}
         </p>
         <button
-          class="hero__copy"
+          class="hero__copy-email"
           type="button"
           data-copy-email={profile.email}
           data-copied-label={hero.card.copiedLabel}
@@ -193,8 +196,39 @@ const photo = profile.photo
   }
 
   /* -------------------------------------------------------------- copy */
+
+  /* availability badge + credential label */
+  .hero__status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-xs) var(--sp-sm);
+  }
+
+  .hero__available {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    padding: 0.3125rem 0.75rem;
+    border-radius: var(--r-full);
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--tertiary-bright);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .hero__credential {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--secondary-bright);
+  }
+
   .hero__title {
-    margin-top: var(--sp-md);
+    margin-top: var(--sp-lg);
     max-width: 17ch;
     text-wrap: balance;
   }
@@ -204,20 +238,45 @@ const photo = profile.photo
     }
   }
 
+  /* focal keywords in a solid cyan fill */
+  .hero__accent {
+    color: var(--secondary-bright);
+  }
+
   .hero__intro {
     margin-top: var(--sp-lg);
     /* ~68 characters — keeps the measure readable when the grid is single-column */
     max-width: 48ch;
   }
 
+  /* capability chips — rounded rectangles, not pills */
   .hero__chips {
     display: flex;
     flex-wrap: wrap;
     gap: var(--sp-xs);
-    margin-top: var(--sp-lg);
+    margin-top: var(--sp-xl);
+  }
+
+  .hero__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    padding: 0.4375rem 0.6875rem;
+    border-radius: var(--r);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
   }
   .hero__chip :global(svg) {
-    color: var(--secondary);
+    color: var(--secondary-bright);
+    flex: none;
+  }
+  .hero__chip--tertiary :global(svg) {
+    color: var(--tertiary-bright);
   }
 
   .hero__actions {
@@ -226,10 +285,16 @@ const photo = profile.photo
     gap: var(--sp-sm);
     margin-top: var(--sp-xl);
   }
-  @media (max-width: 420px) {
-    .hero__actions .btn {
-      flex: 1 1 100%;
-    }
+
+  /* wide, single primary CTA in a solid violet rather than the site gradient */
+  .hero__cta {
+    width: 100%;
+    max-width: 264px;
+    height: 48px;
+    background: linear-gradient(180deg, #5b51ef 0%, #4f46e5 100%);
+  }
+  .hero__cta:hover {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 24px rgba(79, 70, 229, 0.45);
   }
 
   .hero__direct {
@@ -239,6 +304,10 @@ const photo = profile.photo
     margin-top: var(--sp-lg);
     color: var(--text-3);
     text-transform: none;
+  }
+  .hero__direct :global(svg) {
+    color: var(--secondary);
+    flex: none;
   }
 
   /* ------------------------------------------------------ profile card */
@@ -494,7 +563,7 @@ const photo = profile.photo
     flex: none;
   }
 
-  .hero__copy {
+  .hero__copy-email {
     flex: none;
     padding: 0.4375rem 0.6875rem;
     border-radius: var(--r);
@@ -508,11 +577,11 @@ const photo = profile.photo
     transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease),
       color var(--dur) var(--ease);
   }
-  .hero__copy:hover {
+  .hero__copy-email:hover {
     border-color: var(--border-accent);
     background: rgba(6, 182, 212, 0.1);
   }
-  .hero__copy.is-copied {
+  .hero__copy-email.is-copied {
     color: var(--tertiary-bright);
     border-color: rgba(16, 185, 129, 0.4);
     background: rgba(16, 185, 129, 0.1);

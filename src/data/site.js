@@ -13,8 +13,8 @@ export const profile = {
   location: 'Bacoor City, Philippines',
   timezone: 'GMT+8',
   email: 'jul-qifhel@gmail.com',
-  phone: '+63 906 473 8708',
-  phoneHref: '+639064738708',
+  phone: '+63 991 986 0758',
+  phoneHref: '+639919860758',
   availability: 'Available for New Clients',
   // Headshot for the hero card. Drop the file into /public and put its
   // filename here, e.g. 'jul-qifhel.jpg'. Left empty, the card falls back
@@ -50,28 +50,30 @@ export const ticker = [
   { label: 'PH · Online', value: 'Bacoor City, Philippines (GMT+8)', status: true },
   { label: 'Focus', value: 'Automation · GHL / CRM · IT Ops' },
   { label: 'Email', value: 'jul-qifhel@gmail.com' },
-  { label: 'Direct', value: '+63 906 473 8708' },
+  { label: 'Direct', value: '+63 991 986 0758' },
 ];
 
 /* ---------------------------------------------------------------------- hero */
 export const hero = {
-  eyebrow: 'Executive Ops · Automation Engineering',
+  // Availability badge + credential label sitting above the headline
+  availability: 'Available for Full-time, Part-time & Contract Roles',
+  credentialLabel: 'GHL Certified Architect',
   headlineLead: 'Scaling Business Operations Through',
-  headlineAccent: 'High-Performing Workflows,',
+  headlineAccent: 'High-Performing Workflows',
+  headlineAccentSuffix: ',', // stays white, outside the cyan fill
   headlineTail: 'GoHighLevel & Reliable IT Systems.',
   intro:
-    'Virtual Assistant & IT Specialist with a rigorous Information Technology foundation. I bridge technical architecture with executive support — engineering GoHighLevel CRM workflows, automated multi-channel lead funnels, custom landing pages and administrative excellence for high-growth enterprises and legal practices.',
+    'Virtual Assistant & IT Specialist with a rigorous Information Technology foundation from New Era University. I bridge technical architecture with executive support—engineering GoHighLevel CRM workflows, automated multi-channel lead funnels, custom landing pages, and administrative excellence for high-growth enterprises and legal practices.',
   chips: [
     { icon: 'zap', label: 'GoHighLevel Pro' },
     { icon: 'route', label: 'CRM & Pipeline Architect' },
-    { icon: 'code', label: 'Front-End Ready' },
-    { icon: 'shield', label: 'IT Support & Systems' },
-    { icon: 'sparkles', label: 'AI-Assisted Engineering' },
-    { icon: 'layers', label: 'Multi-Platform Visual Design' },
+    { icon: 'globe', label: 'IT Support & Systems', tone: 'tertiary' },
+    { icon: 'code', label: 'Full-Stack Aware' },
+    { icon: 'sparkles', label: 'AI-Assisted Engineer' },
+    { icon: 'layers', label: 'Multiple Visual Asset Design', tone: 'tertiary' },
   ],
-  primaryCta: { label: 'Hire Me', href: '#contact' },
-  secondaryCta: { label: 'View Work', href: '#projects' },
-  directLine: 'Direct: jul-qifhel@gmail.com',
+  primaryCta: { label: 'Hire Me', href: '#contact', icon: 'calendar' },
+  directLine: 'Direct: 09919860758',
   card: {
     status: 'Active Automation Engine',
     role: 'VA & IT Automation Specialist & AI Assisted Dev',
@@ -440,8 +442,8 @@ export const contact = {
     {
       icon: 'phone',
       label: 'Phone / WhatsApp',
-      value: '+63 906 473 8708',
-      href: 'tel:+639064738708',
+      value: '+63 991 986 0758',
+      href: 'tel:+639919860758',
     },
     {
       icon: 'pin',
@@ -465,7 +467,7 @@ export const footer = {
       title: 'Direct Contact',
       links: [
         { label: 'jul-qifhel@gmail.com', href: 'mailto:jul-qifhel@gmail.com' },
-        { label: '+63 906 473 8708', href: 'tel:+639064738708' },
+        { label: '+63 991 986 0758', href: 'tel:+639919860758' },
         { label: 'Bacoor City, Philippines', href: '' },
       ],
     },
