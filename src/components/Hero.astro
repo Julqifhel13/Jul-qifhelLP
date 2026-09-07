@@ -185,14 +185,6 @@ const photo = profile.photo
     align-items: start;
   }
   @media (min-width: 1024px) {
-    /* Small laptops: even split + tighter gutter, so the engine card keeps
-       enough width to hold the pipeline labels on a single line. */
-    .hero__grid {
-      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
-      gap: var(--sp-xl);
-    }
-  }
-  @media (min-width: 1280px) {
     .hero__grid {
       /* 7 / 5 split per the design system */
       grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -431,6 +423,30 @@ const photo = profile.photo
   }
   .pipe__link::before { left: -1px; }
   .pipe__link::after { right: -1px; }
+
+  /* Small laptops (1024–1279px): the 7/5 split leaves the card ~373px wide,
+     so tighten the card's own padding and type to keep every stage label on
+     one line. The hero's left column is deliberately left untouched. */
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    .hero__card {
+      padding: var(--sp-md);
+    }
+    .hero__engine {
+      padding: 0.75rem;
+    }
+    .pipe__node {
+      padding-inline: 0.375rem;
+    }
+    .pipe__title {
+      font-size: 0.5625rem;
+    }
+    .pipe__meta {
+      font-size: 0.5rem;
+    }
+    .pipe__link {
+      flex-basis: 16px;
+    }
+  }
 
   /* Narrow cards: rotate the flow into a vertical rail */
   @media (max-width: 540px) {
