@@ -1,0 +1,146 @@
+---
+import '../styles/global.css';
+import { seo, profile } from '../data/site.js';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = seo.title, description = seo.description } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const canonical = new URL(base, Astro.site ?? 'https://example.com').toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <meta name="theme-color" content="#070a11" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`.replace('//', '/')} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={profile.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <noscript>
+      <style>
+        [data-reveal] { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+
+    <!-- Fonts: Plus Jakarta Sans (display + body) · JetBrains Mono (labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: profile.name,
+        jobTitle: profile.title,
+        email: `mailto:${profile.email}`,
+        telephone: profile.phone,
+        address: { '@type': 'PostalAddress', addressLocality: profile.location },
+        url: canonical,
+      })}
+    />
+  </head>
+
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <slot />
+
+    <script>
+      // ---- Scroll reveal --------------------------------------------------
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealables = document.querySelectorAll('[data-reveal]');
+
+      if (reduce || !('IntersectionObserver' in window)) {
+        revealables.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target as HTMLElement;
+              const delay = Number(el.dataset.revealDelay ?? 0);
+              window.setTimeout(() => el.classList.add('is-visible'), delay);
+              io.unobserve(el);
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+        );
+        revealables.forEach((el) => io.observe(el));
+      }
+
+      // ---- Active section highlighting in the nav -------------------------
+      const sections = Array.from(document.querySelectorAll('main section[id]'));
+      const navLinks = Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')
+      );
+
+      if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+        const setActive = (id: string) => {
+          navLinks.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+          });
+        };
+
+        const spy = new IntersectionObserver(
+          (entries) => {
+            const visible = entries
+              .filter((e) => e.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (visible) setActive(visible.target.id);
+          },
+          { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5] }
+        );
+        sections.forEach((s) => spy.observe(s));
+      }
+
+      // ---- Header condense on scroll --------------------------------------
+      const header = document.querySelector('[data-header]');
+      if (header) {
+        const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+    </script>
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -120%);
+        z-index: 200;
+        padding: 0.625rem 1rem;
+        background: var(--surface-3);
+        border: 1px solid var(--border-strong);
+        border-radius: 0 0 var(--r) var(--r);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        transition: transform 180ms var(--ease);
+      }
+      .skip-link:focus-visible {
+        transform: translate(-50%, 0);
+      }
+    </style>
+  </body>
+</html>

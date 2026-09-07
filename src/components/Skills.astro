@@ -1,0 +1,178 @@
+---
+import Icon from './Icon.astro';
+import { skills } from '../data/site.js';
+---
+
+<section class="section" id="skills">
+  <div class="container">
+    <header class="section-head">
+      <div data-reveal>
+        <p class="eyebrow">{skills.eyebrow}</p>
+        <h2 class="t-h2 section-head__title">{skills.heading}</h2>
+      </div>
+      <p class="t-body section-head__note" data-reveal data-reveal-delay="80">{skills.note}</p>
+    </header>
+
+    <ul class="sk">
+      {
+        skills.groups.map((group, i) => (
+          <li class="sk__card card card--hover" data-reveal data-reveal-delay={String(i * 70)}>
+            <div class="sk__head">
+              <span class={`icon-tile icon-tile--${group.accent}`}>
+                <Icon name={group.icon} size={18} />
+              </span>
+              <span class={`pill pill--${group.accent} sk__badge`}>{group.badge}</span>
+            </div>
+
+            <h3 class="sk__title">{group.title}</h3>
+
+            <ul class="sk__list">
+              {group.items.map((item) => (
+                <li class="sk__item">
+                  <Icon name="check" size={12} stroke={2.4} class="sk__check" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="sk__meter">
+              <div class="sk__meter-head">
+                <span class="tag">{group.levelLabel}</span>
+                <span class="sk__meter-value">{group.level}%</span>
+              </div>
+              <div
+                class="sk__track"
+                role="meter"
+                aria-valuenow={group.level}
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-label={`${group.title} proficiency`}
+              >
+                <span class="sk__fill" style={`--level:${group.level}%`} />
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .sk {
+    display: grid;
+    gap: var(--sp-md);
+  }
+  @media (min-width: 640px) {
+    .sk {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1100px) {
+    .sk {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .sk__card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-lg);
+  }
+
+  .sk__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-sm);
+  }
+
+  .sk__badge {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .sk__title {
+    margin-top: var(--sp-md);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-1);
+  }
+
+  .sk__list {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: var(--sp-md);
+    margin-bottom: var(--sp-lg);
+    flex: 1;
+  }
+
+  .sk__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-2);
+  }
+  .sk__item :global(.sk__check) {
+    margin-top: 4px;
+    color: var(--tertiary-bright);
+    flex: none;
+  }
+
+  /* ----------------------------------------------------------- meter */
+  .sk__meter {
+    margin-top: auto;
+    padding-top: var(--sp-md);
+    border-top: 1px solid var(--border-soft);
+  }
+
+  .sk__meter-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-xs);
+    margin-bottom: 0.5rem;
+  }
+
+  .sk__meter-value {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--secondary-bright);
+  }
+
+  .sk__track {
+    height: 4px;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+  }
+
+  .sk__fill {
+    display: block;
+    height: 100%;
+    width: var(--level);
+    border-radius: var(--r-full);
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 900ms var(--ease) 120ms;
+  }
+  .sk__card.is-visible .sk__fill,
+  :global([data-reveal].is-visible) .sk__fill {
+    transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sk__fill {
+      transform: scaleX(1);
+    }
+  }
+</style>

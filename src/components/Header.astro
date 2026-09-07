@@ -1,0 +1,338 @@
+---
+import Icon from './Icon.astro';
+import { navLinks, profile, ticker } from '../data/site.js';
+---
+
+<header class="header" data-header>
+  <div class="header__bar">
+    <div class="container header__inner">
+      <a href="#top" class="brand" aria-label={`${profile.name} — home`}>
+        <span class="brand__mark">{profile.initials}</span>
+        <span class="brand__status">
+          <span class="dot dot--pulse"></span>
+          {profile.availability}
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        {
+          navLinks.map((link) => (
+            <a class="nav__link" href={link.href} data-nav-link>
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-nav-toggle
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <Icon name="menu" size={20} class="nav-toggle__open" />
+        <Icon name="close" size={20} class="nav-toggle__close" />
+      </button>
+    </div>
+
+    <div class="ticker" role="note">
+      <div class="container ticker__inner no-scrollbar">
+        {
+          ticker.map((item) => (
+            <span class="ticker__item">
+              {item.status && <span class="dot" />}
+              <span class="ticker__label">{item.label}</span>
+              <span class="ticker__value">{item.value}</span>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+    <div class="container mobile-nav__inner">
+      {
+        navLinks.map((link) => (
+          <a class="mobile-nav__link" href={link.href} data-mobile-link>
+            <span>{link.label}</span>
+            <Icon name="arrow" size={16} />
+          </a>
+        ))
+      }
+      <a class="btn btn--primary mobile-nav__cta" href="#contact" data-mobile-link>
+        Hire Me
+        <Icon name="arrow" size={16} />
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-mobile-nav]');
+
+  if (toggle && panel) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      document.documentElement.classList.toggle('nav-open', open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    panel.querySelectorAll('[data-mobile-link]').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    // Close the panel if the viewport grows into desktop territory
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+  }
+
+  .header__bar {
+    background: rgba(7, 10, 17, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-soft);
+    transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .header.is-stuck .header__bar {
+    background: rgba(7, 10, 17, 0.92);
+    border-bottom-color: var(--border);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-lg);
+    height: var(--nav-h);
+  }
+
+  /* ------------------------------------------------------------ brand */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    flex: none;
+  }
+
+  .brand__mark {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--r);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .brand__status {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3125rem 0.6875rem;
+    border-radius: var(--r-full);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--tertiary-bright);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  @media (min-width: 560px) {
+    .brand__status {
+      display: inline-flex;
+    }
+  }
+
+  /* -------------------------------------------------------------- nav */
+  .nav {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  @media (min-width: 1024px) {
+    .nav {
+      display: flex;
+    }
+  }
+
+  .nav__link {
+    position: relative;
+    padding: 0.5rem 0.6875rem;
+    border-radius: var(--r);
+    color: var(--text-2);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+  }
+  .nav__link:hover {
+    color: var(--text-1);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .nav__link.is-active {
+    color: var(--text-1);
+  }
+  .nav__link.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0.6875rem;
+    right: 0.6875rem;
+    bottom: 0.125rem;
+    height: 1px;
+    background: var(--secondary);
+  }
+
+  /* ----------------------------------------------------- mobile toggle */
+  .nav-toggle {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    flex: none;
+  }
+  @media (min-width: 1024px) {
+    .nav-toggle {
+      display: none;
+    }
+  }
+  .nav-toggle :global(svg) {
+    grid-area: 1 / 1;
+  }
+  .nav-toggle :global(.nav-toggle__close) {
+    display: none;
+  }
+  .nav-toggle[aria-expanded='true'] :global(.nav-toggle__open) {
+    display: none;
+  }
+  .nav-toggle[aria-expanded='true'] :global(.nav-toggle__close) {
+    display: block;
+  }
+
+  /* ----------------------------------------------------------- ticker */
+  .ticker {
+    border-top: 1px solid var(--border-soft);
+    background: rgba(10, 14, 24, 0.6);
+  }
+  /* fade the right edge so the scrollable overflow reads as intentional */
+  @media (max-width: 1023px) {
+    .ticker {
+      -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
+      mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
+    }
+  }
+
+  .ticker__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-lg);
+    height: 34px;
+    overflow-x: auto;
+  }
+  @media (min-width: 1024px) {
+    .ticker__inner {
+      justify-content: space-between;
+      gap: var(--sp-xl);
+    }
+  }
+
+  .ticker__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+  }
+
+  .ticker__label {
+    color: var(--secondary);
+    text-transform: uppercase;
+  }
+  .ticker__value {
+    color: var(--text-3);
+  }
+
+  /* ------------------------------------------------------- mobile nav */
+  .mobile-nav {
+    background: rgba(10, 14, 24, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    max-height: calc(100vh - var(--nav-h) - 34px);
+    overflow-y: auto;
+  }
+  @media (min-width: 1024px) {
+    .mobile-nav {
+      display: none;
+    }
+  }
+
+  .mobile-nav__inner {
+    display: grid;
+    gap: 0.25rem;
+    padding-block: var(--sp-md) var(--sp-lg);
+  }
+
+  .mobile-nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 0.75rem;
+    border-radius: var(--r);
+    border: 1px solid transparent;
+    color: var(--text-1);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .mobile-nav__link:hover,
+  .mobile-nav__link:focus-visible {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border);
+  }
+  .mobile-nav__link :global(svg) {
+    color: var(--text-3);
+  }
+
+  .mobile-nav__cta {
+    margin-top: var(--sp-sm);
+    width: 100%;
+  }
+</style>
+
+<style is:global>
+  html.nav-open {
+    overflow: hidden;
+  }
+</style>

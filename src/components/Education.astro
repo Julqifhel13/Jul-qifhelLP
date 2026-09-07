@@ -1,0 +1,160 @@
+---
+import Icon from './Icon.astro';
+import { education } from '../data/site.js';
+
+const { main, aside } = education;
+---
+
+<section class="section" id="education">
+  <div class="container">
+    <div class="edu">
+      <article class="edu__main card" data-reveal>
+        <p class="eyebrow">{education.eyebrow}</p>
+
+        <h2 class="t-h3 edu__degree">{main.degree}</h2>
+
+        <ul class="edu__meta">
+          <li><Icon name="building" size={14} />{main.school}</li>
+          <li><Icon name="pin" size={14} />{main.place}</li>
+          <li><Icon name="calendar" size={14} />{main.period}</li>
+        </ul>
+
+        <p class="edu__body">{main.body}</p>
+
+        <hr class="rule" />
+
+        <ul class="edu__tags">
+          {main.tags.map((tag) => <li class="pill pill--muted">{tag}</li>)}
+        </ul>
+      </article>
+
+      <aside class="edu__aside card" data-reveal data-reveal-delay="100">
+        <span class="icon-tile icon-tile--primary">
+          <Icon name="cap" size={18} />
+        </span>
+        <h3 class="edu__aside-title">{aside.title}</h3>
+        <p class="edu__aside-body">{aside.body}</p>
+
+        <div class="edu__aside-foot">
+          <span class="tag">{main.period}</span>
+          <span class="edu__aside-status">
+            <span class="dot"></span>
+            Completed
+          </span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu {
+    display: grid;
+    gap: var(--sp-md);
+  }
+  @media (min-width: 900px) {
+    .edu {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: var(--sp-lg);
+    }
+  }
+
+  .edu__main {
+    padding: var(--sp-lg);
+    background:
+      radial-gradient(90% 140% at 0% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 55%),
+      var(--surface-1);
+  }
+  @media (min-width: 768px) {
+    .edu__main {
+      padding: var(--sp-xl);
+    }
+  }
+
+  .edu__degree {
+    margin-top: var(--sp-md);
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+
+  .edu__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-sm) var(--sp-lg);
+    margin-top: var(--sp-md);
+  }
+  .edu__meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    font-size: 0.75rem;
+    color: var(--text-2);
+  }
+  .edu__meta :global(svg) {
+    color: var(--secondary);
+    flex: none;
+  }
+
+  .edu__body {
+    margin-block: var(--sp-lg);
+    font-size: 0.875rem;
+    line-height: 1.66;
+    color: var(--text-2);
+    max-width: 68ch;
+  }
+
+  .edu__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-xs);
+    margin-top: var(--sp-lg);
+  }
+
+  /* ----------------------------------------------------------- aside */
+  .edu__aside {
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-lg);
+    background: var(--surface-1);
+  }
+  @media (min-width: 768px) {
+    .edu__aside {
+      padding: var(--sp-xl);
+    }
+  }
+
+  .edu__aside-title {
+    margin-top: var(--sp-md);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-1);
+  }
+
+  .edu__aside-body {
+    margin-top: var(--sp-xs);
+    font-size: 0.8125rem;
+    line-height: 1.66;
+    color: var(--text-2);
+  }
+
+  .edu__aside-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-sm);
+    margin-top: auto;
+    padding-top: var(--sp-lg);
+  }
+
+  .edu__aside-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--tertiary-bright);
+  }
+</style>

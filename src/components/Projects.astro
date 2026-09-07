@@ -1,0 +1,218 @@
+---
+import Icon from './Icon.astro';
+import { projects } from '../data/site.js';
+---
+
+<section class="section" id="projects">
+  <div class="container">
+    <header class="section-head">
+      <div data-reveal>
+        <p class="eyebrow">{projects.eyebrow}</p>
+        <h2 class="t-h2 section-head__title">{projects.heading}</h2>
+      </div>
+      <p class="t-body section-head__note" data-reveal data-reveal-delay="80">{projects.note}</p>
+    </header>
+
+    <ul class="pj">
+      {
+        projects.items.map((item, i) => (
+          <li class="pj__item card card--hover" data-reveal data-reveal-delay={String(i * 80)}>
+            <!-- abstract build preview -->
+            <div class={`pj__preview pj__preview--${item.preview}`} aria-hidden="true">
+              <div class="pj__chrome">
+                <span /><span /><span />
+                <div class="pj__url" />
+              </div>
+              <div class="pj__mock">
+                <div class="pj__mock-row pj__mock-row--wide" />
+                <div class="pj__mock-row" />
+                <div class="pj__mock-grid">
+                  <div /><div /><div />
+                </div>
+                <div class="pj__mock-row pj__mock-row--short" />
+              </div>
+            </div>
+
+            <div class="pj__body">
+              <span class={`pill pill--${item.tone} pj__badge`}>{item.badge}</span>
+              <h3 class="pj__title">{item.title}</h3>
+              <p class="pj__text">{item.body}</p>
+            </div>
+
+            <hr class="rule" />
+
+            <footer class="pj__footer">
+              <ul class="pj__tags">
+                {item.tags.map((tag) => (
+                  <li class="tag">{tag}</li>
+                ))}
+              </ul>
+              <span class="pj__arrow" aria-hidden="true">
+                <Icon name="arrow" size={15} />
+              </span>
+            </footer>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .pj {
+    display: grid;
+    gap: var(--sp-md);
+  }
+  @media (min-width: 700px) {
+    .pj {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .pj {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--sp-lg);
+    }
+  }
+
+  .pj__item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-md);
+    overflow: hidden;
+  }
+
+  /* --------------------------------------------------------- preview */
+  .pj__preview {
+    border-radius: var(--r-md);
+    border: 1px solid var(--border-soft);
+    background:
+      radial-gradient(120% 90% at 20% 0%, rgba(79, 70, 229, 0.16) 0%, transparent 60%),
+      var(--surface-inset);
+    padding: var(--sp-sm);
+    overflow: hidden;
+  }
+  .pj__preview--portal {
+    background:
+      radial-gradient(120% 90% at 80% 0%, rgba(6, 182, 212, 0.16) 0%, transparent 60%),
+      var(--surface-inset);
+  }
+  .pj__preview--engine {
+    background:
+      radial-gradient(120% 90% at 50% 0%, rgba(16, 185, 129, 0.14) 0%, transparent 60%),
+      var(--surface-inset);
+  }
+
+  .pj__chrome {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .pj__chrome > span {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.16);
+  }
+  .pj__url {
+    flex: 1;
+    height: 10px;
+    margin-left: 6px;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .pj__mock {
+    display: grid;
+    gap: 6px;
+    margin-top: var(--sp-sm);
+  }
+  .pj__mock-row {
+    height: 8px;
+    border-radius: var(--r-sm);
+    background: rgba(255, 255, 255, 0.07);
+  }
+  .pj__mock-row--wide {
+    height: 14px;
+    width: 72%;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.5), rgba(79, 70, 229, 0.25));
+  }
+  .pj__mock-row--short {
+    width: 46%;
+  }
+  .pj__mock-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-block: 2px;
+  }
+  .pj__mock-grid > div {
+    height: 30px;
+    border-radius: var(--r-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
+  }
+
+  /* ------------------------------------------------------------ body */
+  .pj__body {
+    flex: 1;
+    padding: var(--sp-lg) var(--sp-xs) var(--sp-lg);
+  }
+
+  .pj__badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .pj__title {
+    margin-top: var(--sp-md);
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-1);
+    text-wrap: balance;
+  }
+
+  .pj__text {
+    margin-top: var(--sp-xs);
+    font-size: 0.8125rem;
+    line-height: 1.62;
+    color: var(--text-2);
+  }
+
+  /* ---------------------------------------------------------- footer */
+  .pj__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-sm);
+    padding: var(--sp-md) var(--sp-xs) var(--sp-2xs);
+  }
+
+  .pj__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-sm);
+  }
+
+  .pj__arrow {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--r);
+    border: 1px solid var(--border-soft);
+    color: var(--text-3);
+    flex: none;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+  .pj__item:hover .pj__arrow {
+    color: var(--secondary-bright);
+    border-color: var(--border-accent);
+    transform: translateX(2px);
+  }
+</style>
