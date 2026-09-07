@@ -16,6 +16,10 @@ export const profile = {
   phone: '+63 906 473 8708',
   phoneHref: '+639064738708',
   availability: 'Available for New Clients',
+  // Headshot for the hero card. Drop the file into /public and put its
+  // filename here, e.g. 'jul-qifhel.jpg'. Left empty, the card falls back
+  // to the gradient "JC" monogram.
+  photo: '',
   resumeUrl: '', // e.g. 'Jul-qifhel-Cana-Resume.pdf' — drop the PDF into /public
   socials: [
     { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/' },
@@ -70,13 +74,17 @@ export const hero = {
   directLine: 'Direct: jul-qifhel@gmail.com',
   card: {
     status: 'Active Automation Engine',
-    role: 'Multi-Environment Automation & Executive Ops',
-    subRole: 'GHL Architect · Executive VA · IT Systems',
-    metrics: [
-      { label: 'Workflow uptime', value: '99.4%' },
-      { label: 'Response lag', value: '< 60s' },
+    role: 'VA & IT Automation Specialist & AI Assisted Dev',
+    credential: 'BSIT Graduate ’25 • New Era Univ.',
+    // The three-stage flow drawn inside the engine panel
+    pipeline: [
+      { title: 'Lead Capture', meta: 'Multi-Channel', tone: 'idle' },
+      { title: 'GHL Engine', meta: 'Filter & Auto-Tag', tone: 'active' },
+      { title: 'Instant Convert', meta: 'SMS/Email/CRM Sync', tone: 'success' },
     ],
-    footnote: 'Conversational intake → nurture → booked consultation',
+    verified: 'Concentrix & Yellow Mountain Verified',
+    copyLabel: 'Copy Email',
+    copiedLabel: 'Copied',
   },
 };
 

@@ -1,6 +1,11 @@
 ---
 import Icon from './Icon.astro';
 import { hero, profile, stats } from '../data/site.js';
+
+// Resolve the optional headshot against the configured base path
+const photo = profile.photo
+  ? `${import.meta.env.BASE_URL}/${profile.photo}`.replace(/\/{2,}/g, '/')
+  : '';
 ---
 
 <section class="hero section section--flush" id="top">
@@ -49,44 +54,60 @@ import { hero, profile, stats } from '../data/site.js';
 
     <!-- ------------------------------------------------------ profile card -->
     <aside class="hero__card card card--glass" data-reveal data-reveal-delay="140">
+      <div class="hero__chrome" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
       <div class="hero__card-head">
-        <div class="hero__avatar" aria-hidden="true">{profile.initials}</div>
+        {
+          photo ? (
+            <img class="hero__photo" src={photo} alt={profile.name} width="156" height="156" />
+          ) : (
+            <div class="hero__photo hero__photo--fallback" aria-hidden="true">
+              {profile.initials}
+            </div>
+          )
+        }
+
         <div class="hero__id">
           <p class="hero__name">{profile.name}</p>
           <p class="hero__role">{hero.card.role}</p>
+          <p class="hero__cred">{hero.card.credential}</p>
         </div>
-        <span class="hero__verified" title="Verified profile">
-          <Icon name="badge" size={18} />
-        </span>
       </div>
-
-      <p class="hero__subrole tag">{hero.card.subRole}</p>
-
-      <hr class="rule" />
 
       <div class="hero__engine">
-        <p class="hero__engine-label">
-          <span class="dot dot--pulse"></span>
-          {hero.card.status}
-        </p>
+        <p class="hero__engine-label">{hero.card.status}</p>
 
-        <div class="hero__equaliser" aria-hidden="true">
-          {Array.from({ length: 22 }).map((_, i) => <span style={`--i:${i}`} />)}
-        </div>
-
-        <dl class="hero__metrics">
+        <ol class="pipe">
           {
-            hero.card.metrics.map((m) => (
-              <div class="hero__metric">
-                <dt>{m.label}</dt>
-                <dd>{m.value}</dd>
-              </div>
+            hero.card.pipeline.map((stage, i) => (
+              <>
+                {i > 0 && <li class="pipe__link" aria-hidden="true" />}
+                <li class={`pipe__node pipe__node--${stage.tone}`}>
+                  <span class="pipe__title">{stage.title}</span>
+                  <span class="pipe__meta">{stage.meta}</span>
+                </li>
+              </>
             ))
           }
-        </dl>
+        </ol>
       </div>
 
-      <p class="hero__footnote">{hero.card.footnote}</p>
+      <div class="hero__card-foot">
+        <p class="hero__verified">
+          <Icon name="shield" size={15} />
+          {hero.card.verified}
+        </p>
+        <button
+          class="hero__copy"
+          type="button"
+          data-copy-email={profile.email}
+          data-copied-label={hero.card.copiedLabel}
+        >
+          {hero.card.copyLabel}
+        </button>
+      </div>
     </aside>
   </div>
 
@@ -105,6 +126,37 @@ import { hero, profile, stats } from '../data/site.js';
     </div>
   </div>
 </section>
+
+<script>
+  const copyBtn = document.querySelector<HTMLButtonElement>('[data-copy-email]');
+
+  if (copyBtn) {
+    const email = copyBtn.dataset.copyEmail ?? '';
+    const idle = copyBtn.textContent?.trim() ?? 'Copy Email';
+    const done = copyBtn.dataset.copiedLabel ?? 'Copied';
+    let timer: number | undefined;
+
+    const flash = () => {
+      copyBtn.textContent = done;
+      copyBtn.classList.add('is-copied');
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        copyBtn.textContent = idle;
+        copyBtn.classList.remove('is-copied');
+      }, 1800);
+    };
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        flash();
+      } catch {
+        // Clipboard API needs a secure context — fall back to the mail client
+        window.location.href = `mailto:${email}`;
+      }
+    });
+  }
+</script>
 
 <style>
   .hero {
@@ -133,6 +185,14 @@ import { hero, profile, stats } from '../data/site.js';
     align-items: start;
   }
   @media (min-width: 1024px) {
+    /* Small laptops: even split + tighter gutter, so the engine card keeps
+       enough width to hold the pipeline labels on a single line. */
+    .hero__grid {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+      gap: var(--sp-xl);
+    }
+  }
+  @media (min-width: 1280px) {
     .hero__grid {
       /* 7 / 5 split per the design system */
       grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -201,24 +261,45 @@ import { hero, profile, stats } from '../data/site.js';
     }
   }
 
+  /* ----------------------------------------------------- window chrome */
+  .hero__chrome {
+    display: flex;
+    gap: 6px;
+    margin-bottom: var(--sp-lg);
+  }
+  .hero__chrome span {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--r-full);
+  }
+  .hero__chrome span:nth-child(1) { background: #ff7b72; }
+  .hero__chrome span:nth-child(2) { background: var(--secondary-bright); }
+  .hero__chrome span:nth-child(3) { background: var(--tertiary-bright); }
+
+  /* --------------------------------------------------------- identity */
   .hero__card-head {
     display: flex;
     align-items: center;
-    gap: var(--sp-sm);
+    gap: var(--sp-md);
   }
 
-  .hero__avatar {
+  .hero__photo {
+    width: 78px;
+    height: 78px;
+    border-radius: var(--r-md);
+    object-fit: cover;
+    flex: none;
+    border: 1px solid var(--border);
+  }
+  .hero__photo--fallback {
     display: grid;
     place-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: var(--r-md);
     background: linear-gradient(135deg, rgba(79, 70, 229, 0.9) 0%, rgba(6, 182, 212, 0.9) 100%);
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: 0.02em;
-    flex: none;
+    border-color: transparent;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
@@ -226,98 +307,199 @@ import { hero, profile, stats } from '../data/site.js';
     min-width: 0;
   }
   .hero__name {
-    font-size: 0.9375rem;
+    font-size: clamp(1.25rem, 1.05rem + 0.85vw, 1.5rem);
+    line-height: 1.2;
     font-weight: 700;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.025em;
     color: var(--text-1);
   }
   .hero__role {
-    margin-top: 0.125rem;
-    font-size: 0.75rem;
-    line-height: 1.4;
-    color: var(--text-3);
-  }
-
-  .hero__verified {
-    margin-left: auto;
-    align-self: flex-start;
+    margin-top: 0.3125rem;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    font-weight: 500;
     color: var(--secondary-bright);
-    flex: none;
   }
-
-  .hero__subrole {
-    display: block;
-    margin-block: var(--sp-md);
+  .hero__cred {
+    margin-top: 0.3125rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
     color: var(--text-3);
   }
 
-  /* ------------------------------------------------------ engine block */
+  /* ------------------------------------------------------ engine panel */
   .hero__engine {
-    margin-top: var(--sp-md);
+    margin-top: var(--sp-lg);
     padding: var(--sp-md);
     border-radius: var(--r-md);
-    background: rgba(10, 14, 24, 0.55);
+    background: rgba(7, 10, 17, 0.6);
     border: 1px solid var(--border-soft);
   }
 
   .hero__engine-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--tertiary-bright);
+    color: var(--text-2);
   }
 
-  .hero__equaliser {
+  /* --------------------------------------------------- pipeline diagram */
+  .pipe {
     display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 44px;
-    margin-top: var(--sp-md);
-  }
-  .hero__equaliser span {
-    flex: 1;
-    border-radius: 1px;
-    background: linear-gradient(180deg, var(--secondary) 0%, rgba(79, 70, 229, 0.55) 100%);
-    height: 24%;
-    opacity: 0.65;
-    animation: eq 2.6s var(--ease) infinite;
-    animation-delay: calc(var(--i) * 90ms);
-  }
-  @keyframes eq {
-    0%, 100% { height: 22%; opacity: 0.45; }
-    35% { height: 92%; opacity: 1; }
-    65% { height: 46%; opacity: 0.7; }
+    align-items: stretch;
+    margin-top: var(--sp-lg);
   }
 
-  .hero__metrics {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--sp-sm);
-    margin: var(--sp-md) 0 0;
+  .pipe__node {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1875rem;
+    padding: 0.5rem 0.4375rem;
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    text-align: center;
   }
-  .hero__metric dt {
-    font-size: 0.6875rem;
-    color: var(--text-3);
+
+  .pipe__title {
+    font-size: 0.625rem;
+    line-height: 1.25;
+    font-weight: 700;
     letter-spacing: 0.01em;
+    color: var(--text-1);
   }
-  .hero__metric dd {
-    margin: 0.125rem 0 0;
+
+  .pipe__meta {
     font-family: var(--font-mono);
-    font-size: 0.9375rem;
-    font-weight: 600;
+    font-size: 0.5625rem;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    color: var(--text-3);
+  }
+
+  /* stage 1 — capture */
+  .pipe__node--idle .pipe__meta {
     color: var(--secondary-bright);
   }
 
-  .hero__footnote {
-    margin-top: var(--sp-md);
+  /* stage 2 — the active engine, lifted and lit */
+  .pipe__node--active {
+    background: #4438c9;
+    border-color: var(--primary-bright);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    padding-block: 0.6875rem;
+    margin-block: -0.1875rem;
+  }
+  .pipe__node--active .pipe__meta {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* stage 3 — conversion */
+  .pipe__node--success {
+    border-color: rgba(16, 185, 129, 0.35);
+    background: rgba(16, 185, 129, 0.07);
+  }
+  .pipe__node--success .pipe__title {
+    color: var(--tertiary-bright);
+  }
+
+  /* connector: a cyan trace capped with a node dot at each end */
+  .pipe__link {
+    flex: 0 0 22px;
+    align-self: center;
+    position: relative;
+    height: 1px;
+    background: var(--secondary);
+  }
+  .pipe__link::before,
+  .pipe__link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: var(--r-full);
+    background: var(--secondary-bright);
+    transform: translateY(-50%);
+  }
+  .pipe__link::before { left: -1px; }
+  .pipe__link::after { right: -1px; }
+
+  /* Narrow cards: rotate the flow into a vertical rail */
+  @media (max-width: 540px) {
+    .pipe {
+      flex-direction: column;
+    }
+    .pipe__node--active {
+      margin-block: 0;
+    }
+    .pipe__link {
+      flex-basis: 20px;
+      width: 1px;
+      height: auto;
+    }
+    .pipe__link::before,
+    .pipe__link::after {
+      top: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .pipe__link::before { top: -1px; }
+    .pipe__link::after { bottom: -1px; }
+  }
+
+  /* -------------------------------------------------------- card footer */
+  .hero__card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-sm);
+    margin-top: var(--sp-lg);
+  }
+
+  .hero__verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    min-width: 0;
     font-size: 0.75rem;
-    line-height: 1.5;
-    color: var(--text-3);
+    line-height: 1.35;
+    color: var(--text-2);
+  }
+  .hero__verified :global(svg) {
+    color: var(--secondary-bright);
+    flex: none;
+  }
+
+  .hero__copy {
+    flex: none;
+    padding: 0.4375rem 0.6875rem;
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--secondary-bright);
+    transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease),
+      color var(--dur) var(--ease);
+  }
+  .hero__copy:hover {
+    border-color: var(--border-accent);
+    background: rgba(6, 182, 212, 0.1);
+  }
+  .hero__copy.is-copied {
+    color: var(--tertiary-bright);
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.1);
   }
 
   /* -------------------------------------------------------- stat strip */
