@@ -1,36 +1,37 @@
 # Project screenshots — Nonprofit & Law Firm Client Intake Funnel
 
-Save the seven screenshots here using **exactly these filenames**. The gallery
-opens when the project card is clicked on the Projects section.
+These images power the gallery that opens when the project card is clicked.
 
-| # | Filename | What it shows |
+| # | File | What it shows |
 | --- | --- | --- |
-| 1 | `mila-about.png` | Mission Impact Legal Advisors — founder story & "Who We Serve" |
-| 2 | `mila-practice-areas.png` | Mission Impact Legal Advisors — practice areas & service tiers (the long one) |
-| 3 | `mila-mergers.png` | Mission Impact Legal Advisors — Mergers & Transactions page with testimonial |
-| 4 | `doctor-mold-pro-about.png` | Doctor Mold Pro — "Welcome to Doctor Mold Pro" founder page |
-| 5 | `ymbs-home.png` | Yellow Mountain — home page, "We Embed With Your Team" |
-| 6 | `ymbs-team.png` | Yellow Mountain — "Meet the Team" page |
-| 7 | `ymbs-services.png` | Yellow Mountain — core services, testimonials & FAQ |
+| 1 | `mila-about.jpg` | Mission Impact Legal Advisors — founder story & "Who We Serve" |
+| 2 | `mila-practice-areas.jpg` | Mission Impact Legal Advisors — practice areas & service tiers |
+| 3 | `mila-mergers.jpg` | Mission Impact Legal Advisors — Mergers & Transactions + testimonial |
+| 4 | `doctor-mold-pro-about.jpg` | Doctor Mold Pro — founder page |
+| 5 | `ymbs-home.jpg` | Yellow Mountain — home page |
+| 6 | `ymbs-team.jpg` | Yellow Mountain — "Meet the Team" |
+| 7 | `ymbs-services.jpg` | Yellow Mountain — core services & FAQ |
 
-## Notes
+Each one has a matching `*-thumb.jpg` used by the thumbnail strip, so opening
+the gallery doesn't pull seven full-size images.
 
-- **`.png` or `.jpg` both work** — if you save as `.jpg`, update the matching
-  `src` values in [`src/data/site.js`](../../../src/data/site.js) under the
-  project's `gallery` array.
-- Keep them **full-page screenshots**; the viewer scrolls tall images rather
-  than squashing them.
-- Width around **1400–2400px** is ideal. Anything wider just inflates the file
-  size without looking sharper.
-- Consider compressing before committing — a 2400px-wide PNG can be several MB.
-  Saving as JPG at ~80% quality, or running them through
-  [squoosh.app](https://squoosh.app), keeps the page fast.
+## Adding or replacing a screenshot
 
-Until the files are added, the gallery still opens and tells you which file is
-missing, so nothing breaks.
+The originals were 2404px-wide PNGs totalling 31 MB, which was far too heavy to
+serve. They were converted to **1600px-wide JPEGs at quality 80** (~3 MB total)
+and the full-size PNGs moved to `.originals/` in the project root, which is
+git-ignored.
 
-## Changing the captions or order
+To add a new screenshot, keep to the same recipe:
 
-Both live in [`src/data/site.js`](../../../src/data/site.js) — find
-`projects.items`, then the `gallery` array on the first project. Reorder the
-entries to reorder the gallery.
+```bash
+# from the project root, with sharp installed
+npx sharp-cli -i "source.png" -o public/projects/intake-funnel/name.jpg resize 1600 --withoutEnlargement -- jpeg --quality 80
+```
+
+Or use [squoosh.app](https://squoosh.app): resize to 1600px wide, export JPEG at
+~80% quality. Then make a 240×170 crop from the top for `name-thumb.jpg`.
+
+Finally add the entry to the `gallery` array in
+[`src/data/site.js`](../../../src/data/site.js) with its `src`, `thumb` and
+`caption`.

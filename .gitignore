@@ -21,3 +21,6 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# local backups of full-size source screenshots
+.originals/

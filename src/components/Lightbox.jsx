@@ -128,8 +128,16 @@ export default function Lightbox({ project, onClose }) {
               }}
               aria-current={i === index}
             >
-              {failed[s.src] ? <span className="lb__thumb-fallback">{i + 1}</span> : (
-                <img src={asset(s.src)} alt="" onError={() => setFailed((f) => ({ ...f, [s.src]: true }))} />
+              {failed[s.src] ? (
+                <span className="lb__thumb-fallback">{i + 1}</span>
+              ) : (
+                <img
+                  src={asset(s.thumb ?? s.src)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  onError={() => setFailed((f) => ({ ...f, [s.src]: true }))}
+                />
               )}
             </button>
           ))}

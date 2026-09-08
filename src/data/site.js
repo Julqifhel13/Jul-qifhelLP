@@ -280,31 +280,38 @@ export const projects = {
       // public/projects/intake-funnel/ — see that folder's README.
       gallery: [
         {
-          src: 'projects/intake-funnel/mila-about.png',
+          src: 'projects/intake-funnel/mila-about.jpg',
+          thumb: 'projects/intake-funnel/mila-about-thumb.jpg',
           caption: 'Mission Impact Legal Advisors — founder story & who we serve',
         },
         {
-          src: 'projects/intake-funnel/mila-practice-areas.png',
+          src: 'projects/intake-funnel/mila-practice-areas.jpg',
+          thumb: 'projects/intake-funnel/mila-practice-areas-thumb.jpg',
           caption: 'Mission Impact Legal Advisors — practice areas & service tiers',
         },
         {
-          src: 'projects/intake-funnel/mila-mergers.png',
+          src: 'projects/intake-funnel/mila-mergers.jpg',
+          thumb: 'projects/intake-funnel/mila-mergers-thumb.jpg',
           caption: 'Mission Impact Legal Advisors — mergers & transactions landing page',
         },
         {
-          src: 'projects/intake-funnel/doctor-mold-pro-about.png',
+          src: 'projects/intake-funnel/doctor-mold-pro-about.jpg',
+          thumb: 'projects/intake-funnel/doctor-mold-pro-about-thumb.jpg',
           caption: 'Doctor Mold Pro — founder page & conversion sections',
         },
         {
-          src: 'projects/intake-funnel/ymbs-home.png',
+          src: 'projects/intake-funnel/ymbs-home.jpg',
+          thumb: 'projects/intake-funnel/ymbs-home-thumb.jpg',
           caption: 'Yellow Mountain Business Solutions — home page',
         },
         {
-          src: 'projects/intake-funnel/ymbs-team.png',
+          src: 'projects/intake-funnel/ymbs-team.jpg',
+          thumb: 'projects/intake-funnel/ymbs-team-thumb.jpg',
           caption: 'Yellow Mountain Business Solutions — about & team',
         },
         {
-          src: 'projects/intake-funnel/ymbs-services.png',
+          src: 'projects/intake-funnel/ymbs-services.jpg',
+          thumb: 'projects/intake-funnel/ymbs-services-thumb.jpg',
           caption: 'Yellow Mountain Business Solutions — core services & FAQ',
         },
       ],
