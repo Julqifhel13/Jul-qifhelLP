@@ -33,6 +33,9 @@
 
 /* ------------------------------------------------------------------ header */
 .lb__head {
+  /* flex:none — the image frame is the only part that may flex, otherwise the
+     frame's 0% basis makes this row absorb all the shrinking and clip. */
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -138,10 +141,14 @@
 
 /* --------------------------------------------------------------- thumbnails */
 .lb__thumbs {
+  /* never shrink: the tiles have a fixed height and would be cut in half */
+  flex: none;
   display: flex;
+  align-items: center;
   gap: var(--sp-xs);
   padding: var(--sp-sm) var(--sp-lg);
   overflow-x: auto;
+  overflow-y: hidden;
   border-top: 1px solid var(--border-soft);
   background: var(--surface-inset);
 }
