@@ -1,0 +1,206 @@
+/* Full-screen project screenshot viewer.
+   Uses the same tokens as the rest of the site so it reads as native. */
+
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: rgba(7, 10, 17, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: lb-fade 200ms var(--ease);
+}
+
+@keyframes lb-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lb__panel {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 1040px);
+  max-height: min(92vh, 100%);
+  overflow: hidden;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* ------------------------------------------------------------------ header */
+.lb__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  padding: var(--sp-md) var(--sp-lg);
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-inset);
+}
+
+.lb__heading {
+  min-width: 0;
+}
+
+.lb__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+}
+
+.lb__caption {
+  margin-top: 0.1875rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+
+.lb__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  flex: none;
+}
+
+.lb__count {
+  margin-right: var(--sp-2xs);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.lb__btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+.lb__btn:hover {
+  color: var(--secondary-bright);
+  border-color: var(--border-accent);
+  background: rgba(6, 182, 212, 0.08);
+}
+.lb__btn--close:hover {
+  color: var(--error, #ffb4ab);
+  border-color: rgba(255, 180, 171, 0.4);
+  background: rgba(255, 180, 171, 0.08);
+}
+.lb__prev-icon {
+  transform: rotate(180deg);
+}
+
+/* ------------------------------------------------------------- image frame */
+.lb__frame {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--surface-inset);
+  scroll-behavior: smooth;
+}
+
+.lb__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lb__missing {
+  padding: var(--sp-3xl) var(--sp-lg);
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--text-3);
+}
+.lb__missing code {
+  display: inline-block;
+  margin-top: var(--sp-xs);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--secondary-bright);
+}
+
+/* --------------------------------------------------------------- thumbnails */
+.lb__thumbs {
+  display: flex;
+  gap: var(--sp-xs);
+  padding: var(--sp-sm) var(--sp-lg);
+  overflow-x: auto;
+  border-top: 1px solid var(--border-soft);
+  background: var(--surface-inset);
+}
+
+.lb__thumb {
+  flex: none;
+  width: 54px;
+  height: 38px;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  opacity: 0.55;
+  transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.lb__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.lb__thumb:hover {
+  opacity: 0.85;
+}
+.lb__thumb.is-active {
+  opacity: 1;
+  border-color: var(--secondary);
+}
+
+.lb__thumb-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-3);
+}
+
+/* ------------------------------------------------------------------ mobile */
+@media (max-width: 640px) {
+  .lb {
+    padding: 0;
+  }
+  .lb__panel {
+    max-height: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: 0;
+    width: 100%;
+  }
+  .lb__head {
+    padding: var(--sp-sm) var(--sp-md);
+  }
+  .lb__caption {
+    display: none;
+  }
+  .lb__thumbs {
+    padding: var(--sp-sm) var(--sp-md);
+  }
+}

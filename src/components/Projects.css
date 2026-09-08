@@ -157,3 +157,22 @@
     border-color: var(--border-accent);
     transform: translateX(2px);
   }
+
+  /* Cards with a screenshot gallery become clickable. The overlay button sits
+     above the card content; the card's own visuals are unchanged. */
+  .pj__item--clickable {
+    cursor: pointer;
+  }
+
+  .pj__open {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background: none;
+    border: 0;
+  }
+  .pj__open:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
+  }

@@ -10,9 +10,9 @@ export const profile = {
   title: 'Executive Virtual Assistant · GoHighLevel Automation & IT Systems Specialist',
   shortTitle: 'GHL Architect · Executive VA · IT Ops',
   tagline: 'Multi-Environment Automation & Executive Operations',
-  location: 'Bacoor City, Philippines',
+  location: 'Quezon City, Philippines',
   timezone: 'GMT+8',
-  email: 'jul-qifhel@gmail.com',
+  email: 'cjulqifhel@gmail.com',
   phone: '+63 991 986 0758',
   phoneHref: '+639919860758',
   availability: 'Available for New Clients',
@@ -24,7 +24,7 @@ export const profile = {
   socials: [
     { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/' },
     { label: 'GitHub', icon: 'github', href: 'https://github.com/Julqifhel13' },
-    { label: 'Email', icon: 'mail', href: 'mailto:jul-qifhel@gmail.com' },
+    { label: 'Email', icon: 'mail', href: 'mailto:cjulqifhel@gmail.com' },
   ],
 };
 
@@ -39,7 +39,7 @@ export const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects & Builds', href: '#projects' },
-  { label: 'Core Skills & GHL', href: '#skills' },
+  { label: 'Core Skills', href: '#skills' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' },
@@ -47,9 +47,9 @@ export const navLinks = [
 
 /* -------------------------------------------------------------- status strip */
 export const ticker = [
-  { label: 'PH · Online', value: 'Bacoor City, Philippines (GMT+8)', status: true },
+  { label: 'PH · Online', value: 'Quezon City, Philippines (GMT+8)', status: true },
   { label: 'Focus', value: 'Automation · GHL / CRM · IT Ops' },
-  { label: 'Email', value: 'jul-qifhel@gmail.com' },
+  { label: 'Email', value: 'cjulqifhel@gmail.com' },
   { label: 'Direct', value: '+63 991 986 0758' },
 ];
 
@@ -57,12 +57,12 @@ export const ticker = [
 export const hero = {
   // Availability badge sitting above the headline
   availability: 'Available for Full-time, Part-time & Contract Roles',
-  headlineLead: 'Scaling Business Operations Through',
-  headlineAccent: 'High-Performing Workflows',
+  headlineLead: 'Building Efficient Digital Solutions',
+  headlineAccent: 'Through Web Development',
   headlineAccentSuffix: ',', // stays white, outside the cyan fill
-  headlineTail: 'GoHighLevel & Reliable IT Systems.',
+  headlineTail: 'Automation, AI & Reliable IT Systems.',
   intro:
-    'Virtual Assistant & IT Specialist with a rigorous Information Technology foundation from New Era University. I bridge technical architecture with executive support—engineering GoHighLevel CRM workflows, automated multi-channel lead funnels, custom landing pages, and administrative excellence for high-growth enterprises and legal practices.',
+    'Virtual Assistant & IT Specialist with a strong Information Technology foundation from New Era University. I combine technical skills with executive and administrative support—building and improving websites, dashboards, CRM workflows, automations, and digital systems using AI-assisted development, custom code, and modern design tools for growing businesses and consulting organizations.',
   chips: [
     { icon: 'zap', label: 'GoHighLevel Pro' },
     { icon: 'route', label: 'CRM & Pipeline Architect' },
@@ -140,8 +140,8 @@ export const about = {
       icon: 'layout',
       title: 'Landing Pages & UI',
       body:
-        'Conversion-focused funnel builds using drag-and-drop builders paired with custom HTML, CSS and JavaScript injections for speed and responsive precision.',
-      tags: ['Funnels', 'Code', 'CRO'],
+        'Modern and responsive website builds using AI-assisted development, visual design tools, and custom code to create polished, functional, and user-friendly digital experiences.',
+      tags: ['Funnels', 'AI-Assisted Engineer'],
       accent: 'secondary',
     },
     {
@@ -168,15 +168,15 @@ export const experience = {
   eyebrow: 'Track Record & Impact',
   heading: 'Professional Experience',
   note:
-    'Proven history supporting non-profits, law firms, mission-driven organisations and multi-account BPO enterprise operations.',
+    'Proven experience supporting business consulting firms and digital operations through AI-assisted development, CRM automation, website and portal improvements, UI/UX design, and administrative systems management.',
   roles: [
     {
       company: 'Kovach Consulting Group (KCG)',
       subtitle:
         'Executive Funnels, Admin Dashboard Modernisation & AI-Assisted Interface Engineering',
-      badge: { label: 'Current Role', tone: 'tertiary' },
-      period: 'GHL Automations',
-      stack: ['Figma', 'GoHighLevel', 'Claude AI', 'Canva', 'HTML/CSS', 'Client Portals'],
+      badge: { label: 'AI-Assisted Full-Stack Developer & Digital Operations Specialist', tone: 'tertiary' },
+      period: 'AI Assissted Engineer',
+      stack: ['Figma', 'Claude AI / ReactJS', 'Canva', 'Google Stitch', 'Social Media Manager', 'Visual Studio Code', 'Antigravity'],
       current: true,
       bullets: [
         {
@@ -201,8 +201,8 @@ export const experience = {
         },
       ],
       footer:
-        'Delivered a responsive client portal and admin dashboard end-to-end — from Figma architecture through AI-assisted build and deployment.',
-      footerTag: 'Active Assignment · 2025 – Present',
+        'Delivered a responsive client portal, Landing page and admin dashboard end-to-end — from Figma & Google Stitch architecture through AI-assisted build and deployment.',
+      footerTag: 'Kovach Consulting Group · May – October 2026',
     },
     {
       company: 'Yellow Mountain Business Solution',
@@ -266,7 +266,7 @@ export const projects = {
   eyebrow: 'Showcase',
   heading: 'Featured Projects & Website Builds',
   note:
-    'Production-tested architectures engineered for legal consultancies, enterprise IT asset tracking and automated lead re-engagement.',
+    'A selection of website, portal, and digital system projects focused on improving user experience, business operations, automation, and functionality. My work includes AI-assisted development, UI/UX improvements, CRM and workflow automation, dashboard development, and website optimization for consulting and growing businesses.',
   items: [
     {
       badge: 'Live Build',
@@ -276,6 +276,38 @@ export const projects = {
         'Custom GoHighLevel landing system built for legal retainers. Combines custom CSS form overlays with a scored intake pipeline, instant follow-up SMS triggers and automated qualification routing to the right attorney.',
       tags: ['GoHighLevel', 'CSS', 'Automation'],
       preview: 'funnel',
+      // Screenshots shown when the card is clicked. Files live in
+      // public/projects/intake-funnel/ — see that folder's README.
+      gallery: [
+        {
+          src: 'projects/intake-funnel/mila-about.png',
+          caption: 'Mission Impact Legal Advisors — founder story & who we serve',
+        },
+        {
+          src: 'projects/intake-funnel/mila-practice-areas.png',
+          caption: 'Mission Impact Legal Advisors — practice areas & service tiers',
+        },
+        {
+          src: 'projects/intake-funnel/mila-mergers.png',
+          caption: 'Mission Impact Legal Advisors — mergers & transactions landing page',
+        },
+        {
+          src: 'projects/intake-funnel/doctor-mold-pro-about.png',
+          caption: 'Doctor Mold Pro — founder page & conversion sections',
+        },
+        {
+          src: 'projects/intake-funnel/ymbs-home.png',
+          caption: 'Yellow Mountain Business Solutions — home page',
+        },
+        {
+          src: 'projects/intake-funnel/ymbs-team.png',
+          caption: 'Yellow Mountain Business Solutions — about & team',
+        },
+        {
+          src: 'projects/intake-funnel/ymbs-services.png',
+          caption: 'Yellow Mountain Business Solutions — core services & FAQ',
+        },
+      ],
     },
     {
       badge: 'Automation',
@@ -309,8 +341,6 @@ export const skills = {
         'Funnel construction',
         'Calendar & appointment automation',
       ],
-      level: 95,
-      levelLabel: 'Proficiency',
     },
     {
       icon: 'code',
@@ -318,15 +348,14 @@ export const skills = {
       accent: 'secondary',
       title: 'Landing Pages & Dev',
       items: [
-        'Landing page builders',
-        'Responsive page engineering',
-        'HTML / CSS injection',
-        'Foundational JavaScript',
+        'Website builders',
+        'AI-Assissted engineering',
+        'Claude AI - ReactJS',
+        'Figma',
         'Mobile-first layouts',
         'Conversion-focused UI',
+        'Google Stitch',
       ],
-      level: 88,
-      levelLabel: 'Proficiency',
     },
     {
       icon: 'megaphone',
@@ -341,8 +370,7 @@ export const skills = {
         'Instagram / LinkedIn / Facebook',
         'Engagement optimisation',
       ],
-      level: 90,
-      levelLabel: 'Proficiency',
+
     },
     {
       icon: 'shield',
@@ -357,8 +385,6 @@ export const skills = {
         'Remote team collaboration',
         'Confidentiality & compliance',
       ],
-      level: 92,
-      levelLabel: 'Proficiency',
     },
   ],
 };
@@ -408,11 +434,11 @@ export const education = {
     place: 'Quezon City, Philippines',
     period: '2021 – 2025',
     body:
-      'A rigorous Information Technology foundation covering systems administration, database management, network fundamentals, web development and structured problem-solving — the technical backbone behind every automation and portal I build today.',
+      'A strong foundation in Information Technology, including database management, networking, web development, and problem-solving. These skills provide the technical knowledge behind the automations, websites, and portals I build today.',
     tags: ['Systems Administration', 'Database Management', 'Web Development', 'Networking'],
   },
   aside: {
-    title: 'Technical Rigour',
+    title: 'Technical Foundations',
     body:
       'Formal IT training means automations are architected, documented and maintainable — not stitched together. Every workflow is built to survive scale, hand-off and audit.',
   },
@@ -421,15 +447,15 @@ export const education = {
 /* ------------------------------------------------------------------- contact */
 export const contact = {
   eyebrow: 'Get in Touch',
-  heading: ['Let’s Discuss How I Can', 'Automate Your Workflow.'],
+  heading: ['Let’s Discuss How I Can', 'Improve Your Digital Systems.'],
   body:
-    'Whether you need end-to-end GoHighLevel pipeline optimisation, landing page development, or a dependable executive virtual assistant to scale daily operations, I’m ready to integrate with your team.',
+    'Whether you need website and dashboard development, CRM and workflow automation, AI-assisted solutions, or dependable executive virtual assistance to support your daily operations, I’m ready to bring my technical, creative, and administrative skills to your team.',
   methods: [
     {
       icon: 'mail',
       label: 'Direct Email',
-      value: 'jul-qifhel@gmail.com',
-      href: 'mailto:jul-qifhel@gmail.com',
+      value: 'cjulqifhel@gmail.com',
+      href: 'mailto:cjulqifhel@gmail.com',
     },
     {
       icon: 'phone',
@@ -440,7 +466,7 @@ export const contact = {
     {
       icon: 'pin',
       label: 'Based In',
-      value: 'Bacoor City, Philippines · GMT+8',
+      value: 'Quezon City, Philippines · GMT+8',
       href: '',
     },
   ],
@@ -453,14 +479,14 @@ export const contact = {
 /* -------------------------------------------------------------------- footer */
 export const footer = {
   blurb:
-    'Executive Virtual Assistant, GoHighLevel automation specialist and IT systems support professional — building operational infrastructure that runs itself.',
+    'Executive Virtual Assistant, AI-assisted web developer, automation specialist, and IT systems support professional — building and improving dashboards, websites, CRM workflows, and digital systems that help businesses operate more efficiently.',
   columns: [
     {
       title: 'Direct Contact',
       links: [
-        { label: 'jul-qifhel@gmail.com', href: 'mailto:jul-qifhel@gmail.com' },
+        { label: 'cjulqifhel@gmail.com', href: 'mailto:cjulqifhel@gmail.com' },
         { label: '+63 991 986 0758', href: 'tel:+639919860758' },
-        { label: 'Bacoor City, Philippines', href: '' },
+        { label: 'Quezon City, Philippines', href: '' },
       ],
     },
     {

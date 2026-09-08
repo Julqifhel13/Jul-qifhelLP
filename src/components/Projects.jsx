@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import Icon from './Icon.jsx';
+import Lightbox from './Lightbox.jsx';
 import { projects } from '../data/site.js';
 import './Projects.css';
 
 export default function Projects() {
+  const [open, setOpen] = useState(null);
+
   return (
     <section className="section" id="projects">
       <div className="container">
@@ -19,7 +23,7 @@ export default function Projects() {
         <ul className="pj">
           {projects.items.map((item, i) => (
             <li
-              className="pj__item card card--hover"
+              className={`pj__item card card--hover${item.gallery ? ' pj__item--clickable' : ''}`}
               key={item.title}
               data-reveal
               data-reveal-delay={String(i * 80)}
@@ -64,10 +68,23 @@ export default function Projects() {
                   <Icon name="arrow" size={15} />
                 </span>
               </footer>
+
+              {/* Covers the whole card so any click opens the gallery, while
+                  the heading and copy stay real text for screen readers. */}
+              {item.gallery && (
+                <button
+                  className="pj__open"
+                  type="button"
+                  onClick={() => setOpen(item)}
+                  aria-label={`View ${item.gallery.length} screenshots of ${item.title}`}
+                />
+              )}
             </li>
           ))}
         </ul>
       </div>
+
+      {open && <Lightbox project={open} onClose={() => setOpen(null)} />}
     </section>
   );
 }

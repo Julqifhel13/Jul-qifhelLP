@@ -616,3 +616,8 @@ html.nav-open {
 .skip-link:focus-visible {
   transform: translate(-50%, 0);
 }
+
+/* page is locked behind the screenshot lightbox */
+html.lightbox-open {
+  overflow: hidden;
+}
