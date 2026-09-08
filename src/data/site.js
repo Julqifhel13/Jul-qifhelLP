@@ -116,13 +116,15 @@ export const stats = [
 /* --------------------------------------------------------------------- about */
 export const about = {
   eyebrow: 'Profile & Strategy',
-  heading: ['Bridging Technical', 'Infrastructure with Creative', 'Business Operations.'],
+  // Each entry renders as its own line. Kept as one entry so the heading's
+  // `text-wrap: balance` picks the break points instead of forcing them.
+  heading: ['Executive Virtual Assistant | AI-Assisted Web Development & Automation Specialist'],
   body:
-    'I make client intake, CRM records and back-office work easier to manage. By building automated systems that run without supervision, I give business leaders back the hours they were spending on manual follow-up — so they can focus on growth instead of admin.',
+    'Results-driven Executive Virtual Assistant and IT professional with experience in automation, CRM management, web development, and digital operations. Skilled in GoHighLevel, AI-assisted development using Claude AI, UI/UX design, dashboards, and business portal improvements. Experienced in supporting Yellow Mountain Business Solutions and Kovach Consulting Group by improving websites, workflows, documentation, user experience, and digital systems.',
   objective: {
     label: 'Primary Career Objective',
     quote:
-      'To secure an Executive Virtual Assistant position where I can apply my skills in CRM management, social media, automation and administrative support to help businesses work better and save time. I have hands-on experience with visual design and custom coding, which lets me support both the technical and the creative side of an operation.',
+      'To secure a position as an Executive Virtual Assistant or Digital Operations Specialist where I can use my experience in CRM management, automation, AI-assisted development, web development, and administrative support to improve business systems and operations. I aim to continue developing my skills in AI engineering, automation, and digital solutions while delivering efficient, high-quality results for growing businesses.',
     meta: ['Automation', 'Client Systems', 'Executive Efficiency'],
   },
   pillars: [
