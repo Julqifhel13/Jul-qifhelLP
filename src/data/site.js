@@ -19,7 +19,7 @@ export const profile = {
   // Headshot for the hero card. Drop the file into /public and put its
   // filename here, e.g. 'jul-qifhel.jpg'. Left empty, the card falls back
   // to the gradient "JC" monogram.
-  photo: 'jul-qifhel.jpg',
+  photo: '',
   resumeUrl: '', // e.g. 'Jul-qifhel-Cana-Resume.pdf' — drop the PDF into /public
   socials: [
     { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/' },
@@ -319,14 +319,68 @@ export const projects = {
     {
       badge: 'Automation',
       tone: 'primary',
-      title: 'Automated Lead Reactivation & Booking Engine',
+      title: 'Business Automation & Lead Management',
       body:
-        'Multi-touch workflow built to nurture dormant leads into consultation bookings via sequenced SMS and email, with database re-engagement logic and calendar hand-off on positive reply.',
+        'Built and improved GoHighLevel automations for website forms, consultation requests, and lead management. Created workflows that capture and organize contacts, trigger follow-up actions, support booking processes, and connect website inquiries with CRM systems to improve business operations and lead handling.',
       tags: ['Workflows', 'SMS/Email', 'Calendar'],
       preview: 'engine',
+      // GoHighLevel workflow canvases. These are wide, short diagrams — the
+      // viewer shows them at full size and pans, so the node labels stay legible.
+      gallery: [
+        {
+          src: 'projects/automations/ymbs-book-call.png',
+          thumb: 'projects/automations/ymbs-book-call-thumb.jpg',
+          caption:
+            'Yellow Mountain — book-a-call: four consultant calendars converge into a tagged confirmation, SMS, email and staff notification',
+        },
+        {
+          src: 'projects/automations/ymbs-contact-us.png',
+          thumb: 'projects/automations/ymbs-contact-us-thumb.jpg',
+          caption:
+            'Yellow Mountain — contact form: tags and updates the contact, then branches on enquiry type to route the right reply',
+        },
+        {
+          src: 'projects/automations/ymbs-get-guidance.png',
+          thumb: 'projects/automations/ymbs-get-guidance-thumb.jpg',
+          caption:
+            'Yellow Mountain — “Get guidance today”: thank-you, tagging, SMS and email, then a delayed internal notification',
+        },
+        {
+          src: 'projects/automations/ymbs-learn-more.png',
+          thumb: 'projects/automations/ymbs-learn-more-thumb.jpg',
+          caption:
+            'Yellow Mountain — “Learn more”: acknowledges the enquiry, alerts the team and sends a scheduling link',
+        },
+        {
+          src: 'projects/automations/ymbs-seo.png',
+          thumb: 'projects/automations/ymbs-seo-thumb.jpg',
+          caption: 'Yellow Mountain — SEO enquiry: timed email follow-up with an internal alert',
+        },
+        {
+          src: 'projects/automations/ymbs-tech-audit.png',
+          thumb: 'projects/automations/ymbs-tech-audit-thumb.jpg',
+          caption: 'Yellow Mountain — tech audit request: five-minute delayed email response',
+        },
+        {
+          src: 'projects/automations/jtf-ai-question-collection.png',
+          thumb: 'projects/automations/jtf-ai-question-collection-thumb.jpg',
+          caption:
+            'John T. Floyd — AI receptionist: Conversation AI handles the call, then AI steps analyse the questions, classify the call and log it to a spreadsheet before notifying the team',
+        },
+        {
+          src: 'projects/automations/jtf-completed-call-sms.png',
+          thumb: 'projects/automations/jtf-completed-call-sms-thumb.jpg',
+          caption:
+            'John T. Floyd — completed call: waits for fields to populate, adds a system note, alerts the team and texts the caller a confirmation',
+        },
+      ],
     },
+
   ],
+
 };
+
+
 
 /* -------------------------------------------------------------------- skills */
 export const skills = {

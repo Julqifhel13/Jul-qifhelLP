@@ -120,6 +120,25 @@
   height: auto;
 }
 
+/* Wide workflow canvases render at native size and pan horizontally —
+   fitting them to the panel width would shrink their labels past reading. */
+.lb__frame--pan {
+  overflow-x: auto;
+  display: grid;
+  place-content: center start;
+}
+.lb__frame--pan .lb__img {
+  width: auto;
+  max-width: none;
+  padding: var(--sp-lg);
+  background: #fff;
+}
+@media (max-width: 640px) {
+  .lb__frame--pan .lb__img {
+    padding: var(--sp-md);
+  }
+}
+
 .lb__missing {
   padding: var(--sp-3xl) var(--sp-lg);
   text-align: center;

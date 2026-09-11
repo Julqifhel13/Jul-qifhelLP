@@ -11,6 +11,9 @@ const asset = (src) => `${import.meta.env.BASE_URL}/${src}`.replace(/\/{2,}/g, '
 export default function Lightbox({ project, onClose }) {
   const [index, setIndex] = useState(0);
   const [failed, setFailed] = useState({});
+  // Wide diagrams (workflow canvases) are shown at full size and panned;
+  // fitting them to the panel would shrink their labels past legibility.
+  const [wide, setWide] = useState(false);
   const closeRef = useRef(null);
   const frameRef = useRef(null);
   const restoreTo = useRef(null);
@@ -21,7 +24,11 @@ export default function Lightbox({ project, onClose }) {
   const go = useCallback(
     (delta) => {
       setIndex((i) => (i + delta + count) % count);
-      if (frameRef.current) frameRef.current.scrollTop = 0;
+      setWide(false);
+      if (frameRef.current) {
+        frameRef.current.scrollTop = 0;
+        frameRef.current.scrollLeft = 0;
+      }
     },
     [count]
   );
@@ -100,7 +107,7 @@ export default function Lightbox({ project, onClose }) {
           </div>
         </header>
 
-        <div className="lb__frame" ref={frameRef}>
+        <div className={`lb__frame${wide ? ' lb__frame--pan' : ''}`} ref={frameRef}>
           {failed[shot.src] ? (
             <p className="lb__missing">
               Screenshot not found. Save it to <code>public/{shot.src}</code>
@@ -111,6 +118,10 @@ export default function Lightbox({ project, onClose }) {
               src={asset(shot.src)}
               alt={shot.caption}
               loading="eager"
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                setWide(img.naturalWidth / img.naturalHeight > 2);
+              }}
               onError={() => setFailed((f) => ({ ...f, [shot.src]: true }))}
             />
           )}
@@ -124,7 +135,11 @@ export default function Lightbox({ project, onClose }) {
               className={`lb__thumb${i === index ? ' is-active' : ''}`}
               onClick={() => {
                 setIndex(i);
-                if (frameRef.current) frameRef.current.scrollTop = 0;
+                setWide(false);
+                if (frameRef.current) {
+                  frameRef.current.scrollTop = 0;
+                  frameRef.current.scrollLeft = 0;
+                }
               }}
               aria-current={i === index}
             >
