@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
+import ThemeToggle from './ThemeToggle.jsx';
 import { navLinks, profile, ticker } from '../data/site.js';
 import './Header.css';
 
@@ -48,25 +49,29 @@ export default function Header() {
             </span>
           </a>
 
-          <nav className="nav" aria-label="Primary">
-            {navLinks.map((link) => (
-              <a key={link.href} className="nav__link" href={link.href} data-nav-link>
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          <div className="header__right">
+            <nav className="nav" aria-label="Primary">
+              {navLinks.map((link) => (
+                <a key={link.href} className="nav__link" href={link.href} data-nav-link>
+                  {link.label}
+                </a>
+              ))}
+            </nav>
 
-          <button
-            className="nav-toggle"
-            type="button"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="sr-only">Toggle navigation</span>
-            <Icon name="menu" size={20} className="nav-toggle__open" />
-            <Icon name="close" size={20} className="nav-toggle__close" />
-          </button>
+            <ThemeToggle />
+
+            <button
+              className="nav-toggle"
+              type="button"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span className="sr-only">Toggle navigation</span>
+              <Icon name="menu" size={20} className="nav-toggle__open" />
+              <Icon name="close" size={20} className="nav-toggle__close" />
+            </button>
+          </div>
         </div>
 
         <div className="ticker" role="note">

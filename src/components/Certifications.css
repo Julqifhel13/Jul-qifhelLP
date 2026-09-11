@@ -30,7 +30,7 @@
   }
   .cert__filter:hover {
     color: var(--text-1);
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--hover-tint);
   }
   .cert__filter[aria-selected='true'] {
     color: var(--secondary-soft);
@@ -82,7 +82,7 @@
     align-items: center;
     padding: 0.1875rem 0.5rem;
     border-radius: var(--r-sm);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--fill-2);
     border: 1px solid var(--border-soft);
     font-family: var(--font-mono);
     font-size: 0.5625rem;

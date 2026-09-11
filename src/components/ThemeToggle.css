@@ -1,0 +1,46 @@
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+.theme-toggle:hover {
+  color: var(--secondary-bright);
+  border-color: var(--border-accent);
+  background: var(--hover-tint);
+}
+
+/* Both glyphs share a cell; only the one for the *other* theme is shown,
+   so the button always previews what clicking it will do. */
+.theme-toggle__icons {
+  display: grid;
+  place-items: center;
+}
+.theme-toggle__icons > svg {
+  grid-area: 1 / 1;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.theme-toggle__sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+.theme-toggle__moon {
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.7);
+}
+
+[data-theme='light'] .theme-toggle__sun {
+  opacity: 0;
+  transform: rotate(45deg) scale(0.7);
+}
+[data-theme='light'] .theme-toggle__moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}

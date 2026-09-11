@@ -104,6 +104,41 @@ lets a component override a shared rule. Don't reorder those imports.
 
 ---
 
+## Theming (dark + light)
+
+The site ships both a dark and a light palette. The toggle sits in the header;
+the choice is saved to `localStorage` and, until someone chooses, the site
+follows the operating system via `prefers-color-scheme`.
+
+Both palettes are plain token overrides in
+[`src/styles/global.css`](src/styles/global.css):
+
+- `:root` holds the dark values (the original design).
+- `[data-theme='light']` overrides the same names with the light values.
+
+Component CSS never hardcodes a colour — it only references tokens — so a new
+theme is just another override block. The tokens that carry theme meaning are:
+
+| Group | Tokens |
+| --- | --- |
+| Surfaces | `--canvas`, `--surface-1/2/3`, `--surface-inset` |
+| Outlines | `--border`, `--border-soft`, `--border-strong`, `--border-accent` |
+| Text | `--text-1` (primary), `--text-2` (secondary), `--text-3` (metadata) |
+| Brand | `--primary`, `--secondary`, `--tertiary` and their `-bright` / `-soft` steps |
+| Composites | `--glass-bg`, `--header-bg`, `--panel-bg`, `--sheet-bg`, `--overlay-bg` |
+| Neutral fills | `--fill-1` … `--fill-5`, `--hover-tint` |
+| Depth | `--shadow-card`, `--shadow-panel`, `--glow-opacity` |
+
+Light mode is not just inverted. The canvas is a soft off-white (`#f5f5f7`)
+with **white** cards lifted by a soft shadow, since borders alone read flat in
+daylight; dark mode keeps `--shadow-card: none` and leans on hairlines and
+glow instead. Brand accents step darker in light mode so small labels stay
+legible — every text style was measured and clears WCAG AA.
+
+A small inline script in [`index.html`](index.html) sets `data-theme` before
+first paint so the page never flashes the wrong palette. It has to stay inline
+and ahead of the bundle.
+
 ## Design system
 
 Design tokens (colours, type scale, spacing, radii, elevation) are defined once

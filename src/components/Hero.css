@@ -91,7 +91,7 @@
     gap: 0.4375rem;
     padding: 0.4375rem 0.6875rem;
     border-radius: var(--r);
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--fill-1);
     border: 1px solid var(--border);
     color: var(--text-1);
     font-size: 0.8125rem;
@@ -122,7 +122,7 @@
     background: linear-gradient(180deg, #5b51ef 0%, #4f46e5 100%);
   }
   .hero__cta:hover {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 24px rgba(79, 70, 229, 0.45);
+    box-shadow: inset 0 1px 0 var(--specular), 0 0 24px rgba(79, 70, 229, 0.45);
   }
 
   .hero__direct {
@@ -142,7 +142,7 @@
   .hero__card {
     padding: var(--sp-lg);
     border-radius: var(--r-xl);
-    box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.15);
+    box-shadow: var(--shadow-panel);
   }
   @media (min-width: 1024px) {
     .hero__card {
@@ -189,7 +189,7 @@
     font-weight: 800;
     letter-spacing: 0.02em;
     border-color: transparent;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 0 var(--specular);
   }
 
   .hero__id {
@@ -223,7 +223,7 @@
     margin-top: var(--sp-lg);
     padding: var(--sp-md);
     border-radius: var(--r-md);
-    background: rgba(7, 10, 17, 0.6);
+    background: var(--inset-panel-bg);
     border: 1px solid var(--border-soft);
   }
 
@@ -280,11 +280,16 @@
 
   /* stage 2 — the active engine, lifted and lit */
   .pipe__node--active {
-    background: #4438c9;
+    background: var(--pipe-active-bg);
     border-color: var(--primary-bright);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 1px 0 var(--specular-soft);
     padding-block: 0.6875rem;
     margin-block: -0.1875rem;
+  }
+  /* This node keeps its indigo fill in both themes, so its text is pinned
+     to white rather than following --text-1. */
+  .pipe__node--active .pipe__title {
+    color: #fff;
   }
   .pipe__node--active .pipe__meta {
     color: rgba(255, 255, 255, 0.75);

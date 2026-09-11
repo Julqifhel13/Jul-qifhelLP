@@ -24,7 +24,7 @@
       top: 12px;
       bottom: 12px;
       width: 2px;
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--fill-4);
     }
     .xp__node {
       display: block;
@@ -160,7 +160,7 @@
     margin-top: var(--sp-xl);
     padding: var(--sp-md);
     border-radius: var(--r-md);
-    background: rgba(10, 14, 24, 0.6);
+    background: var(--panel-bg);
     border: 1px solid var(--border-soft);
   }
 

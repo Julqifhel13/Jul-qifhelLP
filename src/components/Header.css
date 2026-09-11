@@ -5,14 +5,14 @@
   }
 
   .header__bar {
-    background: rgba(7, 10, 17, 0.78);
+    background: var(--header-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-soft);
     transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
   }
   .header.is-stuck .header__bar {
-    background: rgba(7, 10, 17, 0.92);
+    background: var(--header-bg-solid);
     border-bottom-color: var(--border);
   }
 
@@ -22,6 +22,18 @@
     justify-content: space-between;
     gap: var(--sp-lg);
     height: var(--nav-h);
+  }
+
+  /* nav, theme toggle and the hamburger travel together on the right */
+  .header__right {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-xs);
+  }
+  @media (min-width: 1024px) {
+    .header__right {
+      gap: var(--sp-sm);
+    }
   }
 
   /* ------------------------------------------------------------ brand */
@@ -43,7 +55,7 @@
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.02em;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 0 var(--specular);
   }
 
   .brand__status {
@@ -90,7 +102,7 @@
   }
   .nav__link:hover {
     color: var(--text-1);
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--hover-tint);
   }
   .nav__link.is-active {
     color: var(--text-1);
@@ -137,7 +149,7 @@
   /* ----------------------------------------------------------- ticker */
   .ticker {
     border-top: 1px solid var(--border-soft);
-    background: rgba(10, 14, 24, 0.6);
+    background: var(--panel-bg);
   }
   /* fade the right edge so the scrollable overflow reads as intentional */
   @media (max-width: 1023px) {
@@ -181,7 +193,7 @@
 
   /* ------------------------------------------------------- mobile nav */
   .mobile-nav {
-    background: rgba(10, 14, 24, 0.97);
+    background: var(--sheet-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
@@ -215,7 +227,7 @@
   }
   .mobile-nav__link:hover,
   .mobile-nav__link:focus-visible {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--hover-tint);
     border-color: var(--border);
   }
   .mobile-nav__link svg {

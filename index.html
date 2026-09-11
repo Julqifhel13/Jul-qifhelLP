@@ -57,6 +57,24 @@
         }
       </style>
     </noscript>
+
+    <!-- Resolve the theme before first paint so the page never flashes the
+         wrong palette. Runs ahead of the bundle on purpose. -->
+    <script>
+      (function () {
+        var t;
+        try {
+          t = localStorage.getItem('theme');
+        } catch (e) {
+          /* private mode */
+        }
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.style.colorScheme = t;
+      })();
+    </script>
   </head>
 
   <body>

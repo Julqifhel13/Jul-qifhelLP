@@ -32,6 +32,37 @@
   --secondary-soft: #a5f3fc;
   --tertiary: #10b981;
   --tertiary-bright: #4edea3;
+  --error: #ffb4ab;
+
+  /* Composite surfaces — swapped wholesale by the light theme below */
+  --glass-bg: rgba(21, 30, 52, 0.85);
+  --glass-edge: linear-gradient(135deg, rgba(6, 182, 212, 0.4) 0%, rgba(79, 70, 229, 0.1) 100%);
+  --header-bg: rgba(7, 10, 17, 0.78);
+  --header-bg-solid: rgba(7, 10, 17, 0.92);
+  --panel-bg: rgba(10, 14, 24, 0.6);
+  --sheet-bg: rgba(10, 14, 24, 0.97);
+  --inset-panel-bg: rgba(7, 10, 17, 0.6);
+  --overlay-bg: rgba(7, 10, 17, 0.82);
+  --ghost-border: rgba(255, 255, 255, 0.15);
+  --specular: rgba(255, 255, 255, 0.3);
+  --specular-soft: rgba(255, 255, 255, 0.18);
+  --pipe-active-bg: #4438c9;
+  --selection-bg: rgba(79, 70, 229, 0.4);
+  --selection-fg: #fff;
+
+  /* Neutral fills, weakest → strongest */
+  --fill-1: rgba(255, 255, 255, 0.03);
+  --fill-2: rgba(255, 255, 255, 0.05);
+  --fill-3: rgba(255, 255, 255, 0.07);
+  --fill-4: rgba(255, 255, 255, 0.1);
+  --fill-5: rgba(255, 255, 255, 0.16);
+  --hover-tint: rgba(255, 255, 255, 0.04);
+
+  /* Elevation — dark mode leans on borders and glow, not shadow */
+  --shadow-card: none;
+  --shadow-card-hover: none;
+  --shadow-panel: 0 20px 40px -15px rgba(6, 182, 212, 0.15);
+  --glow-opacity: 0.15;
 
   /* Radii */
   --r-sm: 0.25rem;
@@ -69,6 +100,74 @@
     'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono',
     Menlo, Consolas, monospace;
+}
+
+/* ============================================================================
+   LIGHT THEME
+   Apple-inspired: a soft off-white canvas with true-white cards lifted by
+   restrained shadow rather than borders alone. Accents are the same brand
+   hues stepped darker so they hold contrast against light surfaces.
+   ========================================================================== */
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* Surfaces — off-white canvas, white cards, greys for recessed areas */
+  --canvas: #f5f5f7;
+  --surface-1: #ffffff;
+  --surface-2: #f0f1f4;
+  --surface-3: #e5e7ec;
+  --surface-inset: #eeeff2;
+
+  /* Outlines — hairlines that separate without boxing the UI in */
+  --border: rgba(0, 0, 0, 0.1);
+  --border-soft: rgba(0, 0, 0, 0.07);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  --border-accent: rgba(8, 145, 178, 0.45);
+
+  /* Text — near-black primary, two calm greys below it. All pass AA. */
+  --text-1: #1d1d1f;
+  --text-2: #4a4a4f;
+  --text-3: #66666b;
+
+  /* Brand, stepped darker for legibility on light surfaces */
+  --primary: #4f46e5;
+  --primary-bright: #4338ca;
+  --primary-soft: #4338ca;
+  /* small mono labels use --secondary, so it has to clear 4.5:1 on light */
+  --secondary: #0e7490;
+  --secondary-bright: #0e7490;
+  --secondary-soft: #155e75;
+  --tertiary: #059669;
+  --tertiary-bright: #047857;
+  --error: #b3261e;
+
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-edge: linear-gradient(135deg, rgba(8, 145, 178, 0.35) 0%, rgba(79, 70, 229, 0.12) 100%);
+  --header-bg: rgba(245, 245, 247, 0.76);
+  --header-bg-solid: rgba(245, 245, 247, 0.94);
+  --panel-bg: rgba(0, 0, 0, 0.025);
+  --sheet-bg: rgba(255, 255, 255, 0.97);
+  --inset-panel-bg: rgba(0, 0, 0, 0.03);
+  --overlay-bg: rgba(29, 29, 31, 0.45);
+  --ghost-border: rgba(0, 0, 0, 0.16);
+  --specular: rgba(255, 255, 255, 0.35);
+  --specular-soft: rgba(255, 255, 255, 0.22);
+  --pipe-active-bg: #4f46e5;
+  --selection-bg: rgba(79, 70, 229, 0.18);
+  --selection-fg: #1d1d1f;
+
+  --fill-1: rgba(0, 0, 0, 0.025);
+  --fill-2: rgba(0, 0, 0, 0.045);
+  --fill-3: rgba(0, 0, 0, 0.065);
+  --fill-4: rgba(0, 0, 0, 0.09);
+  --fill-5: rgba(0, 0, 0, 0.14);
+  --hover-tint: rgba(0, 0, 0, 0.035);
+
+  /* Depth comes from soft shadow here, the way it does in daylight */
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px -10px rgba(16, 24, 40, 0.1);
+  --shadow-card-hover: 0 2px 4px rgba(16, 24, 40, 0.05), 0 16px 32px -12px rgba(16, 24, 40, 0.14);
+  --shadow-panel: 0 24px 48px -16px rgba(16, 24, 40, 0.22);
+  --glow-opacity: 0.09;
 }
 
 @media (min-width: 768px) {
@@ -156,8 +255,8 @@ h4 {
 }
 
 ::selection {
-  background: rgba(79, 70, 229, 0.4);
-  color: #fff;
+  background: var(--selection-bg);
+  color: var(--selection-fg);
 }
 
 :focus-visible {
@@ -303,7 +402,7 @@ h4 {
 .glow {
   position: absolute;
   pointer-events: none;
-  opacity: 0.15;
+  opacity: var(--glow-opacity);
   filter: blur(60px);
   border-radius: 50%;
   z-index: 0;
@@ -366,22 +465,23 @@ h4 {
   background: var(--surface-1);
   border: 1px solid var(--border-soft);
   border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
   transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease),
-    background-color var(--dur) var(--ease);
+    background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 .card--hover:hover {
   border-color: var(--border-accent);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* Layer 2 — glass-backed elevated surface */
 .card--glass {
-  background: rgba(21, 30, 52, 0.85);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid transparent;
-  background-image: linear-gradient(rgba(21, 30, 52, 0.85), rgba(21, 30, 52, 0.85)),
-    linear-gradient(135deg, rgba(6, 182, 212, 0.4) 0%, rgba(79, 70, 229, 0.1) 100%);
+  background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), var(--glass-edge);
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
@@ -416,10 +516,10 @@ h4 {
 .btn--ghost {
   background: transparent;
   color: var(--text-1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--ghost-border);
 }
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--fill-2);
   border-color: var(--secondary);
   transform: translateY(-1px);
 }
@@ -454,7 +554,7 @@ h4 {
   white-space: nowrap;
 }
 .pill--muted {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--hover-tint);
   border-color: var(--border);
   color: var(--text-2);
 }
@@ -620,4 +720,9 @@ html.nav-open {
 /* page is locked behind the screenshot lightbox */
 html.lightbox-open {
   overflow: hidden;
+}
+
+/* Ease the palette swap without animating layout or transforms */
+body {
+  transition: background-color 260ms var(--ease), color 260ms var(--ease);
 }
