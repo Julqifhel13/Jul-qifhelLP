@@ -8,12 +8,16 @@
     }
   }
   @media (min-width: 1024px) {
-    /* auto-fit + centre keeps a full row of three identical to before, but
-       centres the row when there are fewer cards than columns. */
     .pj {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--sp-lg);
+    }
+    /* With fewer cards than columns, centre the row rather than leaving a
+       hole on the right. (auto-fit caps each track, so it cannot be used for
+       the full row: three 380px tracks overflow the 1136px container.) */
+    .pj:not(:has(> :nth-child(3))) {
       grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
       justify-content: center;
-      gap: var(--sp-lg);
     }
   }
 

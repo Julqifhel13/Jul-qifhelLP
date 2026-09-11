@@ -173,5 +173,7 @@
 
   .xp__footer-tag {
     color: var(--secondary);
-    flex: none;
+    /* Must stay shrinkable: a long role/date label (310px) would otherwise
+       hold the card open wider than a 360px viewport. */
+    min-width: 0;
   }

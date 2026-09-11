@@ -373,7 +373,68 @@ export const projects = {
           caption:
             'John T. Floyd — completed call: waits for fields to populate, adds a system note, alerts the team and texts the caller a confirmation',
         },
+        {
+          src: 'projects/automations/cs-mail-received.png',
+          thumb: 'projects/automations/cs-mail-received-thumb.jpg',
+          caption:
+            'Copperstone — mail received: routes by location (Land O’ Lakes / South Tampa), then branches on priority to flag urgent mail and assign a reviewer',
+        },
+        {
+          src: 'projects/automations/cs-mail-scan-request.png',
+          thumb: 'projects/automations/cs-mail-scan-request-thumb.jpg',
+          caption:
+            'Copperstone — mail scan request: creates the contact, tags the request, raises a scan task and follows up after four days',
+        },
+        {
+          src: 'projects/automations/cs-forward-request.png',
+          thumb: 'projects/automations/cs-forward-request-thumb.jpg',
+          caption:
+            'Copperstone — mail forwarding request: logs the request and confirms it to the client a day later',
+        },
+        {
+          src: 'projects/automations/cs-mail-aging-reminder.png',
+          thumb: 'projects/automations/cs-mail-aging-reminder-thumb.jpg',
+          caption:
+            'Copperstone — mail aging reminder: escalating nudges at 7 and 14 days, then a task for the team',
+        },
+        {
+          src: 'projects/automations/cs-package-received.png',
+          thumb: 'projects/automations/cs-package-received-thumb.jpg',
+          caption: 'Copperstone — package received: branching notification and hand-off logic',
+        },
+        {
+          src: 'projects/automations/cs-tour-request.png',
+          thumb: 'projects/automations/cs-tour-request-thumb.jpg',
+          caption:
+            'Copperstone — virtual office tour request: captures the enquiry and sends a timed follow-up',
+        },
+        {
+          src: 'projects/automations/cs-tour-no-show.png',
+          thumb: 'projects/automations/cs-tour-no-show-thumb.jpg',
+          caption:
+            'Copperstone — tour no-show recovery: appointment status triggers a two-step email win-back',
+        },
+        {
+          src: 'projects/automations/cs-vo-onboarding.png',
+          thumb: 'projects/automations/cs-vo-onboarding-thumb.jpg',
+          caption:
+            'Copperstone — virtual office onboarding: pipeline stage change drives a three-email plus SMS sequence',
+        },
+        {
+          src: 'projects/automations/cs-missed-call.png',
+          thumb: 'projects/automations/cs-missed-call-thumb.jpg',
+          caption: 'Copperstone — missed call response: instant SMS reply and a follow-up task',
+        },
       ],
+    },
+    {
+      badge: 'Client Portal',
+      tone: 'secondary',
+      title: 'KCG Admin Dashboard & Client Portal',
+      body:
+        'Rebuilt and modernised Kovach Consulting Group’s admin dashboard, admin portal and client portal. Wireframed in Figma to settle interface composition and visual hierarchy, then built into responsive, production-ready components through AI-assisted development with Claude AI.',
+      tags: ['Figma', 'Claude AI', 'Portals'],
+      preview: 'portal',
     },
 
   ],

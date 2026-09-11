@@ -551,7 +551,11 @@ h4 {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  white-space: nowrap;
+  /* Deliberately wrappable. Pills sit in flex-wrap rows, so they move to the
+     next line before breaking internally — but a long label (a full role
+     title, say) must be allowed to wrap rather than push the card wider than
+     the viewport. */
+  text-wrap: pretty;
 }
 .pill--muted {
   background: var(--hover-tint);
