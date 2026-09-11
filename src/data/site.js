@@ -48,7 +48,7 @@ export const navLinks = [
 /* -------------------------------------------------------------- status strip */
 export const ticker = [
   { label: 'PH · Online', value: 'Quezon City, Philippines (GMT+8)', status: true },
-  { label: 'Focus', value: 'Automation · GHL / CRM · IT Ops' },
+  { label: 'Focus', value: 'Automation · GHL / CRM · IT Ops / AI-Assisted Prompt Engineer· Claude AI' },
   { label: 'Email', value: 'cjulqifhel@gmail.com' },
   { label: 'Direct', value: '+63 991 986 0758' },
 ];
