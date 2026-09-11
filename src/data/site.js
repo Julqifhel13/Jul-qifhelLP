@@ -280,38 +280,38 @@ export const projects = {
       // public/projects/intake-funnel/ — see that folder's README.
       gallery: [
         {
-          src: 'projects/intake-funnel/mila-about.jpg',
-          thumb: 'projects/intake-funnel/mila-about-thumb.jpg',
+          src: 'projects/intake-funnel/mila/about.jpg',
+          thumb: 'projects/intake-funnel/mila/about-thumb.jpg',
           caption: 'Mission Impact Legal Advisors — founder story & who we serve',
         },
         {
-          src: 'projects/intake-funnel/mila-practice-areas.jpg',
-          thumb: 'projects/intake-funnel/mila-practice-areas-thumb.jpg',
+          src: 'projects/intake-funnel/mila/practice-areas.jpg',
+          thumb: 'projects/intake-funnel/mila/practice-areas-thumb.jpg',
           caption: 'Mission Impact Legal Advisors — practice areas & service tiers',
         },
         {
-          src: 'projects/intake-funnel/mila-mergers.jpg',
-          thumb: 'projects/intake-funnel/mila-mergers-thumb.jpg',
+          src: 'projects/intake-funnel/mila/mergers.jpg',
+          thumb: 'projects/intake-funnel/mila/mergers-thumb.jpg',
           caption: 'Mission Impact Legal Advisors — mergers & transactions landing page',
         },
         {
-          src: 'projects/intake-funnel/doctor-mold-pro-about.jpg',
-          thumb: 'projects/intake-funnel/doctor-mold-pro-about-thumb.jpg',
+          src: 'projects/intake-funnel/doctor-mold-pro/about.jpg',
+          thumb: 'projects/intake-funnel/doctor-mold-pro/about-thumb.jpg',
           caption: 'Doctor Mold Pro — founder page & conversion sections',
         },
         {
-          src: 'projects/intake-funnel/ymbs-home.jpg',
-          thumb: 'projects/intake-funnel/ymbs-home-thumb.jpg',
+          src: 'projects/intake-funnel/ymbs/home.jpg',
+          thumb: 'projects/intake-funnel/ymbs/home-thumb.jpg',
           caption: 'Yellow Mountain Business Solutions — home page',
         },
         {
-          src: 'projects/intake-funnel/ymbs-team.jpg',
-          thumb: 'projects/intake-funnel/ymbs-team-thumb.jpg',
+          src: 'projects/intake-funnel/ymbs/team.jpg',
+          thumb: 'projects/intake-funnel/ymbs/team-thumb.jpg',
           caption: 'Yellow Mountain Business Solutions — about & team',
         },
         {
-          src: 'projects/intake-funnel/ymbs-services.jpg',
-          thumb: 'projects/intake-funnel/ymbs-services-thumb.jpg',
+          src: 'projects/intake-funnel/ymbs/services.jpg',
+          thumb: 'projects/intake-funnel/ymbs/services-thumb.jpg',
           caption: 'Yellow Mountain Business Solutions — core services & FAQ',
         },
       ],
@@ -328,101 +328,101 @@ export const projects = {
       // viewer shows them at full size and pans, so the node labels stay legible.
       gallery: [
         {
-          src: 'projects/automations/ymbs-book-call.png',
-          thumb: 'projects/automations/ymbs-book-call-thumb.jpg',
+          src: 'projects/automations/ymbs/book-call.png',
+          thumb: 'projects/automations/ymbs/book-call-thumb.jpg',
           caption:
             'Yellow Mountain — book-a-call: four consultant calendars converge into a tagged confirmation, SMS, email and staff notification',
         },
         {
-          src: 'projects/automations/ymbs-contact-us.png',
-          thumb: 'projects/automations/ymbs-contact-us-thumb.jpg',
+          src: 'projects/automations/ymbs/contact-us.png',
+          thumb: 'projects/automations/ymbs/contact-us-thumb.jpg',
           caption:
             'Yellow Mountain — contact form: tags and updates the contact, then branches on enquiry type to route the right reply',
         },
         {
-          src: 'projects/automations/ymbs-get-guidance.png',
-          thumb: 'projects/automations/ymbs-get-guidance-thumb.jpg',
+          src: 'projects/automations/ymbs/get-guidance.png',
+          thumb: 'projects/automations/ymbs/get-guidance-thumb.jpg',
           caption:
             'Yellow Mountain — “Get guidance today”: thank-you, tagging, SMS and email, then a delayed internal notification',
         },
         {
-          src: 'projects/automations/ymbs-learn-more.png',
-          thumb: 'projects/automations/ymbs-learn-more-thumb.jpg',
+          src: 'projects/automations/ymbs/learn-more.png',
+          thumb: 'projects/automations/ymbs/learn-more-thumb.jpg',
           caption:
             'Yellow Mountain — “Learn more”: acknowledges the enquiry, alerts the team and sends a scheduling link',
         },
         {
-          src: 'projects/automations/ymbs-seo.png',
-          thumb: 'projects/automations/ymbs-seo-thumb.jpg',
+          src: 'projects/automations/ymbs/seo.png',
+          thumb: 'projects/automations/ymbs/seo-thumb.jpg',
           caption: 'Yellow Mountain — SEO enquiry: timed email follow-up with an internal alert',
         },
         {
-          src: 'projects/automations/ymbs-tech-audit.png',
-          thumb: 'projects/automations/ymbs-tech-audit-thumb.jpg',
+          src: 'projects/automations/ymbs/tech-audit.png',
+          thumb: 'projects/automations/ymbs/tech-audit-thumb.jpg',
           caption: 'Yellow Mountain — tech audit request: five-minute delayed email response',
         },
         {
-          src: 'projects/automations/jtf-ai-question-collection.png',
-          thumb: 'projects/automations/jtf-ai-question-collection-thumb.jpg',
+          src: 'projects/automations/john-t-floyd/ai-question-collection.png',
+          thumb: 'projects/automations/john-t-floyd/ai-question-collection-thumb.jpg',
           caption:
             'John T. Floyd — AI receptionist: Conversation AI handles the call, then AI steps analyse the questions, classify the call and log it to a spreadsheet before notifying the team',
         },
         {
-          src: 'projects/automations/jtf-completed-call-sms.png',
-          thumb: 'projects/automations/jtf-completed-call-sms-thumb.jpg',
+          src: 'projects/automations/john-t-floyd/completed-call-sms.png',
+          thumb: 'projects/automations/john-t-floyd/completed-call-sms-thumb.jpg',
           caption:
             'John T. Floyd — completed call: waits for fields to populate, adds a system note, alerts the team and texts the caller a confirmation',
         },
         {
-          src: 'projects/automations/cs-mail-received.png',
-          thumb: 'projects/automations/cs-mail-received-thumb.jpg',
+          src: 'projects/automations/copperstone/mail-received.png',
+          thumb: 'projects/automations/copperstone/mail-received-thumb.jpg',
           caption:
             'Copperstone — mail received: routes by location (Land O’ Lakes / South Tampa), then branches on priority to flag urgent mail and assign a reviewer',
         },
         {
-          src: 'projects/automations/cs-mail-scan-request.png',
-          thumb: 'projects/automations/cs-mail-scan-request-thumb.jpg',
+          src: 'projects/automations/copperstone/mail-scan-request.png',
+          thumb: 'projects/automations/copperstone/mail-scan-request-thumb.jpg',
           caption:
             'Copperstone — mail scan request: creates the contact, tags the request, raises a scan task and follows up after four days',
         },
         {
-          src: 'projects/automations/cs-forward-request.png',
-          thumb: 'projects/automations/cs-forward-request-thumb.jpg',
+          src: 'projects/automations/copperstone/forward-request.png',
+          thumb: 'projects/automations/copperstone/forward-request-thumb.jpg',
           caption:
             'Copperstone — mail forwarding request: logs the request and confirms it to the client a day later',
         },
         {
-          src: 'projects/automations/cs-mail-aging-reminder.png',
-          thumb: 'projects/automations/cs-mail-aging-reminder-thumb.jpg',
+          src: 'projects/automations/copperstone/mail-aging-reminder.png',
+          thumb: 'projects/automations/copperstone/mail-aging-reminder-thumb.jpg',
           caption:
             'Copperstone — mail aging reminder: escalating nudges at 7 and 14 days, then a task for the team',
         },
         {
-          src: 'projects/automations/cs-package-received.png',
-          thumb: 'projects/automations/cs-package-received-thumb.jpg',
+          src: 'projects/automations/copperstone/package-received.png',
+          thumb: 'projects/automations/copperstone/package-received-thumb.jpg',
           caption: 'Copperstone — package received: branching notification and hand-off logic',
         },
         {
-          src: 'projects/automations/cs-tour-request.png',
-          thumb: 'projects/automations/cs-tour-request-thumb.jpg',
+          src: 'projects/automations/copperstone/tour-request.png',
+          thumb: 'projects/automations/copperstone/tour-request-thumb.jpg',
           caption:
             'Copperstone — virtual office tour request: captures the enquiry and sends a timed follow-up',
         },
         {
-          src: 'projects/automations/cs-tour-no-show.png',
-          thumb: 'projects/automations/cs-tour-no-show-thumb.jpg',
+          src: 'projects/automations/copperstone/tour-no-show.png',
+          thumb: 'projects/automations/copperstone/tour-no-show-thumb.jpg',
           caption:
             'Copperstone — tour no-show recovery: appointment status triggers a two-step email win-back',
         },
         {
-          src: 'projects/automations/cs-vo-onboarding.png',
-          thumb: 'projects/automations/cs-vo-onboarding-thumb.jpg',
+          src: 'projects/automations/copperstone/vo-onboarding.png',
+          thumb: 'projects/automations/copperstone/vo-onboarding-thumb.jpg',
           caption:
             'Copperstone — virtual office onboarding: pipeline stage change drives a three-email plus SMS sequence',
         },
         {
-          src: 'projects/automations/cs-missed-call.png',
-          thumb: 'projects/automations/cs-missed-call-thumb.jpg',
+          src: 'projects/automations/copperstone/missed-call.png',
+          thumb: 'projects/automations/copperstone/missed-call-thumb.jpg',
           caption: 'Copperstone — missed call response: instant SMS reply and a follow-up task',
         },
       ],
@@ -430,11 +430,83 @@ export const projects = {
     {
       badge: 'Client Portal',
       tone: 'secondary',
-      title: 'KCG Admin Dashboard & Client Portal',
+      title: 'Digital Systems, Dashboard & Website Development.',
       body:
-        'Rebuilt and modernised Kovach Consulting Group’s admin dashboard, admin portal and client portal. Wireframed in Figma to settle interface composition and visual hierarchy, then built into responsive, production-ready components through AI-assisted development with Claude AI.',
-      tags: ['Figma', 'Claude AI', 'Portals'],
+        'Built and improved business websites, dashboards, and digital systems using AI-assisted development, modern UI/UX design, and custom code. Worked on improving system functionality, user experience, access controls, course interfaces, payment integrations, project management views, and overall platform reliability to support efficient business operations.',
+      tags: ['Figma', 'Claude AI', 'Google Stitch'],
       preview: 'portal',
+      gallery: [
+        {
+          src: 'projects/kcg/admin-dashboard/overview.jpg',
+          thumb: 'projects/kcg/admin-dashboard/overview-thumb.jpg',
+          caption: 'KCG admin dashboard — home overview',
+        },
+        {
+          src: 'projects/kcg/admin-dashboard/panel-1.jpg',
+          thumb: 'projects/kcg/admin-dashboard/panel-1-thumb.jpg',
+          caption: 'KCG admin dashboard — management panel',
+        },
+        {
+          src: 'projects/kcg/admin-dashboard/panel-2.jpg',
+          thumb: 'projects/kcg/admin-dashboard/panel-2-thumb.jpg',
+          caption: 'KCG admin dashboard — records & detail view',
+        },
+        {
+          src: 'projects/kcg/admin-dashboard/panel-3.jpg',
+          thumb: 'projects/kcg/admin-dashboard/panel-3-thumb.jpg',
+          caption: 'KCG admin dashboard — workflow section',
+        },
+        {
+          src: 'projects/kcg/admin-dashboard/panel-4.jpg',
+          thumb: 'projects/kcg/admin-dashboard/panel-4-thumb.jpg',
+          caption: 'KCG admin dashboard — settings & controls',
+        },
+        {
+          src: 'projects/kcg/client-portal/panel-1.jpg',
+          thumb: 'projects/kcg/client-portal/panel-1-thumb.jpg',
+          caption: 'KCG client portal — landing view',
+        },
+        {
+          src: 'projects/kcg/client-portal/panel-2.jpg',
+          thumb: 'projects/kcg/client-portal/panel-2-thumb.jpg',
+          caption: 'KCG client portal — client information',
+        },
+        {
+          src: 'projects/kcg/client-portal/panel-3.jpg',
+          thumb: 'projects/kcg/client-portal/panel-3-thumb.jpg',
+          caption: 'KCG client portal — documents & resources',
+        },
+        {
+          src: 'projects/kcg/client-portal/panel-4.jpg',
+          thumb: 'projects/kcg/client-portal/panel-4-thumb.jpg',
+          caption: 'KCG client portal — support section',
+        },
+        {
+          src: 'projects/kcg/client-portal/panel-5.jpg',
+          thumb: 'projects/kcg/client-portal/panel-5-thumb.jpg',
+          caption: 'KCG client portal — account view',
+        },
+        {
+          src: 'projects/kcg/website/section-1.jpg',
+          thumb: 'projects/kcg/website/section-1-thumb.jpg',
+          caption: 'KCG website — hero section',
+        },
+        {
+          src: 'projects/kcg/website/section-2.jpg',
+          thumb: 'projects/kcg/website/section-2-thumb.jpg',
+          caption: 'KCG website — services section',
+        },
+        {
+          src: 'projects/kcg/website/section-3.jpg',
+          thumb: 'projects/kcg/website/section-3-thumb.jpg',
+          caption: 'KCG website — about & credibility section',
+        },
+        {
+          src: 'projects/kcg/website/section-4.jpg',
+          thumb: 'projects/kcg/website/section-4-thumb.jpg',
+          caption: 'KCG website — contact & footer section',
+        },
+      ],
     },
 
   ],

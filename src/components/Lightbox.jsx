@@ -120,7 +120,11 @@ export default function Lightbox({ project, onClose }) {
               loading="eager"
               onLoad={(e) => {
                 const img = e.currentTarget;
-                setWide(img.naturalWidth / img.naturalHeight > 2);
+                // 2.6 separates the two kinds of wide image: workflow canvases
+                // (3:1 and beyond, unreadable unless panned) from full-page UI
+                // screenshots (~2.2:1), where seeing the whole layout matters
+                // more than pixel scale.
+                setWide(img.naturalWidth / img.naturalHeight > 2.6);
               }}
               onError={() => setFailed((f) => ({ ...f, [shot.src]: true }))}
             />
