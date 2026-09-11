@@ -19,7 +19,7 @@ export const profile = {
   // Headshot for the hero card. Drop the file into /public and put its
   // filename here, e.g. 'jul-qifhel.jpg'. Left empty, the card falls back
   // to the gradient "JC" monogram.
-  photo: '',
+  photo: 'jul-qifhel.jpg',
   resumeUrl: '', // e.g. 'Jul-qifhel-Cana-Resume.pdf' — drop the PDF into /public
   socials: [
     { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/' },
