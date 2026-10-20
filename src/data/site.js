@@ -274,18 +274,35 @@ export const projects = {
       title: 'Nonprofit & Law Firm Client Intake Funnel',
       body:
         'GoHighLevel landing system for legal retainers — scored intake pipeline, instant SMS follow-up and automated routing to the right attorney.',
-      tags: ['GoHighLevel', 'CSS', 'Automation'],
+      tags: ['GoHighLevel', 'Figma', 'ChatGPT'],
       scope: '7 screens · 3 clients',
       // Showcase graphic designed in Figma; it carries the story so the card
       // itself stays short. See public/projects/showcase/.
       graphic: 'projects/showcase/intake-funnel.jpg',
-      graphicAlt:
-        'Client Intake Funnel showcase — the Mission Impact Legal Advisors landing page beside the scored intake pipeline, instant SMS follow-up and attorney routing built in GoHighLevel',
+      role: 'Automation & web build',
+      preview: {
+        src: 'projects/intake-funnel/mila/about.jpg',
+        alt:
+          'The Mission Impact Legal Advisors about page — founder portrait, practice introduction and a Get Started call to action',
+        label: 'missionimpactlegal.com',
+        caption: 'Mission Impact Legal Advisors · About',
+      },
+      highlights: [
+        { title: 'Scored intake pipeline', body: 'Forms that qualify and rank every enquiry as it arrives.' },
+        { title: 'Instant SMS follow-up', body: 'Triggered the moment a form is submitted — no manual chasing.' },
+        { title: 'Attorney routing', body: 'Conditional paths send each matter to the right person.' },
+        { title: 'Responsive landing pages', body: 'Custom HTML and CSS on top of the page builder.' },
+      ],
       result: 'Form submission through to booked consultation, running unattended.',
       resultTag: 'Legal · Nonprofit · Services',
       // Screenshots shown when the card is clicked. Files live in
       // public/projects/intake-funnel/ — see that folder's README.
       gallery: [
+        {
+          src: 'projects/showcase/intake-funnel.jpg',
+          thumb: 'projects/showcase/intake-funnel-thumb.jpg',
+          caption: 'Client Intake Funnel — scope, build and result at a glance',
+        },
         {
           src: 'projects/intake-funnel/mila/about.jpg',
           thumb: 'projects/intake-funnel/mila/about-thumb.jpg',
@@ -329,16 +346,33 @@ export const projects = {
       title: 'Business Automation & Lead Management',
       body:
         'GoHighLevel automations for website forms, consultation requests and lead management — capture, follow-up, booking and CRM sync.',
-      tags: ['Workflows', 'SMS/Email', 'Calendar'],
+      tags: ['GoHighLevel', 'Figma', 'ChatGPT'],
       scope: '17 workflows · 3 clients',
       graphic: 'projects/showcase/automations.jpg',
-      graphicAlt:
-        'Business Automation showcase — GoHighLevel workflow canvases for booking confirmation and mail forwarding, with multi-channel capture, branching logic and timed follow-up',
+      role: 'Automation build',
+      preview: {
+        src: 'projects/automations/ymbs/book-call.png',
+        alt:
+          'A GoHighLevel workflow canvas — four consultant booking triggers converging into a wait, a tag, then SMS, email and staff notification steps',
+        label: 'WF — Book a call',
+        caption: 'Yellow Mountain · Booking confirmation',
+      },
+      highlights: [
+        { title: 'Multi-channel capture', body: 'Website forms, missed calls and bookings feeding one CRM.' },
+        { title: 'Branching workflow logic', body: 'Routes by location, priority and enquiry type.' },
+        { title: 'Timed follow-up sequences', body: 'Staged SMS and email, with internal team alerts.' },
+        { title: 'Lifecycle automation', body: 'Onboarding, aging reminders and no-show recovery.' },
+      ],
       result: '17 workflows running across three accounts without supervision.',
       resultTag: 'Yellow Mountain · JTF · Copperstone',
       // GoHighLevel workflow canvases. These are wide, short diagrams — the
       // viewer shows them at full size and pans, so the node labels stay legible.
       gallery: [
+        {
+          src: 'projects/showcase/automations.jpg',
+          thumb: 'projects/showcase/automations-thumb.jpg',
+          caption: 'Business Automation — scope, build and result at a glance',
+        },
         {
           src: 'projects/automations/ymbs/book-call.png',
           thumb: 'projects/automations/ymbs/book-call-thumb.jpg',
@@ -445,14 +479,31 @@ export const projects = {
       title: 'Digital Systems, Dashboard & Website Development.',
       body:
         'Websites, dashboards and portals built with AI-assisted development — improved UX, access controls, payments and platform reliability.',
-      tags: ['Figma', 'Claude AI', 'Google Stitch'],
+      tags: ['Figma', 'Claude AI', 'Canva', 'GitHub', 'Google Stitch', 'VS Code', 'Antigravity'],
       scope: '14 screens · 3 systems',
       graphic: 'projects/showcase/kcg.jpg',
-      graphicAlt:
-        'Digital Systems showcase — the Kovach Consulting Group admin dashboard and client portal, rebuilt from Figma wireframes with AI-assisted development',
+      role: 'UI/UX & AI-assisted build',
+      preview: {
+        src: 'projects/kcg/admin-dashboard/overview.jpg',
+        alt:
+          'The KCG admin dashboard — left navigation beside a client overview table with progress bars and status flags',
+        label: 'kcg-admin.app / dashboard',
+        caption: 'KCG admin dashboard · Overview',
+      },
+      highlights: [
+        { title: 'Admin dashboard rebuild', body: 'Modernised the admin dashboard, admin portal and client portal.' },
+        { title: 'UI/UX in Figma', body: 'Wireframes, interface composition and visual hierarchy first.' },
+        { title: 'AI-assisted development', body: 'Claude AI as the build driver, with context-rich prompts.' },
+        { title: 'Access & payment flows', body: 'Controls, course views and payment integration.' },
+      ],
       result: 'Client portal and admin dashboard delivered end-to-end.',
       resultTag: 'Dashboard · Portal · Website',
       gallery: [
+        {
+          src: 'projects/showcase/kcg.jpg',
+          thumb: 'projects/showcase/kcg-thumb.jpg',
+          caption: 'Digital Systems — scope, build and result at a glance',
+        },
         {
           src: 'projects/kcg/admin-dashboard/overview.jpg',
           thumb: 'projects/kcg/admin-dashboard/overview-thumb.jpg',

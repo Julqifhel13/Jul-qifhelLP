@@ -55,41 +55,78 @@ export default function Projects() {
                   <h3 className="t-h3 pj__title">{item.title}</h3>
                   <p className="pj__subtitle">{item.body}</p>
 
-                  {/* The showcase graphic tells the project's story, so it takes
-                      the place the bullet list holds in the experience rows —
-                      and doubles as the door into that project's screenshots. */}
-                  {count > 0 && (
+                  {/* The Figma showcase, rebuilt as markup rather than pasted in
+                      as a flattened poster: a framed preview beside the written
+                      contribution. Only then does the copy render at a size
+                      anyone can read — the poster set it at roughly 5px once
+                      scaled to card width. It still opens full-screen below. */}
+                  <div className="pj__build">
                     <button
                       className="pj__shot"
                       type="button"
                       onClick={() => setOpen(item)}
-                      aria-label={`Open ${item.title} — ${count} screenshots`}
+                      aria-label={`Open ${item.title} — ${count} images`}
                     >
-                      {/* The cue sits above the artwork rather than on it —
-                          every corner of the graphic is already spoken for. */}
-                      <span className="pj__shot-cue" aria-hidden="true">
-                        <Icon name="expand" size={13} />
-                        View {count} screenshots
+                      <span className="pj__frame">
+                        <span className="pj__chrome" aria-hidden="true">
+                          <span className="pj__dot" />
+                          <span className="pj__dot" />
+                          <span className="pj__dot" />
+                          <span className="pj__chrome-url">{item.preview.label}</span>
+                          {/* In the title bar rather than over the artwork —
+                              anywhere on the screenshot lands on its content. */}
+                          <span className="pj__cue">
+                            <Icon name="expand" size={12} />
+                            View {count} images
+                          </span>
+                        </span>
+
+                        <span className="pj__viewport">
+                          {failed[item.preview.src] ? (
+                            <span className="pj__shot-fallback">{item.preview.caption}</span>
+                          ) : (
+                            <img
+                              className="pj__shot-img"
+                              src={asset(item.preview.src)}
+                              alt={item.preview.alt}
+                              loading={i === 0 ? 'eager' : 'lazy'}
+                              decoding="async"
+                              onError={() =>
+                                setFailed((f) => ({ ...f, [item.preview.src]: true }))
+                              }
+                            />
+                          )}
+                        </span>
                       </span>
 
-                      <span className="pj__shot-frame">
-                        {failed[item.graphic] ? (
-                          <span className="pj__shot-fallback">{item.title}</span>
-                        ) : (
-                          <img
-                            className="pj__shot-img"
-                            src={asset(item.graphic)}
-                            alt={item.graphicAlt}
-                            width="2200"
-                            height="1238"
-                            loading={i === 0 ? 'eager' : 'lazy'}
-                            decoding="async"
-                            onError={() => setFailed((f) => ({ ...f, [item.graphic]: true }))}
-                          />
-                        )}
-                      </span>
+                      <span className="pj__shot-caption">{item.preview.caption}</span>
                     </button>
-                  )}
+
+                    <div className="pj__what">
+                      <dl className="pj__meta">
+                        <div className="pj__meta-row">
+                          <dt>Role</dt>
+                          <dd>{item.role}</dd>
+                        </div>
+                      </dl>
+
+                      <p className="pj__what-head">What I built</p>
+
+                      <ul className="pj__bullets">
+                        {item.highlights.map((h, n) => (
+                          <li className="pj__bullet" key={h.title}>
+                            <span className="pj__bullet-n" aria-hidden="true">
+                              {String(n + 1).padStart(2, '0')}
+                            </span>
+                            <div>
+                              <h4 className="pj__bullet-title">{h.title}</h4>
+                              <p className="pj__bullet-body">{h.body}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
 
                   <footer className="pj__footer">
                     <p className="pj__footer-text">{item.result}</p>
