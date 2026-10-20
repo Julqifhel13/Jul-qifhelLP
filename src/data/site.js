@@ -62,7 +62,7 @@ export const hero = {
   headlineAccentSuffix: ',', // stays white, outside the cyan fill
   headlineTail: 'Automation, AI & Reliable IT Systems.',
   intro:
-    'Virtual Assistant & IT Specialist with a strong Information Technology foundation from New Era University. I combine technical skills with executive and administrative support—building and improving websites, dashboards, CRM workflows, automations, and digital systems using AI-assisted development, custom code, and modern design tools for growing businesses and consulting organizations.',
+    'IT graduate turned Executive VA. I build websites, dashboards and CRM automations with AI-assisted development — so operations run without constant supervision.',
   chips: [
     { icon: 'zap', label: 'GoHighLevel Pro' },
     { icon: 'route', label: 'CRM & Pipeline Architect' },
@@ -120,11 +120,11 @@ export const about = {
   // `text-wrap: balance` picks the break points instead of forcing them.
   heading: ['Executive Virtual Assistant | AI-Assisted Web Development & Automation Specialist'],
   body:
-    'Results-driven Executive Virtual Assistant and IT professional with experience in automation, CRM management, web development, and digital operations. Skilled in GoHighLevel, AI-assisted development using Claude AI, UI/UX design, dashboards, and business portal improvements. Experienced in supporting Yellow Mountain Business Solutions and Kovach Consulting Group by improving websites, workflows, documentation, user experience, and digital systems.',
+    'I build systems that absorb the repetitive work: client intake, CRM records, dashboards and back-office tasks. Owners get their hours back and spend them on growth.',
   objective: {
     label: 'Primary Career Objective',
     quote:
-      'To secure a position as an Executive Virtual Assistant or Digital Operations Specialist where I can use my experience in CRM management, automation, AI-assisted development, web development, and administrative support to improve business systems and operations. I aim to continue developing my skills in AI engineering, automation, and digital solutions while delivering efficient, high-quality results for growing businesses.',
+      'To work as an Executive Virtual Assistant or Digital Operations Specialist — improving business systems through CRM management, automation and AI-assisted development, while growing into AI engineering.',
     meta: ['Automation', 'Client Systems', 'Executive Efficiency'],
   },
   pillars: [
@@ -132,7 +132,7 @@ export const about = {
       icon: 'workflow',
       title: 'Automation & CRM',
       body:
-        'GoHighLevel workflow architecture, multi-step trigger sequencing, lead routing, calendar bookings and pipeline management across the full customer lifecycle.',
+        'GoHighLevel workflows, lead routing, pipelines and calendar bookings across the full customer lifecycle.',
       tags: ['SMS', 'Workflows', 'GHL'],
       accent: 'primary',
     },
@@ -140,7 +140,7 @@ export const about = {
       icon: 'layout',
       title: 'Landing Pages & UI',
       body:
-        'Modern and responsive website builds using AI-assisted development, visual design tools, and custom code to create polished, functional, and user-friendly digital experiences.',
+        'Responsive website builds using AI-assisted development, modern design tools and custom code.',
       tags: ['Funnels', 'AI-Assisted Engineer'],
       accent: 'secondary',
     },
@@ -148,7 +148,7 @@ export const about = {
       icon: 'megaphone',
       title: 'Social Growth & VA',
       body:
-        'Multi-platform scheduling, creative copywriting, community and inbox management, client onboarding, and reliable day-to-day executive administration.',
+        'Multi-platform scheduling, copywriting, inbox management and day-to-day executive administration.',
       tags: ['Meta', 'LinkedIn', 'Content'],
       accent: 'tertiary',
     },
@@ -156,7 +156,7 @@ export const about = {
       icon: 'server',
       title: 'IT & Asset Systems',
       body:
-        'Enterprise hardware and software diagnostics, secure asset management, equipment labelling, user onboarding and controlled inventory reconciliation.',
+        'Hardware and software diagnostics, secure asset management and controlled inventory reconciliation.',
       tags: ['Support', 'Assets', 'Systems'],
       accent: 'primary',
     },
@@ -168,12 +168,12 @@ export const experience = {
   eyebrow: 'Track Record & Impact',
   heading: 'Professional Experience',
   note:
-    'Proven experience supporting business consulting firms and digital operations through AI-assisted development, CRM automation, website and portal improvements, UI/UX design, and administrative systems management.',
+    'Supporting consulting firms, law firms and nonprofits through automation, web development and digital operations.',
   roles: [
     {
       company: 'Kovach Consulting Group (KCG)',
       subtitle:
-        'Executive Funnels, Admin Dashboard Modernisation & AI-Assisted Interface Engineering',
+        'Dashboards, Client Portals & AI-Assisted Interface Engineering',
       badge: { label: 'AI-Assisted Full-Stack Developer & Digital Operations Specialist', tone: 'tertiary' },
       period: 'AI Assissted Engineer',
       stack: ['Figma', 'Claude AI / ReactJS', 'Canva', 'Google Stitch', 'Social Media Manager', 'Visual Studio Code', 'Antigravity'],
@@ -182,31 +182,31 @@ export const experience = {
         {
           title: 'Enterprise Funnels & Admin Dashboard Blueprinting',
           body:
-            'Rebuilt and modernised the KCG Admin Dashboard, Admin Portal and Client Portal. Used Figma for rapid UI/UX wireframing, interface composition and visual hierarchy before translating designs into responsive, production-ready application components.',
+            'Rebuilt the admin dashboard, admin portal and client portal — wireframed in Figma, shipped as responsive components.',
         },
         {
           title: 'Usability, Visual Hierarchy & Full-Lifecycle Maintenance',
           body:
-            'Overhauled client-facing informational and support interfaces — refining typography, responsive spacing and styling. Drove continuous improvement through component tracking, debugging and production deployments across digital channels.',
+            'Refined typography, spacing and styling across client-facing interfaces, with ongoing debugging and production deploys.',
         },
         {
           title: 'AI-Assisted Engineering & Prompt Architecture',
           body:
-            'Used Claude AI as an assisted development driver to architect dashboards and client portal interfaces. Engineered detailed, context-rich prompts capturing exact interface constraints, system logic, responsive states and functional workflows while preserving architectural integrity.',
+            'Used Claude AI as a development driver, engineering context-rich prompts that preserved architectural integrity.',
         },
         {
           title: 'Brand Collateral & Content Operations',
           body:
-            'Produced marketing and internal collateral in Canva, sourced and optimised a consistent content schedule, and strengthened the firm’s online brand presence across digital channels.',
+            'Produced marketing collateral in Canva and kept a consistent content schedule.',
         },
       ],
       footer:
-        'Delivered a responsive client portal, Landing page and admin dashboard end-to-end — from Figma & Google Stitch architecture through AI-assisted build and deployment.',
+        'Client portal and admin dashboard delivered end-to-end, Figma through deployment.',
       footerTag: 'Kovach Consulting Group · May – October 2026',
     },
     {
       company: 'Yellow Mountain Business Solution',
-      subtitle: 'Specialised Consulting for Nonprofit, Law Firm & Mission-Driven Organisations',
+      subtitle: 'Consulting for Nonprofits, Law Firms & Mission-Driven Organisations',
       badge: { label: 'Automation Lead', tone: 'secondary' },
       period: 'CRM & Funnels',
       stack: ['GoHighLevel', 'Pipelines', 'SMS/Email', 'Landing Pages', 'Social'],
@@ -214,26 +214,26 @@ export const experience = {
         {
           title: 'End-to-End CRM & Multi-Branch Workflows',
           body:
-            'Engineered intricate automated workflows in GoHighLevel to triage incoming client intake forms, schedule attorney consultations and trigger automated SMS and email reminders — sharply reducing response lag.',
+            'Built GoHighLevel workflows that triage intake forms, schedule consultations and trigger SMS and email reminders.',
         },
         {
           title: 'Pipeline Architecture & Onboarding Velocity',
           body:
-            'Designed pipeline stages and opportunity tracking systems that let partners monitor legal retainer conversions in real time, with automated trigger-based stage progression.',
+            'Designed pipeline stages and opportunity tracking so partners could monitor retainer conversions in real time.',
         },
         {
           title: 'High-Converting Landing Pages & Code Tweaks',
           body:
-            'Built fully responsive landing pages with drag-and-drop builders and custom HTML/CSS injections, lifting conversion performance and eliminating friction points in the intake journey.',
+            'Built responsive landing pages with custom HTML and CSS injections, lifting conversion performance.',
         },
         {
           title: 'Multi-Platform Social Media Growth',
           body:
-            'Executed content strategy across Instagram, LinkedIn and Facebook — crafting copy, scheduling sequences, responding to inbound enquiries and optimising engagement.',
+            'Ran content strategy across Instagram, LinkedIn and Facebook — copy, scheduling and inbound replies.',
         },
       ],
       footer:
-        'Automated the full client-intake lifecycle for legal and nonprofit clients, from first form submission to booked consultation.',
+        'Full client-intake lifecycle automated, from form submission to booked consultation.',
       footerTag: 'Legal & Nonprofit Specialisation',
     },
     {
@@ -246,16 +246,16 @@ export const experience = {
         {
           title: 'Multi-Account IT Hardware & Systems Support',
           body:
-            'Maintained workstations, enterprise peripherals, VoIP headsets, multi-display configurations and critical OS software environments across several high-volume enterprise accounts.',
+            'Maintained workstations, peripherals, VoIP headsets and OS environments across high-volume enterprise accounts.',
         },
         {
           title: 'IT Asset Logistics & Security',
           body:
-            'Led hardware equipment labelling, systematic inventory audits, tracking logs, diagnostic triage of returned hardware and controlled secure storage protocols.',
+            'Led equipment labelling, inventory audits, diagnostic triage and secure storage protocols.',
         },
       ],
       footer:
-        'Maintained full asset-audit reconciliation across enterprise accounts with no equipment discrepancies.',
+        'Full asset-audit reconciliation with no equipment discrepancies.',
       footerTag: 'BPO / Enterprise IT',
     },
   ],
@@ -266,14 +266,14 @@ export const projects = {
   eyebrow: 'Showcase',
   heading: 'Featured Projects & Website Builds',
   note:
-    'A selection of website, portal, and digital system projects focused on improving user experience, business operations, automation, and functionality. My work includes AI-assisted development, UI/UX improvements, CRM and workflow automation, dashboard development, and website optimization for consulting and growing businesses.',
+    'Websites, dashboards and automations built for consulting firms, law firms and nonprofits.',
   items: [
     {
       badge: 'Live Build',
       tone: 'tertiary',
       title: 'Nonprofit & Law Firm Client Intake Funnel',
       body:
-        'Custom GoHighLevel landing system built for legal retainers. Combines custom CSS form overlays with a scored intake pipeline, instant follow-up SMS triggers and automated qualification routing to the right attorney.',
+        'GoHighLevel landing system for legal retainers — scored intake pipeline, instant SMS follow-up and automated routing to the right attorney.',
       tags: ['GoHighLevel', 'CSS', 'Automation'],
       preview: 'funnel',
       // Screenshots shown when the card is clicked. Files live in
@@ -321,7 +321,7 @@ export const projects = {
       tone: 'primary',
       title: 'Business Automation & Lead Management',
       body:
-        'Built and improved GoHighLevel automations for website forms, consultation requests, and lead management. Created workflows that capture and organize contacts, trigger follow-up actions, support booking processes, and connect website inquiries with CRM systems to improve business operations and lead handling.',
+        'GoHighLevel automations for website forms, consultation requests and lead management — capture, follow-up, booking and CRM sync.',
       tags: ['Workflows', 'SMS/Email', 'Calendar'],
       preview: 'engine',
       // GoHighLevel workflow canvases. These are wide, short diagrams — the
@@ -432,7 +432,7 @@ export const projects = {
       tone: 'secondary',
       title: 'Digital Systems, Dashboard & Website Development.',
       body:
-        'Built and improved business websites, dashboards, and digital systems using AI-assisted development, modern UI/UX design, and custom code. Worked on improving system functionality, user experience, access controls, course interfaces, payment integrations, project management views, and overall platform reliability to support efficient business operations.',
+        'Websites, dashboards and portals built with AI-assisted development — improved UX, access controls, payments and platform reliability.',
       tags: ['Figma', 'Claude AI', 'Google Stitch'],
       preview: 'portal',
       gallery: [
@@ -520,7 +520,7 @@ export const skills = {
   eyebrow: 'Capabilities',
   heading: 'GoHighLevel & Systems Architecture',
   note:
-    'An intersection of technical IT problem-solving and marketing automation design, built to let operations run without constant supervision.',
+    'Where technical IT problem-solving meets marketing automation — built to run without supervision.',
   groups: [
     {
       icon: 'workflow',
@@ -588,7 +588,7 @@ export const certifications = {
   eyebrow: 'Verified Credentials',
   heading: '18+ Professional Certifications',
   note:
-    'Continuous technical mastery across Oracle Cloud, Cisco, IBM Cognitive Class, Agile delivery and cyber-defence fundamentals.',
+    'Oracle Cloud, Cisco, IBM Cognitive Class, Agile delivery and cyber-defence fundamentals.',
   filters: [
     { id: 'all', label: 'All' },
     { id: 'cloud', label: 'Cloud & Infrastructure' },
@@ -628,13 +628,13 @@ export const education = {
     place: 'Quezon City, Philippines',
     period: '2021 – 2025',
     body:
-      'A strong foundation in Information Technology, including database management, networking, web development, and problem-solving. These skills provide the technical knowledge behind the automations, websites, and portals I build today.',
+      'A rigorous IT foundation in systems administration, databases, networking and web development — the backbone behind every automation I build.',
     tags: ['Systems Administration', 'Database Management', 'Web Development', 'Networking'],
   },
   aside: {
     title: 'Technical Foundations',
     body:
-      'Formal IT training means automations are architected, documented and maintainable — not stitched together. Every workflow is built to survive scale, hand-off and audit.',
+      'Formal training means automations are architected and documented, not stitched together — built to survive scale and hand-off.',
   },
 };
 
@@ -643,7 +643,7 @@ export const contact = {
   eyebrow: 'Get in Touch',
   heading: ['Let’s Discuss How I Can', 'Improve Your Digital Systems.'],
   body:
-    'Whether you need website and dashboard development, CRM and workflow automation, AI-assisted solutions, or dependable executive virtual assistance to support your daily operations, I’m ready to bring my technical, creative, and administrative skills to your team.',
+    'Need website and dashboard development, CRM automation, or a dependable executive VA? I am ready to join your team.',
   methods: [
     {
       icon: 'mail',
@@ -673,7 +673,7 @@ export const contact = {
 /* -------------------------------------------------------------------- footer */
 export const footer = {
   blurb:
-    'Executive Virtual Assistant, AI-assisted web developer, automation specialist, and IT systems support professional — building and improving dashboards, websites, CRM workflows, and digital systems that help businesses operate more efficiently.',
+    'Executive Virtual Assistant and IT professional building websites, dashboards and automations that run themselves.',
   columns: [
     {
       title: 'Direct Contact',
