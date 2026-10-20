@@ -4,8 +4,11 @@ import Lightbox from './Lightbox.jsx';
 import { projects } from '../data/site.js';
 import './Projects.css';
 
+const asset = (src) => `${import.meta.env.BASE_URL}/${src}`.replace(/\/{2,}/g, '/');
+
 export default function Projects() {
   const [open, setOpen] = useState(null);
+  const [failed, setFailed] = useState({});
 
   return (
     <section className="section" id="projects">
@@ -20,68 +23,83 @@ export default function Projects() {
           </p>
         </header>
 
-        <ul className="pj">
-          {projects.items.map((item, i) => (
-            <li
-              className={`pj__item card card--hover${item.gallery ? ' pj__item--clickable' : ''}`}
-              key={item.title}
-              data-reveal
-              data-reveal-delay={String(i * 80)}
-            >
-              {/* abstract build preview */}
-              <div className={`pj__preview pj__preview--${item.preview}`} aria-hidden="true">
-                <div className="pj__chrome">
-                  <span />
-                  <span />
-                  <span />
-                  <div className="pj__url" />
-                </div>
-                <div className="pj__mock">
-                  <div className="pj__mock-row pj__mock-row--wide" />
-                  <div className="pj__mock-row" />
-                  <div className="pj__mock-grid">
-                    <div />
-                    <div />
-                    <div />
+        <ol className="pj">
+          {projects.items.map((item, i) => {
+            const count = item.gallery?.length ?? 0;
+
+            return (
+              <li
+                className="pj__item"
+                key={item.title}
+                data-reveal
+                data-reveal-delay={String(i * 80)}
+              >
+                <span className="pj__node" aria-hidden="true" />
+
+                <article className="pj__card card">
+                  <div className="pj__top">
+                    <div className="pj__badges">
+                      <span className={`pill pill--${item.tone}`}>{item.badge}</span>
+                      <span className="pill pill--muted">{item.scope}</span>
+                    </div>
+
+                    <ul className="pj__stack">
+                      {item.tags.map((tech) => (
+                        <li className="tag" key={tech}>
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <div className="pj__mock-row pj__mock-row--short" />
-                </div>
-              </div>
 
-              <div className="pj__body">
-                <span className={`pill pill--${item.tone} pj__badge`}>{item.badge}</span>
-                <h3 className="pj__title">{item.title}</h3>
-                <p className="pj__text">{item.body}</p>
-              </div>
+                  <h3 className="t-h3 pj__title">{item.title}</h3>
+                  <p className="pj__subtitle">{item.body}</p>
 
-              <hr className="rule" />
+                  {/* The showcase graphic tells the project's story, so it takes
+                      the place the bullet list holds in the experience rows —
+                      and doubles as the door into that project's screenshots. */}
+                  {count > 0 && (
+                    <button
+                      className="pj__shot"
+                      type="button"
+                      onClick={() => setOpen(item)}
+                      aria-label={`Open ${item.title} — ${count} screenshots`}
+                    >
+                      {/* The cue sits above the artwork rather than on it —
+                          every corner of the graphic is already spoken for. */}
+                      <span className="pj__shot-cue" aria-hidden="true">
+                        <Icon name="expand" size={13} />
+                        View {count} screenshots
+                      </span>
 
-              <footer className="pj__footer">
-                <ul className="pj__tags">
-                  {item.tags.map((tag) => (
-                    <li className="tag" key={tag}>
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-                <span className="pj__arrow" aria-hidden="true">
-                  <Icon name="arrow" size={15} />
-                </span>
-              </footer>
+                      <span className="pj__shot-frame">
+                        {failed[item.graphic] ? (
+                          <span className="pj__shot-fallback">{item.title}</span>
+                        ) : (
+                          <img
+                            className="pj__shot-img"
+                            src={asset(item.graphic)}
+                            alt={item.graphicAlt}
+                            width="2200"
+                            height="1238"
+                            loading={i === 0 ? 'eager' : 'lazy'}
+                            decoding="async"
+                            onError={() => setFailed((f) => ({ ...f, [item.graphic]: true }))}
+                          />
+                        )}
+                      </span>
+                    </button>
+                  )}
 
-              {/* Covers the whole card so any click opens the gallery, while
-                  the heading and copy stay real text for screen readers. */}
-              {item.gallery && (
-                <button
-                  className="pj__open"
-                  type="button"
-                  onClick={() => setOpen(item)}
-                  aria-label={`View ${item.gallery.length} screenshots of ${item.title}`}
-                />
-              )}
-            </li>
-          ))}
-        </ul>
+                  <footer className="pj__footer">
+                    <p className="pj__footer-text">{item.result}</p>
+                    <span className="pj__footer-tag tag">{item.resultTag}</span>
+                  </footer>
+                </article>
+              </li>
+            );
+          })}
+        </ol>
       </div>
 
       {open && <Lightbox project={open} onClose={() => setOpen(null)} />}

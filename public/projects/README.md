@@ -20,10 +20,13 @@ projects/
 │                               package-received, tour-request,
 │                               tour-no-show, vo-onboarding, missed-call
 │
-└── kcg/                      → "Digital Systems, Dashboard & Website Development"
-    ├── admin-dashboard/        overview, panel-1 … panel-4
-    ├── client-portal/          panel-1 … panel-5
-    └── website/                section-1 … section-4
+├── kcg/                      → "Digital Systems, Dashboard & Website Development"
+│   ├── admin-dashboard/        overview, panel-1 … panel-4
+│   ├── client-portal/          panel-1 … panel-5
+│   └── website/                section-1 … section-4
+│
+└── showcase/                 → the card artwork itself, one per project
+                                (see showcase/README.md)
 ```
 
 Every image has a matching `*-thumb.jpg` (240×170) for the thumbnail strip, so

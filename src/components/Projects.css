@@ -1,182 +1,211 @@
+  /* The showcase deliberately mirrors the experience timeline: same rail, same
+     card frame, same top/footer bands. The one difference is what fills the
+     middle — a Figma showcase graphic instead of a bullet list. */
   .pj {
+    position: relative;
     display: grid;
-    gap: var(--sp-md);
-  }
-  @media (min-width: 700px) {
-    .pj {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (min-width: 1024px) {
-    .pj {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--sp-lg);
-    }
-    /* With fewer cards than columns, centre the row rather than leaving a
-       hole on the right. (auto-fit caps each track, so it cannot be used for
-       the full row: three 380px tracks overflow the 1136px container.) */
-    .pj:not(:has(> :nth-child(3))) {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
-      justify-content: center;
-    }
+    gap: var(--sp-lg);
+    margin: 0;
   }
 
   .pj__item {
+    position: relative;
+  }
+
+  /* Connection rail — hidden on mobile, gutter rail on desktop */
+  .pj__node {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .pj {
+      padding-left: 2.25rem;
+    }
+    .pj::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: var(--fill-4);
+    }
+    .pj__node {
+      display: block;
+      position: absolute;
+      left: -2.25rem;
+      top: 26px;
+      width: 12px;
+      height: 12px;
+      border-radius: var(--r-full);
+      background: var(--surface-3);
+      border: 2px solid var(--canvas);
+      box-shadow: 0 0 0 1px var(--border-strong);
+    }
+  }
+
+  /* ---------------------------------------------------------------- card */
+  .pj__card {
+    padding: var(--sp-lg);
+    border-left: 2px solid var(--border-soft);
+    transition: border-color var(--dur) var(--ease);
+  }
+  @media (min-width: 768px) {
+    .pj__card {
+      padding: var(--sp-xl);
+    }
+  }
+  .pj__card:hover {
+    border-color: var(--border);
+    border-left-color: rgba(6, 182, 212, 0.4);
+  }
+
+  .pj__top {
     display: flex;
-    flex-direction: column;
-    padding: var(--sp-md);
-    overflow: hidden;
-  }
-
-  /* --------------------------------------------------------- preview */
-  .pj__preview {
-    border-radius: var(--r-md);
-    border: 1px solid var(--border-soft);
-    background:
-      radial-gradient(120% 90% at 20% 0%, rgba(79, 70, 229, 0.16) 0%, transparent 60%),
-      var(--surface-inset);
-    padding: var(--sp-sm);
-    overflow: hidden;
-  }
-  .pj__preview--portal {
-    background:
-      radial-gradient(120% 90% at 80% 0%, rgba(6, 182, 212, 0.16) 0%, transparent 60%),
-      var(--surface-inset);
-  }
-  .pj__preview--engine {
-    background:
-      radial-gradient(120% 90% at 50% 0%, rgba(16, 185, 129, 0.14) 0%, transparent 60%),
-      var(--surface-inset);
-  }
-
-  .pj__chrome {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .pj__chrome > span {
-    width: 6px;
-    height: 6px;
-    border-radius: var(--r-full);
-    background: var(--fill-5);
-  }
-  .pj__url {
-    flex: 1;
-    height: 10px;
-    margin-left: 6px;
-    border-radius: var(--r-full);
-    background: var(--fill-2);
-  }
-
-  .pj__mock {
-    display: grid;
-    gap: 6px;
-    margin-top: var(--sp-sm);
-  }
-  .pj__mock-row {
-    height: 8px;
-    border-radius: var(--r-sm);
-    background: var(--fill-3);
-  }
-  .pj__mock-row--wide {
-    height: 14px;
-    width: 72%;
-    background: linear-gradient(90deg, rgba(6, 182, 212, 0.5), rgba(79, 70, 229, 0.25));
-  }
-  .pj__mock-row--short {
-    width: 46%;
-  }
-  .pj__mock-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin-block: 2px;
-  }
-  .pj__mock-grid > div {
-    height: 30px;
-    border-radius: var(--r-sm);
-    background: var(--fill-2);
-    border: 1px solid var(--border-soft);
-  }
-
-  /* ------------------------------------------------------------ body */
-  .pj__body {
-    flex: 1;
-    padding: var(--sp-lg) var(--sp-xs) var(--sp-lg);
-  }
-
-  .pj__badge {
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .pj__title {
-    margin-top: var(--sp-md);
-    font-size: 1.0625rem;
-    line-height: 1.35;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-1);
-    text-wrap: balance;
-  }
-
-  .pj__text {
-    margin-top: var(--sp-xs);
-    font-size: 0.8125rem;
-    line-height: 1.62;
-    color: var(--text-2);
-  }
-
-  /* ---------------------------------------------------------- footer */
-  .pj__footer {
-    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: var(--sp-sm);
-    padding: var(--sp-md) var(--sp-xs) var(--sp-2xs);
+    gap: var(--sp-sm) var(--sp-md);
   }
 
-  .pj__tags {
+  .pj__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-xs);
+  }
+
+  .pj__stack {
     display: flex;
     flex-wrap: wrap;
     gap: var(--sp-sm);
   }
+  .pj__stack li {
+    position: relative;
+  }
+  .pj__stack li + li::before {
+    content: '·';
+    position: absolute;
+    left: calc(var(--sp-sm) / -2 - 2px);
+    color: var(--outline, #464555);
+  }
 
-  .pj__arrow {
+  .pj__title {
+    margin-top: var(--sp-lg);
+  }
+
+  .pj__subtitle {
+    margin-top: var(--sp-2xs);
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--text-2);
+    max-width: 74ch;
+  }
+
+  /* ------------------------------------------------------ showcase graphic */
+  .pj__shot {
     display: grid;
-    place-items: center;
-    width: 28px;
-    height: 28px;
-    border-radius: var(--r);
-    border: 1px solid var(--border-soft);
-    color: var(--text-3);
-    flex: none;
-    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
-      transform var(--dur) var(--ease);
-  }
-  .pj__item:hover .pj__arrow {
-    color: var(--secondary-bright);
-    border-color: var(--border-accent);
-    transform: translateX(2px);
-  }
-
-  /* Cards with a screenshot gallery become clickable. The overlay button sits
-     above the card content; the card's own visuals are unchanged. */
-  .pj__item--clickable {
+    gap: var(--sp-xs);
+    width: 100%;
+    margin-top: var(--sp-lg);
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
     cursor: pointer;
   }
-
-  .pj__open {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    border-radius: inherit;
-    background: none;
-    border: 0;
-  }
-  .pj__open:focus-visible {
+  .pj__shot:focus-visible {
     outline: 2px solid var(--secondary);
-    outline-offset: 2px;
+    outline-offset: 4px;
+    border-radius: var(--r-md);
+  }
+
+  .pj__shot-cue {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-3);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color var(--dur) var(--ease);
+  }
+  .pj__shot:hover .pj__shot-cue,
+  .pj__shot:focus-visible .pj__shot-cue {
+    color: var(--secondary-bright);
+  }
+
+  .pj__shot-frame {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-md);
+    background: var(--surface-inset);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .pj__shot:hover .pj__shot-frame,
+  .pj__shot:focus-visible .pj__shot-frame {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .pj__shot-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Matches the 16:9 Figma frame, so the row holds its height before the
+       image lands and nothing below it jumps. */
+    aspect-ratio: 16 / 9;
+    transition: transform 520ms var(--ease);
+  }
+  .pj__shot:hover .pj__shot-img {
+    transform: scale(1.015);
+  }
+
+  .pj__shot-fallback {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    padding: var(--sp-lg);
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pj__shot-img {
+      transition: none;
+    }
+    .pj__shot:hover .pj__shot-img {
+      transform: none;
+    }
+  }
+
+  /* -------------------------------------------------------------- footer */
+  .pj__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-sm) var(--sp-md);
+    margin-top: var(--sp-lg);
+    padding: var(--sp-md);
+    border-radius: var(--r-md);
+    background: var(--panel-bg);
+    border: 1px solid var(--border-soft);
+  }
+
+  .pj__footer-text {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--text-2);
+    max-width: 68ch;
+  }
+
+  .pj__footer-tag {
+    color: var(--secondary);
+    /* Same reason as the experience footer: a long client list must wrap
+       rather than hold the card open past a 360px viewport. */
+    min-width: 0;
   }

@@ -100,9 +100,12 @@ export default function Lightbox({ project, onClose }) {
               type="button"
               onClick={onClose}
               ref={closeRef}
-              aria-label="Close gallery"
+              aria-label="Close gallery and return to the showcase"
             >
               <Icon name="close" size={16} />
+              {/* Spelled out where there is room, so the way back is obvious
+                  rather than something you have to know (Esc, backdrop). */}
+              <span className="lb__btn-label">Back</span>
             </button>
           </div>
         </header>

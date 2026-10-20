@@ -275,7 +275,14 @@ export const projects = {
       body:
         'GoHighLevel landing system for legal retainers — scored intake pipeline, instant SMS follow-up and automated routing to the right attorney.',
       tags: ['GoHighLevel', 'CSS', 'Automation'],
-      preview: 'funnel',
+      scope: '7 screens · 3 clients',
+      // Showcase graphic designed in Figma; it carries the story so the card
+      // itself stays short. See public/projects/showcase/.
+      graphic: 'projects/showcase/intake-funnel.jpg',
+      graphicAlt:
+        'Client Intake Funnel showcase — the Mission Impact Legal Advisors landing page beside the scored intake pipeline, instant SMS follow-up and attorney routing built in GoHighLevel',
+      result: 'Form submission through to booked consultation, running unattended.',
+      resultTag: 'Legal · Nonprofit · Services',
       // Screenshots shown when the card is clicked. Files live in
       // public/projects/intake-funnel/ — see that folder's README.
       gallery: [
@@ -323,7 +330,12 @@ export const projects = {
       body:
         'GoHighLevel automations for website forms, consultation requests and lead management — capture, follow-up, booking and CRM sync.',
       tags: ['Workflows', 'SMS/Email', 'Calendar'],
-      preview: 'engine',
+      scope: '17 workflows · 3 clients',
+      graphic: 'projects/showcase/automations.jpg',
+      graphicAlt:
+        'Business Automation showcase — GoHighLevel workflow canvases for booking confirmation and mail forwarding, with multi-channel capture, branching logic and timed follow-up',
+      result: '17 workflows running across three accounts without supervision.',
+      resultTag: 'Yellow Mountain · JTF · Copperstone',
       // GoHighLevel workflow canvases. These are wide, short diagrams — the
       // viewer shows them at full size and pans, so the node labels stay legible.
       gallery: [
@@ -434,7 +446,12 @@ export const projects = {
       body:
         'Websites, dashboards and portals built with AI-assisted development — improved UX, access controls, payments and platform reliability.',
       tags: ['Figma', 'Claude AI', 'Google Stitch'],
-      preview: 'portal',
+      scope: '14 screens · 3 systems',
+      graphic: 'projects/showcase/kcg.jpg',
+      graphicAlt:
+        'Digital Systems showcase — the Kovach Consulting Group admin dashboard and client portal, rebuilt from Figma wireframes with AI-assisted development',
+      result: 'Client portal and admin dashboard delivered end-to-end.',
+      resultTag: 'Dashboard · Portal · Website',
       gallery: [
         {
           src: 'projects/kcg/admin-dashboard/overview.jpg',
