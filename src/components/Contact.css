@@ -105,8 +105,8 @@
     margin-top: var(--sp-md);
     padding: var(--sp-md);
     border-radius: var(--r-md);
-    background: rgba(16, 185, 129, 0.07);
-    border: 1px solid rgba(16, 185, 129, 0.25);
+    background: var(--fill-1);
+    border: 1px solid var(--border-soft);
   }
 
   .contact__availability-title {
@@ -125,4 +125,29 @@
     font-size: 0.75rem;
     line-height: 1.55;
     color: var(--text-2);
+  }
+
+  /* Executive Precision: a repeated row is a hairline column, not a box.
+     Same markup, same content — the border-radius, fill and shadow go. */
+  .contact__row.card {
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--border-soft);
+    border-radius: 0;
+    box-shadow: none;
+    padding-inline: 0;
+  }
+  .contact__row.card--hover:hover {
+    transform: none;
+    box-shadow: none;
+    border-top-color: var(--border-strong);
+  }
+  /* the contact rows keep their inner padding so the arrow has somewhere
+     to sit, but gain a hover tint instead of a lifting card */
+  .contact__row.card {
+    padding-inline: var(--sp-sm);
+    transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  a.contact__row.card:hover {
+    background: var(--hover-tint);
   }

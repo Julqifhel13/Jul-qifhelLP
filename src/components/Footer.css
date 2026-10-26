@@ -28,7 +28,7 @@
     width: 30px;
     height: 30px;
     border-radius: var(--r);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    background: var(--primary);
     color: #fff;
     font-size: 0.6875rem;
     font-weight: 800;

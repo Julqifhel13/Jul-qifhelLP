@@ -9,8 +9,8 @@
       content="Executive Virtual Assistant and IT Specialist engineering GoHighLevel CRM workflows, automated lead funnels, high-converting landing pages and enterprise IT asset systems for high-growth companies and legal practices."
     />
     <meta name="author" content="Jul-qifhel M. Cana" />
-    <meta name="theme-color" content="#070a11" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f8f9fa" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
 
     <!-- Open Graph -->
@@ -26,12 +26,14 @@
     <meta property="og:site_name" content="Jul-qifhel M. Cana" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Fonts: Plus Jakarta Sans (display + body) · JetBrains Mono (labels) -->
+    <!-- Fonts: Geist (display + body) · JetBrains Mono (metadata labels).
+         Only 400/500/600 are requested — Design.md caps the weight ramp
+         there, so pulling heavier cuts would be dead weight. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     />
 
     <script type="application/ld+json">
@@ -69,7 +71,9 @@
           /* private mode */
         }
         if (t !== 'light' && t !== 'dark') {
-          t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          // Executive Precision is a light-first system, so light is the
+          // default and only an explicit OS dark preference overrides it.
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         document.documentElement.setAttribute('data-theme', t);
         document.documentElement.style.colorScheme = t;

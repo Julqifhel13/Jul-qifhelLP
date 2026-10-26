@@ -1,110 +1,77 @@
+  /* The hero is type-led: a folio rule, the name at display size, the identity
+     statement beneath it, and a portrait as counterweight. Everything else —
+     availability, phone, email — sits on the closing hairline where it is
+     available without competing. */
   .hero {
-    overflow: hidden;
-    padding-top: clamp(2rem, 3.5vw, 3.25rem);
+    padding-top: var(--sp-2xl);
+    padding-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    .hero {
+      padding-top: var(--sp-3xl);
+    }
   }
 
-  .hero__glow-a {
-    width: 520px;
-    height: 520px;
-    top: -180px;
-    left: -140px;
-  }
-  .hero__glow-b {
-    width: 460px;
-    height: 460px;
-    top: 40px;
-    right: -160px;
+  /* ----------------------------------------------------------- folio rule */
+  .hero__rule {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-md);
+    padding-bottom: var(--sp-md);
+    border-bottom: 1px solid var(--border-soft);
   }
 
+  /* ---------------------------------------------------------------- grid */
   .hero__grid {
-    position: relative;
-    z-index: 1;
     display: grid;
     gap: var(--sp-2xl);
-    align-items: start;
+    padding-block: var(--sp-2xl);
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 900px) {
     .hero__grid {
-      /* 7 / 5 split per the design system */
+      /* 7/5 of the 12-column grid — the type leads, the portrait answers */
       grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
       gap: var(--sp-3xl);
+      align-items: center;
+      padding-block: var(--sp-3xl);
     }
   }
 
-  /* -------------------------------------------------------------- copy */
-
-  /* availability badge + credential label */
-  .hero__status {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--sp-xs) var(--sp-sm);
+  .hero__name {
+    color: var(--text-1);
   }
 
-  .hero__available {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4375rem;
-    padding: 0.3125rem 0.75rem;
-    border-radius: var(--r-full);
-    background: rgba(16, 185, 129, 0.08);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    color: var(--tertiary-bright);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+  .hero__role {
+    margin-top: var(--sp-md);
+    font-size: clamp(1.25rem, 0.95rem + 1.3vw, 1.75rem);
+    line-height: 1.285;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-2);
   }
 
-  .hero__title {
-    margin-top: var(--sp-lg);
-    max-width: 17ch;
-    text-wrap: balance;
-  }
-  @media (min-width: 640px) {
-    .hero__title {
-      max-width: 20ch;
+  /* The role's line breaks are composed for the desktop measure. On a phone
+     they strand "GoHighLevel" on a line of its own, so below 700px the lines
+     rejoin and wrap to the column instead. */
+  @media (max-width: 699px) {
+    .hero__role .line,
+    .hero__role .line > span {
+      display: inline;
+      overflow: visible;
+      padding: 0;
+      margin: 0;
+      transform: none;
+      animation: none;
     }
-  }
-
-  /* focal keywords in a solid cyan fill */
-  .hero__accent {
-    color: var(--secondary-bright);
+    .hero__role .line:not(:last-child)::after {
+      content: ' ';
+    }
   }
 
   .hero__intro {
     margin-top: var(--sp-lg);
-    /* ~68 characters — keeps the measure readable when the grid is single-column */
-    max-width: 48ch;
-  }
-
-  /* capability chips — rounded rectangles, not pills */
-  .hero__chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-xs);
-    margin-top: var(--sp-xl);
-  }
-
-  .hero__chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4375rem;
-    padding: 0.4375rem 0.6875rem;
-    border-radius: var(--r);
-    background: var(--fill-1);
-    border: 1px solid var(--border);
-    color: var(--text-1);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: -0.005em;
-    white-space: nowrap;
-  }
-  .hero__chip svg {
-    color: var(--secondary-bright);
-    flex: none;
-  }
-  .hero__chip--tertiary svg {
-    color: var(--tertiary-bright);
+    max-width: 46ch;
   }
 
   .hero__actions {
@@ -114,362 +81,140 @@
     margin-top: var(--sp-xl);
   }
 
-  /* wide, single primary CTA in a solid violet rather than the site gradient */
-  .hero__cta {
-    width: 100%;
-    max-width: 264px;
-    height: 48px;
-    background: linear-gradient(180deg, #5b51ef 0%, #4f46e5 100%);
+  /* ------------------------------------------------------------ portrait */
+  .hero__portrait {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border-soft);
+    background: var(--surface-2);
+    /* Portrait crop. On mobile it would otherwise eat the whole first
+       screen, so it runs wider and shorter until there is room. */
+    aspect-ratio: 3 / 2;
   }
-  .hero__cta:hover {
-    box-shadow: inset 0 1px 0 var(--specular), 0 0 24px rgba(79, 70, 229, 0.45);
+  @media (min-width: 900px) {
+    .hero__portrait {
+      aspect-ratio: 4 / 5;
+    }
+  }
+  .hero__portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    transition: transform 700ms var(--ease);
+  }
+  .hero__portrait:hover img {
+    transform: scale(1.02);
   }
 
-  .hero__direct {
+  /* --------------------------------------------------------- closing meta */
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-sm) var(--sp-lg);
+    padding-block: var(--sp-md);
+    border-top: 1px solid var(--border-soft);
+  }
+
+  .hero__available {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: var(--sp-lg);
-    color: var(--text-3);
-    text-transform: none;
-  }
-  .hero__direct svg {
-    color: var(--secondary);
-    flex: none;
+    font-size: 0.8125rem;
+    color: var(--text-2);
   }
 
-  /* ------------------------------------------------------ profile card */
-  .hero__card {
-    padding: var(--sp-lg);
-    border-radius: var(--r-xl);
-    box-shadow: var(--shadow-panel);
-  }
-  @media (min-width: 1024px) {
-    .hero__card {
-      margin-top: var(--sp-2xl);
-    }
-  }
-
-  /* ----------------------------------------------------- window chrome */
-  .hero__chrome {
+  .hero__contact {
     display: flex;
-    gap: 6px;
-    margin-bottom: var(--sp-lg);
-  }
-  .hero__chrome span {
-    width: 10px;
-    height: 10px;
-    border-radius: var(--r-full);
-  }
-  .hero__chrome span:nth-child(1) { background: #ff7b72; }
-  .hero__chrome span:nth-child(2) { background: var(--secondary-bright); }
-  .hero__chrome span:nth-child(3) { background: var(--tertiary-bright); }
-
-  /* --------------------------------------------------------- identity */
-  .hero__card-head {
-    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--sp-md);
   }
 
-  .hero__photo {
-    width: 78px;
-    height: 78px;
-    border-radius: var(--r-md);
-    object-fit: cover;
-    flex: none;
-    border: 1px solid var(--border);
-  }
-  .hero__photo--fallback {
-    display: grid;
-    place-items: center;
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.9) 0%, rgba(6, 182, 212, 0.9) 100%);
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    border-color: transparent;
-    box-shadow: inset 0 1px 0 var(--specular);
-  }
-
-  .hero__id {
-    min-width: 0;
-  }
-  .hero__name {
-    font-size: clamp(1.25rem, 1.05rem + 0.85vw, 1.5rem);
-    line-height: 1.2;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--text-1);
-  }
-  .hero__role {
-    margin-top: 0.3125rem;
-    font-size: 0.8125rem;
-    line-height: 1.35;
-    font-weight: 500;
-    color: var(--secondary-bright);
-  }
-  .hero__cred {
-    margin-top: 0.3125rem;
+  .hero__link {
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    line-height: 1.4;
-    letter-spacing: 0.01em;
-    color: var(--text-3);
-  }
-
-  /* ------------------------------------------------------ engine panel */
-  .hero__engine {
-    margin-top: var(--sp-lg);
-    padding: var(--sp-md);
-    border-radius: var(--r-md);
-    background: var(--inset-panel-bg);
-    border: 1px solid var(--border-soft);
-  }
-
-  .hero__engine-label {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-2);
-  }
-
-  /* --------------------------------------------------- pipeline diagram */
-  .pipe {
-    display: flex;
-    align-items: stretch;
-    margin-top: var(--sp-lg);
-  }
-
-  .pipe__node {
-    flex: 1 1 auto;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.1875rem;
-    padding: 0.5rem 0.4375rem;
-    border-radius: var(--r);
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    text-align: center;
-  }
-
-  .pipe__title {
-    font-size: 0.625rem;
-    line-height: 1.25;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    color: var(--text-1);
-  }
-
-  .pipe__meta {
-    font-family: var(--font-mono);
-    font-size: 0.5625rem;
-    line-height: 1.3;
-    letter-spacing: 0.01em;
-    color: var(--text-3);
-  }
-
-  /* stage 1 — capture */
-  .pipe__node--idle .pipe__meta {
-    color: var(--secondary-bright);
-  }
-
-  /* stage 2 — the active engine, lifted and lit */
-  .pipe__node--active {
-    background: var(--pipe-active-bg);
-    border-color: var(--primary-bright);
-    box-shadow: inset 0 1px 0 var(--specular-soft);
-    padding-block: 0.6875rem;
-    margin-block: -0.1875rem;
-  }
-  /* This node keeps its indigo fill in both themes, so its text is pinned
-     to white rather than following --text-1. */
-  .pipe__node--active .pipe__title {
-    color: #fff;
-  }
-  .pipe__node--active .pipe__meta {
-    color: rgba(255, 255, 255, 0.75);
-  }
-
-  /* stage 3 — conversion */
-  .pipe__node--success {
-    border-color: rgba(16, 185, 129, 0.35);
-    background: rgba(16, 185, 129, 0.07);
-  }
-  .pipe__node--success .pipe__title {
-    color: var(--tertiary-bright);
-  }
-
-  /* connector: a cyan trace capped with a node dot at each end */
-  .pipe__link {
-    flex: 0 0 22px;
-    align-self: center;
-    position: relative;
-    height: 1px;
-    background: var(--secondary);
-  }
-  .pipe__link::before,
-  .pipe__link::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 5px;
-    height: 5px;
-    border-radius: var(--r-full);
-    background: var(--secondary-bright);
-    transform: translateY(-50%);
-  }
-  .pipe__link::before { left: -1px; }
-  .pipe__link::after { right: -1px; }
-
-  /* Small laptops (1024–1279px): the 7/5 split leaves the card ~373px wide,
-     so tighten the card's own padding and type to keep every stage label on
-     one line. The hero's left column is deliberately left untouched. */
-  @media (min-width: 1024px) and (max-width: 1279.98px) {
-    .hero__card {
-      padding: var(--sp-md);
-    }
-    .hero__engine {
-      padding: 0.75rem;
-    }
-    .pipe__node {
-      padding-inline: 0.375rem;
-    }
-    .pipe__title {
-      font-size: 0.5625rem;
-    }
-    .pipe__meta {
-      font-size: 0.5rem;
-    }
-    .pipe__link {
-      flex-basis: 16px;
-    }
-  }
-
-  /* Narrow cards: rotate the flow into a vertical rail */
-  @media (max-width: 540px) {
-    .pipe {
-      flex-direction: column;
-    }
-    .pipe__node--active {
-      margin-block: 0;
-    }
-    .pipe__link {
-      flex-basis: 20px;
-      width: 1px;
-      height: auto;
-    }
-    .pipe__link::before,
-    .pipe__link::after {
-      top: auto;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .pipe__link::before { top: -1px; }
-    .pipe__link::after { bottom: -1px; }
-  }
-
-  /* -------------------------------------------------------- card footer */
-  .hero__card-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-sm);
-    margin-top: var(--sp-lg);
-  }
-
-  .hero__verified {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4375rem;
-    min-width: 0;
     font-size: 0.75rem;
-    line-height: 1.35;
-    color: var(--text-2);
+    letter-spacing: -0.01em;
+    color: var(--text-3);
+    transition: color var(--dur) var(--ease);
   }
-  .hero__verified svg {
-    color: var(--secondary-bright);
-    flex: none;
-  }
-
-  .hero__copy-email {
-    flex: none;
-    padding: 0.4375rem 0.6875rem;
-    border-radius: var(--r);
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    color: var(--secondary-bright);
-    transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease),
-      color var(--dur) var(--ease);
-  }
-  .hero__copy-email:hover {
-    border-color: var(--border-accent);
-    background: rgba(6, 182, 212, 0.1);
+  .hero__link:hover {
+    color: var(--text-1);
   }
   .hero__copy-email.is-copied {
     color: var(--tertiary-bright);
-    border-color: rgba(16, 185, 129, 0.4);
-    background: rgba(16, 185, 129, 0.1);
   }
 
-  /* -------------------------------------------------------- stat strip */
+  /* ----------------------------------------------------------- stat strip */
   .stats {
-    position: relative;
-    z-index: 1;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--sp-sm);
-    margin-top: clamp(2.5rem, 6vw, 4rem);
+    gap: 0;
+    margin: 0;
+    border-top: 1px solid var(--border-soft);
   }
-  @media (min-width: 960px) {
+  @media (min-width: 600px) {
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
     .stats {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: var(--sp-md);
     }
   }
 
+  /* Hairlines between cells rather than around them — Design.md's
+     key-value metric list, not four more cards. */
   .stats__cell {
-    padding: var(--sp-lg);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--r-lg);
-    background: var(--surface-1);
-    transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+    padding: var(--sp-lg) 0;
+    border-bottom: 1px solid var(--border-soft);
   }
-  .stats__cell:hover {
-    border-color: var(--border-accent);
-    background: var(--surface-2);
+  @media (min-width: 600px) {
+    .stats__cell {
+      padding-inline: var(--sp-lg);
+      border-bottom: 0;
+      border-left: 1px solid var(--border-soft);
+    }
+    .stats__cell:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+  @media (min-width: 600px) and (max-width: 1023px) {
+    .stats__cell:nth-child(3) {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .stats__cell:nth-child(-n + 2) {
+      padding-bottom: var(--sp-xl);
+    }
   }
 
   .stats__value {
-    font-size: clamp(1.375rem, 1rem + 1.6vw, 1.875rem);
-    line-height: 1.15;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    background: linear-gradient(120deg, var(--secondary-bright) 0%, var(--primary-soft) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .stats__label {
-    margin-top: var(--sp-xs);
-    font-size: 0.8125rem;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+    line-height: 1.1;
     font-weight: 600;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.03em;
     color: var(--text-1);
   }
 
-  .stats__note {
-    margin-top: 0.375rem;
-    font-size: 0.75rem;
-    line-height: 1.5;
+  .stats__label {
+    margin: var(--sp-xs) 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--text-3);
+  }
+
+  .stats__note {
+    margin: var(--sp-sm) 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.46;
+    color: var(--text-2);
+    max-width: 34ch;
   }

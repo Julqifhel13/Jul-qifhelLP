@@ -39,8 +39,8 @@
       box-shadow: 0 0 0 1px var(--border-strong);
     }
     .xp__node--live {
-      background: var(--secondary);
-      box-shadow: 0 0 0 1px var(--border-accent), 0 0 16px rgba(6, 182, 212, 0.6);
+      background: var(--text-1);
+      box-shadow: 0 0 0 1px var(--border-strong);
     }
   }
 
@@ -57,10 +57,12 @@
   }
   .xp__card:hover {
     border-color: var(--border);
-    border-left-color: rgba(6, 182, 212, 0.4);
+    border-left-color: var(--border-strong);
   }
   .xp__card--current {
-    border-left-color: var(--tertiary);
+    /* The current role is marked by ink weight, not a coloured edge — green
+       stays reserved for the small live-status dot Design.md allows. */
+    border-left-color: var(--text-1);
   }
 
   .xp__top {
@@ -129,9 +131,9 @@
     height: 22px;
     margin-top: 1px;
     border-radius: var(--r-sm);
-    background: rgba(6, 182, 212, 0.1);
-    border: 1px solid rgba(6, 182, 212, 0.25);
-    color: var(--secondary-bright);
+    background: var(--fill-1);
+    border: 1px solid var(--border-soft);
+    color: var(--text-2);
     flex: none;
   }
 

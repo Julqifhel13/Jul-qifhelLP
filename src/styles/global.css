@@ -1,68 +1,86 @@
 /* ============================================================================
-   KINETIC EXECUTIVE PORTFOLIO — design system
-   Tokens are lifted directly from Kinetic-Executive-Portfolio.md
+   EXECUTIVE PRECISION — design system
+   Tokens are lifted directly from Design.md.
+
+   The system is light-first: Alabaster Bone canvas, Carbon Slate type, and a
+   single Signal Blue used sparingly. Depth comes from surface luminance and
+   1px hairlines rather than colour or heavy shadow, so the palette stays
+   monochromatic and the work supplies the colour.
+
+   Dark mode is the same system inverted — it lives in [data-theme='dark']
+   below and is NOT a second brand.
    ========================================================================== */
 
 /* ------------------------------------------------------------------- tokens */
 :root {
-  /* Surfaces — deep obsidian slate, never lifeless true black */
-  --canvas: #070a11;
-  --surface-1: #0d1322;
-  --surface-2: #151e34;
-  --surface-3: #1e2b4a;
-  --surface-inset: #0a0e18;
+  color-scheme: light;
 
-  /* Outlines — calibrated 1px hair lines */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-soft: rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --border-accent: rgba(6, 182, 212, 0.35);
+  /* Surfaces — Alabaster Bone canvas, pure white modules */
+  --canvas: #f8f9fa;
+  --surface-1: #ffffff;
+  --surface-2: #f3f4f5;
+  --surface-3: #edeeef;
+  --surface-inset: #f3f4f5;
 
-  /* Text hierarchy */
-  --text-1: #f8fafc;
-  --text-2: #94a3b8;
-  --text-3: #64748b;
+  /* Outlines — razor-thin hairlines, never boxes */
+  --border: rgba(15, 17, 21, 0.1);
+  --border-soft: rgba(15, 17, 21, 0.06);
+  --border-strong: rgba(15, 17, 21, 0.16);
+  --border-accent: rgba(15, 17, 21, 0.28);
+  --outline: rgba(15, 17, 21, 0.24);
 
-  /* Brand */
-  --primary: #4f46e5;
-  --primary-bright: #6366f1;
-  --primary-soft: #c3c0ff;
-  --secondary: #06b6d4;
-  --secondary-bright: #4cd7f6;
-  --secondary-soft: #a5f3fc;
-  --tertiary: #10b981;
-  --tertiary-bright: #4edea3;
-  --error: #ffb4ab;
+  /* Text — Carbon Slate over Muted Graphite */
+  --text-1: #0f1115;
+  --text-2: #4a5260;
+  /* Design.md lists #76777b as the outline tone. It only reaches 4.23:1 on
+     the Alabaster canvas, and --text-3 carries the small mono labels, so the
+     ink is stepped down to 5.4:1 while keeping the same slate cast. The
+     original value still serves as --outline, where it is a stroke. */
+  --text-3: #64676e;
 
-  /* Composite surfaces — swapped wholesale by the light theme below */
-  --glass-bg: rgba(21, 30, 52, 0.85);
-  --glass-edge: linear-gradient(135deg, rgba(6, 182, 212, 0.4) 0%, rgba(79, 70, 229, 0.1) 100%);
-  --header-bg: rgba(7, 10, 17, 0.78);
-  --header-bg-solid: rgba(7, 10, 17, 0.92);
-  --panel-bg: rgba(10, 14, 24, 0.6);
-  --sheet-bg: rgba(10, 14, 24, 0.97);
-  --inset-panel-bg: rgba(7, 10, 17, 0.6);
-  --overlay-bg: rgba(7, 10, 17, 0.82);
-  --ghost-border: rgba(255, 255, 255, 0.15);
-  --specular: rgba(255, 255, 255, 0.3);
-  --specular-soft: rgba(255, 255, 255, 0.18);
-  --pipe-active-bg: #4438c9;
-  --selection-bg: rgba(79, 70, 229, 0.4);
-  --selection-fg: #fff;
+  /* Primary is Carbon Slate: it anchors type and CTA surfaces, so the
+     "brand colour" is the ink itself. Signal Blue is the only hue, held
+     back for focus, active state and live status. */
+  --primary: #0f1115;
+  --primary-bright: #22262e;
+  --primary-soft: #4a5260;
+  --on-primary: #ffffff;
+  --secondary: #2563eb;
+  --secondary-bright: #2563eb;
+  --secondary-soft: #4a5260;
+  --tertiary: #22c55e;
+  --tertiary-bright: #15803d;
+  --error: #ba1a1a;
+
+  /* Composite surfaces — swapped wholesale by the dark theme below */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(15, 17, 21, 0.06);
+  --header-bg: rgba(248, 249, 250, 0.8);
+  --header-bg-solid: rgba(248, 249, 250, 0.94);
+  --panel-bg: rgba(15, 17, 21, 0.02);
+  --sheet-bg: rgba(255, 255, 255, 0.97);
+  --inset-panel-bg: rgba(15, 17, 21, 0.025);
+  --overlay-bg: rgba(15, 17, 21, 0.55);
+  --ghost-border: rgba(15, 17, 21, 0.1);
+  --specular: rgba(255, 255, 255, 0.4);
+  --specular-soft: rgba(255, 255, 255, 0.25);
+  --pipe-active-bg: #0f1115;
+  --selection-bg: rgba(37, 99, 235, 0.16);
+  --selection-fg: #0f1115;
 
   /* Neutral fills, weakest → strongest */
-  --fill-1: rgba(255, 255, 255, 0.03);
-  --fill-2: rgba(255, 255, 255, 0.05);
-  --fill-3: rgba(255, 255, 255, 0.07);
-  --fill-4: rgba(255, 255, 255, 0.1);
-  --fill-5: rgba(255, 255, 255, 0.16);
-  --hover-tint: rgba(255, 255, 255, 0.04);
+  --fill-1: rgba(15, 17, 21, 0.02);
+  --fill-2: rgba(15, 17, 21, 0.035);
+  --fill-3: rgba(15, 17, 21, 0.05);
+  --fill-4: rgba(15, 17, 21, 0.08);
+  --fill-5: rgba(15, 17, 21, 0.14);
+  --hover-tint: rgba(15, 17, 21, 0.03);
 
-  /* Elevation — dark mode leans on borders and glow, not shadow */
-  --shadow-card: none;
-  --shadow-card-hover: none;
-  --shadow-panel: 0 20px 40px -15px rgba(6, 182, 212, 0.15);
-  --glow-opacity: 0.15;
+  /* Elevation — ambient and shallow; the hairline does the real work */
+  --shadow-card: 0 1px 2px rgba(15, 17, 21, 0.02), 0 4px 16px rgba(15, 17, 21, 0.02);
+  --shadow-card-hover: 0 8px 24px rgba(15, 17, 21, 0.06);
+  --shadow-panel: 0 16px 48px rgba(15, 17, 21, 0.1);
+  --glow-opacity: 0;
 
   /* Radii */
   --r-sm: 0.25rem;
@@ -89,85 +107,89 @@
   --gutter: 1rem;
   --nav-h: 64px;
 
-  /* Vertical rhythm: 48px mobile → 96px desktop */
-  --section-y: clamp(3rem, 7vw, 6rem);
+  /* Vertical rhythm, space-2xl → space-3xl. Design.md asks for deliberate
+     breathing room between sections, so the floor rises from 48px to 64px. */
+  --section-y: clamp(4rem, 7.5vw, 6rem);
 
-  /* Motion */
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur: 220ms;
+  /* Motion — the spring curve from Design.md's micro-interaction spec.
+     --dur is the tactile 200ms used for hover and state; --dur-reveal is the
+     slower entrance used by scroll reveals, which need to read as arrival
+     rather than response. */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 200ms;
+  --dur-reveal: 900ms;
 
-  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system,
-    'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono',
     Menlo, Consolas, monospace;
 }
 
 /* ============================================================================
-   LIGHT THEME
-   Apple-inspired: a soft off-white canvas with true-white cards lifted by
-   restrained shadow rather than borders alone. Accents are the same brand
-   hues stepped darker so they hold contrast against light surfaces.
+   DARK THEME
+   The same Executive Precision system with the luminance inverted: Carbon
+   Slate becomes the canvas, Alabaster Bone becomes the ink. Hairlines switch
+   to rgba(255,255,255,0.10) per Design.md, and Signal Blue is lifted to
+   #5B8CFF so it still clears AA against a dark surface.
    ========================================================================== */
-[data-theme='light'] {
-  color-scheme: light;
+[data-theme='dark'] {
+  color-scheme: dark;
 
-  /* Surfaces — off-white canvas, white cards, greys for recessed areas */
-  --canvas: #f5f5f7;
-  --surface-1: #ffffff;
-  --surface-2: #f0f1f4;
-  --surface-3: #e5e7ec;
-  --surface-inset: #eeeff2;
+  --canvas: #0f1115;
+  --surface-1: #16181d;
+  --surface-2: #1c1f26;
+  --surface-3: #262a33;
+  --surface-inset: #121419;
 
-  /* Outlines — hairlines that separate without boxing the UI in */
-  --border: rgba(0, 0, 0, 0.1);
-  --border-soft: rgba(0, 0, 0, 0.07);
-  --border-strong: rgba(0, 0, 0, 0.18);
-  --border-accent: rgba(8, 145, 178, 0.45);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-soft: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --border-accent: rgba(255, 255, 255, 0.3);
+  --outline: rgba(255, 255, 255, 0.26);
 
-  /* Text — near-black primary, two calm greys below it. All pass AA. */
-  --text-1: #1d1d1f;
-  --text-2: #4a4a4f;
-  --text-3: #66666b;
+  --text-1: #f8f9fa;
+  --text-2: #a8adb8;
+  --text-3: #80858f;
 
-  /* Brand, stepped darker for legibility on light surfaces */
-  --primary: #4f46e5;
-  --primary-bright: #4338ca;
-  --primary-soft: #4338ca;
-  /* small mono labels use --secondary, so it has to clear 4.5:1 on light */
-  --secondary: #0e7490;
-  --secondary-bright: #0e7490;
-  --secondary-soft: #155e75;
-  --tertiary: #059669;
-  --tertiary-bright: #047857;
-  --error: #b3261e;
+  /* The CTA surface inverts with the canvas: light button on dark page */
+  --primary: #f8f9fa;
+  --primary-bright: #ffffff;
+  --primary-soft: #a8adb8;
+  --on-primary: #0f1115;
+  --secondary: #5b8cff;
+  --secondary-bright: #5b8cff;
+  --secondary-soft: #a8adb8;
+  --tertiary: #22c55e;
+  --tertiary-bright: #4ade80;
+  --error: #ffb4ab;
 
-  --glass-bg: rgba(255, 255, 255, 0.88);
-  --glass-edge: linear-gradient(135deg, rgba(8, 145, 178, 0.35) 0%, rgba(79, 70, 229, 0.12) 100%);
-  --header-bg: rgba(245, 245, 247, 0.76);
-  --header-bg-solid: rgba(245, 245, 247, 0.94);
-  --panel-bg: rgba(0, 0, 0, 0.025);
-  --sheet-bg: rgba(255, 255, 255, 0.97);
-  --inset-panel-bg: rgba(0, 0, 0, 0.03);
-  --overlay-bg: rgba(29, 29, 31, 0.45);
-  --ghost-border: rgba(0, 0, 0, 0.16);
-  --specular: rgba(255, 255, 255, 0.35);
-  --specular-soft: rgba(255, 255, 255, 0.22);
-  --pipe-active-bg: #4f46e5;
-  --selection-bg: rgba(79, 70, 229, 0.18);
-  --selection-fg: #1d1d1f;
+  --glass-bg: rgba(22, 24, 29, 0.72);
+  --glass-edge: rgba(255, 255, 255, 0.1);
+  --header-bg: rgba(15, 17, 21, 0.8);
+  --header-bg-solid: rgba(15, 17, 21, 0.94);
+  --panel-bg: rgba(255, 255, 255, 0.025);
+  --sheet-bg: rgba(18, 20, 25, 0.97);
+  --inset-panel-bg: rgba(255, 255, 255, 0.03);
+  --overlay-bg: rgba(8, 9, 12, 0.82);
+  --ghost-border: rgba(255, 255, 255, 0.14);
+  --specular: rgba(255, 255, 255, 0.22);
+  --specular-soft: rgba(255, 255, 255, 0.12);
+  --pipe-active-bg: #f8f9fa;
+  --selection-bg: rgba(91, 140, 255, 0.3);
+  --selection-fg: #f8f9fa;
 
-  --fill-1: rgba(0, 0, 0, 0.025);
-  --fill-2: rgba(0, 0, 0, 0.045);
-  --fill-3: rgba(0, 0, 0, 0.065);
-  --fill-4: rgba(0, 0, 0, 0.09);
-  --fill-5: rgba(0, 0, 0, 0.14);
-  --hover-tint: rgba(0, 0, 0, 0.035);
+  --fill-1: rgba(255, 255, 255, 0.03);
+  --fill-2: rgba(255, 255, 255, 0.05);
+  --fill-3: rgba(255, 255, 255, 0.07);
+  --fill-4: rgba(255, 255, 255, 0.1);
+  --fill-5: rgba(255, 255, 255, 0.16);
+  --hover-tint: rgba(255, 255, 255, 0.04);
 
-  /* Depth comes from soft shadow here, the way it does in daylight */
-  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px -10px rgba(16, 24, 40, 0.1);
-  --shadow-card-hover: 0 2px 4px rgba(16, 24, 40, 0.05), 0 16px 32px -12px rgba(16, 24, 40, 0.14);
-  --shadow-panel: 0 24px 48px -16px rgba(16, 24, 40, 0.22);
-  --glow-opacity: 0.09;
+  /* Shadow does almost nothing on a dark canvas; the hairline carries it */
+  --shadow-card: none;
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-panel: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --glow-opacity: 0;
 }
 
 @media (min-width: 768px) {
@@ -203,7 +225,8 @@ body {
   color: var(--text-1);
   font-family: var(--font-sans);
   font-size: 15px;
-  line-height: 24px;
+  line-height: 23px;
+  letter-spacing: -0.005em;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -251,7 +274,8 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-weight: 700;
+  /* Design.md caps the weight ramp at 600 to keep the page light */
+  font-weight: 600;
 }
 
 ::selection {
@@ -283,77 +307,90 @@ h4 {
   border: 3px solid var(--canvas);
 }
 
-/* --------------------------------------------------------------- typography */
+/* --------------------------------------------------------------- typography
+   The scale is Design.md's, to the pixel. Weight is deliberately capped at
+   600 — presence comes from size and negative tracking, the Swiss way, not
+   from heavier cuts. */
+
+/* display-hero: 36/42 mobile → 56/64 desktop */
 .t-hero {
-  font-size: clamp(2.375rem, 1.35rem + 4.4vw, 3.5rem); /* 38 → 56 */
-  line-height: 1.14;
-  font-weight: 800;
+  font-size: clamp(2.25rem, 1.1rem + 4.9vw, 3.5rem);
+  line-height: 1.145;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+/* headline-xl: 28/34 mobile → 40/48 desktop */
+.t-h2 {
+  font-size: clamp(1.75rem, 1.1rem + 2.75vw, 2.5rem);
+  line-height: 1.2;
+  font-weight: 500;
   letter-spacing: -0.03em;
 }
 
-.t-h2 {
-  font-size: clamp(1.875rem, 1.2rem + 2.9vw, 2.5rem); /* 30 → 40 */
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-}
-
+/* headline-lg */
 .t-h3 {
-  font-size: clamp(1.375rem, 1.1rem + 1.15vw, 1.75rem); /* 22 → 28 */
-  line-height: 1.28;
-  font-weight: 700;
+  font-size: clamp(1.375rem, 1.1rem + 1.15vw, 1.75rem);
+  line-height: 1.285;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
+/* headline-md */
 .t-h4 {
-  font-size: 1.375rem; /* 22 */
-  line-height: 1.36;
-  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 
+/* body-lg */
 .t-lead {
-  font-size: clamp(1rem, 0.93rem + 0.32vw, 1.125rem); /* 16 → 18 */
-  line-height: 1.66;
+  font-size: clamp(1rem, 0.93rem + 0.3vw, 1.0625rem);
+  line-height: 1.53;
   font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-2);
+}
+
+/* body-md */
+.t-body {
+  font-size: 0.9375rem;
+  line-height: 1.533;
   letter-spacing: -0.005em;
   color: var(--text-2);
 }
 
-.t-body {
-  font-size: 0.9375rem; /* 15 */
-  line-height: 1.6;
-  color: var(--text-2);
-}
-
+/* body-sm */
 .t-sm {
-  font-size: 0.8125rem; /* 13 */
-  line-height: 1.54;
+  font-size: 0.8125rem;
+  line-height: 1.46;
   color: var(--text-2);
 }
 
+/* label-code */
 .t-code {
   font-family: var(--font-mono);
-  font-size: 0.75rem; /* 12 */
-  line-height: 1.33;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.t-badge {
   font-size: 0.75rem;
   line-height: 1.33;
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* label-badge */
+.t-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.27;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-/* Selective gradient fill on focal keywords */
+/* Focal keyword emphasis. Design.md rules out decorative gradients, so the
+   emphasis is carried by ink weight alone — the word simply goes full
+   Carbon Slate while the sentence around it stays graphite. */
 .accent-text {
-  background: linear-gradient(120deg, var(--primary-soft) 0%, var(--secondary-bright) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text-1);
 }
 
 /* ------------------------------------------------------------------- layout */
@@ -362,6 +399,12 @@ h4 {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
+}
+/* Design.md widens the measure to 1400px on ultrawide displays */
+@media (min-width: 1600px) {
+  :root {
+    --container: 1400px;
+  }
 }
 
 /* Architectural side rails framing the content column */
@@ -398,43 +441,28 @@ h4 {
   border-top: 0;
 }
 
-/* ambient luminescent layer, never a muddy drop shadow */
-.glow {
-  position: absolute;
-  pointer-events: none;
-  opacity: var(--glow-opacity);
-  filter: blur(60px);
-  border-radius: 50%;
-  z-index: 0;
-}
-.glow--primary {
-  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-}
-.glow--secondary {
-  background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
-}
-
 /* --------------------------------------------------------------- components */
 
-/* Eyebrow label */
+/* Eyebrow label — monospaced section marker. Graphite, not coloured: Signal
+   Blue is reserved for interaction, and a label is not an interaction. */
 .eyebrow {
   display: inline-flex;
   align-items: flex-start;
   gap: var(--sp-xs);
-  color: var(--secondary-bright);
+  color: var(--text-3);
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 .eyebrow::before {
   content: '';
-  width: 18px;
+  width: 20px;
   height: 1px;
   /* pin the rule to the first line rather than centring it across a wrap */
-  margin-top: 0.65em;
-  background: var(--secondary);
+  margin-top: 0.62em;
+  background: var(--border-strong);
   flex: none;
 }
 
@@ -475,15 +503,13 @@ h4 {
   box-shadow: var(--shadow-card-hover);
 }
 
-/* Layer 2 — glass-backed elevated surface */
+/* Layer 2 — glass-backed elevated surface. Design.md's glass is refraction
+   plus a hairline, not a coloured edge, so the gradient border is gone. */
 .card--glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid transparent;
-  background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), var(--glass-edge);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-edge);
 }
 
 /* Buttons */
@@ -493,23 +519,24 @@ h4 {
   justify-content: center;
   gap: var(--sp-xs);
   height: 46px;
-  padding-inline: 1.375rem;
-  border-radius: var(--r);
+  padding-inline: 1.25rem;
+  border-radius: 10px;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   white-space: nowrap;
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
-    background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
 }
 
+/* Carbon Slate surface, white ink, a 1px lift on hover. No gradient. */
 .btn--primary {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  color: #fff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: var(--primary);
+  color: var(--on-primary);
 }
 .btn--primary:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 24px rgba(6, 182, 212, 0.4);
+  background: var(--primary-bright);
   transform: translateY(-1px);
 }
 
@@ -519,8 +546,8 @@ h4 {
   border: 1px solid var(--ghost-border);
 }
 .btn--ghost:hover {
-  background: var(--fill-2);
-  border-color: var(--secondary);
+  background: var(--hover-tint);
+  border-color: var(--border-strong);
   transform: translateY(-1px);
 }
 
@@ -533,23 +560,24 @@ h4 {
   color: var(--text-2);
 }
 .btn--icon:hover {
-  color: var(--secondary-bright);
-  border-color: var(--border-accent);
-  background: rgba(6, 182, 212, 0.06);
+  color: var(--text-1);
+  border-color: var(--border-strong);
+  background: var(--hover-tint);
 }
 
-/* Pills / chips */
+/* Pills / chips — Design.md's badge: neutral fill, hairline, graphite ink */
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.3125rem 0.6875rem;
   border-radius: var(--r-full);
-  background: rgba(6, 182, 212, 0.08);
-  border: 1px solid rgba(6, 182, 212, 0.25);
-  color: var(--secondary-soft);
-  font-size: 0.75rem;
-  font-weight: 600;
+  background: var(--fill-1);
+  border: 1px solid var(--border-soft);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
   /* Deliberately wrappable. Pills sit in flex-wrap rows, so they move to the
      next line before breaking internally — but a long label (a full role
@@ -558,19 +586,25 @@ h4 {
   text-wrap: pretty;
 }
 .pill--muted {
-  background: var(--hover-tint);
+  background: transparent;
+  border-color: var(--border);
+}
+/* The tone modifiers stay in the API so nothing breaks, but the palette is
+   monochromatic now: a badge is distinguished by its ink, not by a hue. */
+.pill--primary {
+  background: var(--fill-2);
+  border-color: var(--border);
+  color: var(--text-1);
+}
+.pill--tertiary {
+  background: transparent;
   border-color: var(--border);
   color: var(--text-2);
 }
-.pill--primary {
-  background: rgba(79, 70, 229, 0.12);
-  border-color: rgba(79, 70, 229, 0.35);
-  color: var(--primary-soft);
-}
-.pill--tertiary {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
-  color: var(--tertiary-bright);
+.pill--secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-2);
 }
 
 /* Monospace micro-tag.
@@ -579,7 +613,8 @@ h4 {
 .tag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--text-3);
   text-transform: uppercase;
 }
@@ -608,32 +643,26 @@ h4 {
   100% { opacity: 0; }
 }
 
-/* Icon tile */
+/* Icon tile — one neutral treatment. The tone modifiers are kept so existing
+   markup keeps working, but they no longer introduce colour: a row of tinted
+   tiles is exactly the decorative noise this system rules out. */
 .icon-tile {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--r-md);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--secondary-bright);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--fill-1);
+  border: 1px solid var(--border-soft);
+  color: var(--text-2);
   flex: none;
 }
-.icon-tile--primary {
-  color: var(--primary-soft);
-  border-color: rgba(79, 70, 229, 0.28);
-  background: rgba(79, 70, 229, 0.1);
-}
-.icon-tile--secondary {
-  color: var(--secondary-bright);
-  border-color: rgba(6, 182, 212, 0.28);
-  background: rgba(6, 182, 212, 0.08);
-}
+.icon-tile--primary,
+.icon-tile--secondary,
 .icon-tile--tertiary {
-  color: var(--tertiary-bright);
-  border-color: rgba(16, 185, 129, 0.28);
-  background: rgba(16, 185, 129, 0.08);
+  color: var(--text-2);
+  border-color: var(--border-soft);
+  background: var(--fill-1);
 }
 
 /* Hairline divider */
@@ -644,16 +673,100 @@ h4 {
   margin: 0;
 }
 
-/* ----------------------------------------------------------------- reveal fx */
+/* ----------------------------------------------------------------- motion
+   Three mechanisms, each with one job:
+     [data-reveal]  scroll arrival  — IntersectionObserver adds .is-visible
+     [data-enter]   page entrance   — fires on load, never waits for scroll
+     .lines         headline reveal — type rises out of its own measure
+   Everything is opacity and transform only, so nothing reflows mid-animation.
+   ------------------------------------------------------------------------ */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 620ms var(--ease), transform 620ms var(--ease);
+  transform: translateY(20px);
+  transition: opacity var(--dur-reveal) var(--ease), transform var(--dur-reveal) var(--ease);
   will-change: opacity, transform;
 }
 [data-reveal].is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Page entrance. Pure CSS so the first screen animates without waiting for
+   the bundle, and `forwards` means the end state survives even when reduced
+   motion collapses the duration to nothing. */
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+[data-enter] {
+  opacity: 0;
+  animation: enter-rise 820ms var(--ease) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+/* Headline reveal. Each line is its own clipping window and the type slides
+   up out of it, so the words arrive rather than fade. The padding/margin pair
+   gives descenders room — without it the window shears the tail off a "g". */
+.lines {
+  display: block;
+}
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.line > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 1000ms var(--ease);
+  transition-delay: calc(var(--line, 0) * 90ms);
+}
+[data-reveal].is-visible .line > span,
+[data-enter] .line > span {
+  transform: none;
+}
+/* The entrance variant has no .is-visible to wait for, so it animates itself */
+[data-enter] .line > span {
+  animation: line-rise 1000ms var(--ease) both;
+  animation-delay: calc(var(--enter-delay, 0ms) + var(--line, 0) * 90ms);
+}
+@keyframes line-rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Design.md's Minimal Action: graphite text, micro-arrow, 2px shift */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: color var(--dur) var(--ease);
+}
+.link-arrow:hover,
+.link-arrow:focus-visible {
+  color: var(--text-1);
+}
+.link-arrow svg {
+  transition: transform var(--dur) var(--ease);
+}
+.link-arrow:hover svg,
+.link-arrow:focus-visible svg {
+  transform: translateX(2px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -669,6 +782,12 @@ h4 {
   }
   [data-reveal] {
     opacity: 1;
+    transform: none;
+  }
+  .line {
+    overflow: visible;
+  }
+  .line > span {
     transform: none;
   }
 }

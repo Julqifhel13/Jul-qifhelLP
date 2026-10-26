@@ -33,9 +33,10 @@
     background: var(--hover-tint);
   }
   .cert__filter[aria-selected='true'] {
-    color: var(--secondary-soft);
-    background: rgba(6, 182, 212, 0.1);
-    border-color: rgba(6, 182, 212, 0.35);
+    /* the selected filter inverts rather than tints */
+    color: var(--on-primary);
+    background: var(--primary);
+    border-color: var(--primary);
   }
 
   .cert__count {
@@ -136,4 +137,20 @@
     text-align: center;
     font-size: 0.875rem;
     color: var(--text-3);
+  }
+
+  /* Executive Precision: a repeated row is a hairline column, not a box.
+     Same markup, same content — the border-radius, fill and shadow go. */
+  .cert__card.card {
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--border-soft);
+    border-radius: 0;
+    box-shadow: none;
+    padding-inline: 0;
+  }
+  .cert__card.card--hover:hover {
+    transform: none;
+    box-shadow: none;
+    border-top-color: var(--border-strong);
   }

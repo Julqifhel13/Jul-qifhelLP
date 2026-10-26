@@ -1,7 +1,7 @@
 # Jul-qifhel M. Cana — Executive Portfolio
 
-A premium, single-page resume and portfolio site built on the **Kinetic Executive
-Portfolio** design system. Built with **React** and [Vite](https://vite.dev) —
+A premium, single-page resume and portfolio site built on the **Executive
+Precision** design system. Built with **React** and [Vite](https://vite.dev) —
 component-based to keep it maintainable, compiled to a fast static bundle that
 deploys anywhere.
 
@@ -144,12 +144,13 @@ and ahead of the bundle.
 Design tokens (colours, type scale, spacing, radii, elevation) are defined once
 as CSS custom properties at the top of
 [`src/styles/global.css`](src/styles/global.css) and come straight from
-`Kinetic-Executive-Portfolio.md`. Change a token there and it propagates
-everywhere.
+[`Design.md`](Design.md). Change a token there and it propagates everywhere.
+The system is light-first; dark mode is the same palette inverted under
+`[data-theme=dark]`, not a second brand.
 
 | Breakpoint | Behaviour |
 | --- | --- |
-| **Desktop ≥ 1024px** | 2rem gutters, 7/5 hero split, 4-column card grids, experience timeline with a glowing rail |
+| **Desktop ≥ 1024px** | 2rem gutters, 7/5 hero split, editorial project rows that alternate sides, experience timeline |
 | **Tablet 768–1023px** | 1.5rem gutters, cards reflow to 2 columns, metrics collapse to 2×2 |
 | **Mobile ≤ 767px** | 1rem gutters, full-width stack, slide-down navigation, scrollable filter chips |
 

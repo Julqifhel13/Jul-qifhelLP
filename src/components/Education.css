@@ -12,7 +12,6 @@
   .edu__main {
     padding: var(--sp-lg);
     background:
-      radial-gradient(90% 140% at 0% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 55%),
       var(--surface-1);
   }
   @media (min-width: 768px) {

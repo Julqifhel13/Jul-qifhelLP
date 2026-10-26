@@ -57,9 +57,26 @@ export const ticker = [
 export const hero = {
   // Availability badge sitting above the headline
   availability: 'Available for Full-time, Part-time & Contract Roles',
+
+  // Small mono marker in the hero's top rule, opposite the location
+  marker: 'Portfolio',
+
+  // The identity statement under the name. Each entry is one rendered line,
+  // so the breaks are authored rather than left to the browser — change the
+  // wording and you choose where it wraps.
+  roleLines: [
+    'Executive Virtual Assistant, GoHighLevel',
+    'automation and AI-assisted development.',
+  ],
+
+  secondaryCta: { label: 'View selected work', href: '#projects' },
+
+  // --- retained from the previous hero composition -------------------------
+  // No longer rendered, but kept so the wording is not lost if the profile
+  // panel is ever reinstated.
   headlineLead: 'Building Efficient Digital Solutions',
   headlineAccent: 'Through Web Development',
-  headlineAccentSuffix: ',', // stays white, outside the cyan fill
+  headlineAccentSuffix: ',',
   headlineTail: 'Automation, AI & Reliable IT Systems.',
   intro:
     'IT graduate turned Executive VA. I build websites, dashboards and CRM automations with AI-assisted development — so operations run without constant supervision.',

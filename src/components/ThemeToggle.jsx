@@ -4,9 +4,10 @@ import './ThemeToggle.css';
 
 const STORAGE_KEY = 'theme';
 
-/** The inline script in index.html has already picked a theme before paint. */
+/** The inline script in index.html has already picked a theme before paint.
+    Light is the system default, so only an explicit 'dark' reads as dark. */
 function currentTheme() {
-  return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 }
 
 export default function ThemeToggle() {
@@ -18,7 +19,7 @@ export default function ThemeToggle() {
 
     // keep the browser chrome in step with the page
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#f5f5f7' : '#070a11');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0f1115' : '#f8f9fa');
 
     try {
       localStorage.setItem(STORAGE_KEY, theme);
@@ -37,8 +38,8 @@ export default function ThemeToggle() {
     }
     if (stored) return undefined;
 
-    const mq = window.matchMedia('(prefers-color-scheme: light)');
-    const onChange = (e) => setTheme(e.matches ? 'light' : 'dark');
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (e) => setTheme(e.matches ? 'dark' : 'light');
     mq.addEventListener('change', onChange);
     return () => mq.removeEventListener('change', onChange);
   }, []);

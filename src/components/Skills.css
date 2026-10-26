@@ -87,9 +87,11 @@
     color: var(--secondary-bright);
   }
 
+  /* A precision indicator, not a progress bar: 2px of ink on a hairline
+     track. At 4px in solid Carbon Slate it read as a stray heavy rule. */
   .sk__track {
-    height: 4px;
-    border-radius: var(--r-full);
+    height: 2px;
+    border-radius: 0;
     background: var(--fill-3);
     overflow: hidden;
   }
@@ -98,8 +100,8 @@
     display: block;
     height: 100%;
     width: var(--level);
-    border-radius: var(--r-full);
-    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 0;
+    background: var(--text-1);
     transform-origin: left center;
     transform: scaleX(0);
     transition: transform 900ms var(--ease) 120ms;
@@ -113,4 +115,35 @@
     .sk__fill {
       transform: scaleX(1);
     }
+  }
+
+  /* Executive Precision: a repeated row is a hairline column, not a box.
+     Same markup, same content — the border-radius, fill and shadow go. */
+  .sk__card.card {
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--border-soft);
+    border-radius: 0;
+    box-shadow: none;
+    padding-inline: 0;
+  }
+  .sk__card.card--hover:hover {
+    transform: none;
+    box-shadow: none;
+    border-top-color: var(--border-strong);
+  }
+
+  /* The proficiency bar was decoration sitting under a hairline, which read
+     as a doubled rule. The number carries the same information on its own,
+     so the track goes and the value stays — in ink, not Signal Blue, which
+     Design.md reserves for interaction. */
+  .sk__track {
+    display: none;
+  }
+  .sk__meter-head {
+    margin-bottom: 0;
+  }
+  .sk__meter-value {
+    color: var(--text-1);
+    letter-spacing: 0.02em;
   }

@@ -93,7 +93,7 @@
 .lb__btn:hover {
   color: var(--secondary-bright);
   border-color: var(--border-accent);
-  background: rgba(6, 182, 212, 0.08);
+  background: var(--hover-tint);
 }
 /* The close control carries a word once the header has room for it; below
    that the icon stands alone and Esc / backdrop-click still close. */

@@ -53,7 +53,7 @@
     font-size: 0.9375rem;
     line-height: 1.66;
     color: var(--text-2);
-    border-left: 2px solid rgba(79, 70, 229, 0.5);
+    border-left: 2px solid var(--border-strong);
     padding-left: var(--sp-md);
   }
 
@@ -123,4 +123,20 @@
     flex-wrap: wrap;
     gap: var(--sp-sm);
     margin-top: var(--sp-md);
+  }
+
+  /* Executive Precision: a repeated row is a hairline column, not a box.
+     Same markup, same content — the border-radius, fill and shadow go. */
+  .about__pillar.card {
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--border-soft);
+    border-radius: 0;
+    box-shadow: none;
+    padding-inline: 0;
+  }
+  .about__pillar.card--hover:hover {
+    transform: none;
+    box-shadow: none;
+    border-top-color: var(--border-strong);
   }

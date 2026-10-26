@@ -5,7 +5,6 @@ import './Contact.css';
 export default function Contact() {
   return (
     <section className="section contact-section" id="contact">
-      <div className="glow glow--primary contact__glow" />
 
       <div className="container contact">
         <div className="contact__copy" data-reveal>
