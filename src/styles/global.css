@@ -1089,3 +1089,101 @@ button:focus-visible > .shift .shift__b {
 .section-head {
   margin-bottom: var(--block-spacing);
 }
+
+/* ============================================================================
+   READING COMFORT
+
+   Measured before touching anything: project and experience copy was running
+   at 149-153 characters per line at 1440px. Comfortable is 45-75; past about
+   90 the eye loses the start of the next line on the way back, which is what
+   makes a page tiring rather than any particular typeface.
+
+   Three things fix it — a capped measure, a looser leading on prose, and a
+   rag that does not strand single words. Nothing below changes the type
+   scale, so the reference's sizes are untouched.
+   ========================================================================== */
+
+/* Figtree’s zero is wide, so 1ch is about 0.64em here and a ch cap reads
+   larger than it sounds: 68ch measured 87 characters, 62ch measured 79.
+   56ch lands around 70, which is the top of the comfortable band. Short
+   labels never reach it, so this only bites on real prose. */
+p,
+blockquote,
+.t-body,
+.t-lead,
+.t-sm {
+  max-width: 56ch;
+  /* balances the last lines instead of leaving one word alone */
+  text-wrap: pretty;
+}
+
+/* li and dd deliberately excluded above: .xp__item, .tile-project and
+   .pj__row are all list items used as layout containers, and capping them
+   squeezed entire rows to 56ch. They get the rag treatment but keep their
+   width; the prose inside them is capped by class instead. */
+li,
+dd {
+  text-wrap: pretty;
+}
+
+/* Headings get balance rather than pretty: they are short enough that even
+   line lengths matter more than the final line. */
+h1,
+h2,
+h3,
+h4,
+.t-hero,
+.t-h2,
+.t-h3,
+.t-h4 {
+  text-wrap: balance;
+  max-width: none;
+}
+
+/* Prose wants more air between lines than a label does. The reference runs
+   1.5 flat; at a capped measure 1.6 reads noticeably easier without
+   loosening the page. */
+p,
+li,
+dd {
+  line-height: 1.6;
+}
+
+/* The small copy inherited from the previous design system sat at 13-14px
+   while everything around it was 18px — small enough to feel like fine
+   print. It lifts to 16px rather than the full 18px body size: these blocks
+   sit in two-column grids about 390px wide, and at 18px the text wrapped
+   every four or five words AND came out larger than the heading above it.
+
+   The class is doubled on purpose: component stylesheets are bundled after
+   this file, so at equal specificity they win on source order and the lift
+   silently did nothing. */
+.xp__subtitle.xp__subtitle,
+.xp__bullet-body.xp__bullet-body,
+.xp__footer-text.xp__footer-text,
+.ab__text.ab__text,
+.sk__item.sk__item,
+.edu__body.edu__body,
+.edu__text.edu__text,
+.cert__meta.cert__meta,
+.contact__text.contact__text,
+.tile-project__desc.tile-project__desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 56ch;
+}
+
+/* Their headings move with them so the hierarchy stays the right way up. */
+.xp__bullet-title.xp__bullet-title,
+.sk__title.sk__title,
+.ab__pillar-title.ab__pillar-title {
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+/* Centred display type should not be capped or it loses its centring. */
+.hero,
+.hero.t-hero {
+  max-width: 90%;
+}

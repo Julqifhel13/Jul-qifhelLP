@@ -1,0 +1,89 @@
+  /* Full-bleed strip — it runs edge to edge deliberately, so the row reads
+     as continuous rather than as a boxed list that happens to move. */
+  .tools {
+    margin-top: var(--block-spacing);
+    padding-block: var(--vpad);
+    border-top: 1px solid var(--opacity-10);
+    border-bottom: 1px solid var(--opacity-10);
+    overflow: hidden;
+    /* fade both ends so items enter and leave rather than being cut */
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+
+  .tools__track {
+    display: flex;
+    width: max-content;
+    /* the reference's list-ticker: one full lane of travel, then repeat */
+    animation: list-ticker 34s linear infinite;
+  }
+
+  @keyframes list-ticker {
+    0% {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pausing on hover lets anyone actually read a name they spotted. */
+  .tools:hover .tools__track,
+  .tools:focus-within .tools__track {
+    animation-play-state: paused;
+  }
+
+  .tools__lane {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4xl);
+    padding-right: var(--sp-4xl);
+    flex: none;
+  }
+
+  .tools__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    flex: none;
+    color: var(--text-2);
+    transition: color var(--animation-timing) var(--animation-curve);
+  }
+  .tools__item:hover {
+    color: var(--text-1);
+  }
+
+  .tools__name {
+    font-size: var(--fs-b);
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    white-space: nowrap;
+  }
+
+  /* A strip that moves on its own is exactly what reduced motion is for.
+     It becomes a static, wrapping row — every tool still legible. */
+  @media (prefers-reduced-motion: reduce) {
+    .tools {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .tools__track {
+      animation: none;
+      width: 100%;
+      padding-inline: var(--hpad);
+    }
+    .tools__lane {
+      flex-wrap: wrap;
+      gap: var(--sp-lg) var(--sp-xl);
+      padding-right: 0;
+    }
+    .tools__lane[aria-hidden='true'] {
+      display: none;
+    }
+  }

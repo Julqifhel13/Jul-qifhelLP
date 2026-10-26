@@ -144,6 +144,19 @@ export const stats = [
   },
 ];
 
+/* --------------------------------------------------------------------- tools */
+/* The scrolling stack strip under the hero figures. Order is the reading
+   order; add or remove a line and the strip follows. */
+export const tools = [
+  { name: 'Claude', mark: 'claude' },
+  { name: 'Figma', mark: 'figma' },
+  { name: 'GitHub', mark: 'github' },
+  { name: 'VS Code', mark: 'vscode' },
+  { name: 'Google Stitch', mark: 'stitch' },
+  { name: 'Antigravity', mark: 'antigravity' },
+  { name: 'GoHighLevel', mark: 'gohighlevel' },
+];
+
 /* --------------------------------------------------------------------- about */
 export const about = {
   eyebrow: 'Profile & Strategy',

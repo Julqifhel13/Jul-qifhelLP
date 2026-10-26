@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Showreel from './Showreel.jsx';
+import Tools from './Tools.jsx';
 import { hero, profile, stats } from '../data/site.js';
 import './Hero.css';
 
@@ -65,6 +66,9 @@ export default function Hero() {
           ))}
         </dl>
       </div>
+
+      {/* the stack behind the figures above */}
+      <Tools />
     </section>
   );
 }
