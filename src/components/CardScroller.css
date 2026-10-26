@@ -35,8 +35,12 @@
   }
 
   /* ---------------------------------------------------------------- card */
+  /* Three posters instead of six thumbnails, so each card runs as large as
+     the viewport allows. The third term keeps a 16:9 card plus its label
+     inside a short window — without it a laptop in landscape clips the
+     bottom of every frame. */
   .cards__card {
-    --card-w: clamp(280px, 46vw, 400px);
+    --card-w: min(86vw, 1180px, calc((84vh - 90px) * 1.778));
     display: block;
     width: var(--card-w);
     padding: 0;
@@ -51,10 +55,12 @@
     outline-offset: 6px;
   }
 
+  /* 16:9 matches the posters exactly, so nothing is cropped at all — which
+     is the point of showing them at full size. */
   .cards__media {
     position: relative;
     display: block;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     border-radius: 8px;
     overflow: hidden;
     background: var(--off-black);
@@ -64,8 +70,10 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top left;
+    /* contain, not cover: the card is already the poster's own ratio, and
+       contain guarantees nothing is trimmed if a frame is ever re-exported
+       at a slightly different size. */
+    object-fit: contain;
     transition: transform var(--animation-time-long) var(--animation-curve);
   }
   .cards__card:hover .cards__media img,

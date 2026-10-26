@@ -5,20 +5,17 @@ import './CardScroller.css';
 
 const asset = (src) => `${import.meta.env.BASE_URL}/${src}`.replace(/\/{2,}/g, '/');
 
-// Two frames per project: the showcase poster that opens each gallery, then
-// one real screen from inside it. Enough cards to be worth travelling.
-const CARDS_PER_PROJECT = 2;
-
-const cards = projects.items.flatMap((project) =>
-  (project.gallery ?? []).slice(0, CARDS_PER_PROJECT).map((shot, i) => ({
-    key: `${project.title}-${i}`,
-    src: shot.thumb && i > 0 ? shot.src : shot.src,
-    alt: shot.caption,
-    label: project.title,
-    meta: project.scope,
-    project,
-  }))
-);
+// One card per project — the showcase poster that opens its gallery, and
+// nothing else. Three large frames rather than six small ones; the raw
+// screenshots live inside the gallery where they have room.
+const cards = projects.items.map((project) => ({
+  key: project.title,
+  src: project.gallery?.[0]?.src ?? project.preview.src,
+  alt: project.gallery?.[0]?.caption ?? project.preview.alt,
+  label: project.title,
+  meta: project.scope,
+  project,
+}));
 
 /**
  * The reference's c-CardScroller: a row of cards that travels sideways as the
