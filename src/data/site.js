@@ -316,11 +316,11 @@ export const projects = {
       graphic: 'projects/showcase/intake-funnel.jpg',
       role: 'Automation & web build',
       preview: {
-        src: 'projects/intake-funnel/mila/about.jpg',
+        src: 'projects/showcase/intake-funnel.jpg',
         alt:
-          'The Mission Impact Legal Advisors about page — founder portrait, practice introduction and a Get Started call to action',
+          'Client Intake Funnel showcase — the Mission Impact Legal Advisors landing page beside the scored intake pipeline, instant SMS follow-up and attorney routing built in GoHighLevel',
         label: 'missionimpactlegal.com',
-        caption: 'Mission Impact Legal Advisors · About',
+        caption: 'Client Intake Funnel',
       },
       highlights: [
         { title: 'Scored intake pipeline', body: 'Forms that qualify and rank every enquiry as it arrives.' },
@@ -386,11 +386,11 @@ export const projects = {
       graphic: 'projects/showcase/automations.jpg',
       role: 'Automation build',
       preview: {
-        src: 'projects/automations/ymbs/book-call.png',
+        src: 'projects/showcase/automations.jpg',
         alt:
-          'A GoHighLevel workflow canvas — four consultant booking triggers converging into a wait, a tag, then SMS, email and staff notification steps',
+          'Business Automation showcase — GoHighLevel workflow canvases for booking confirmation and mail forwarding, with multi-channel capture, branching logic and timed follow-up',
         label: 'WF — Book a call',
-        caption: 'Yellow Mountain · Booking confirmation',
+        caption: 'Business Automation & Lead Management',
       },
       highlights: [
         { title: 'Multi-channel capture', body: 'Website forms, missed calls and bookings feeding one CRM.' },
@@ -519,11 +519,11 @@ export const projects = {
       graphic: 'projects/showcase/kcg.jpg',
       role: 'UI/UX & AI-assisted build',
       preview: {
-        src: 'projects/kcg/admin-dashboard/overview.jpg',
+        src: 'projects/showcase/kcg.jpg',
         alt:
-          'The KCG admin dashboard — left navigation beside a client overview table with progress bars and status flags',
+          'Digital Systems showcase — the Kovach Consulting Group admin dashboard and client portal, rebuilt from Figma wireframes with AI-assisted development',
         label: 'kcg-admin.app / dashboard',
-        caption: 'KCG admin dashboard · Overview',
+        caption: 'Digital Systems & Dashboards',
       },
       highlights: [
         { title: 'Admin dashboard rebuild', body: 'Modernised the admin dashboard, admin portal and client portal.' },
