@@ -1,3 +1,6 @@
+  /* Frame geometry is deliberately unchanged from the still image it
+     replaced: same full-bleed --hpad inset, same 16:9 window, same 4px
+     corner. Only the contents move. */
   .reel {
     margin: 0;
     padding-inline: var(--hpad);
@@ -9,32 +12,81 @@
     border-radius: var(--radius);
     background: var(--off-black);
     aspect-ratio: 16 / 9;
+    touch-action: pan-y;
   }
 
-  /* --------------------------------------------------------------- slides */
+  /* ---------------------------------------------------------------- track */
+  .reel__track {
+    display: flex;
+    height: 100%;
+    transform: translateX(calc(var(--i, 0) * -100%));
+    transition: transform 700ms var(--animation-curve);
+    will-change: transform;
+  }
+  /* set for the single frame in which the carousel wraps around */
+  .reel__track.is-instant {
+    transition: none;
+  }
+
   .reel__slide {
-    position: absolute;
-    inset: 0;
-    /* the reference's own wipe: @keyframes mask-up */
-    clip-path: inset(100% 0 0 0);
-  }
-  .reel__slide.is-active {
-    animation: mask-up 900ms var(--animation-curve) both;
-  }
-
-  @keyframes mask-up {
-    0% {
-      clip-path: inset(100% 0 0 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
   }
 
   .reel__slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* ------------------------------------------------------------------ nav */
+  .reel__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    transform: translateY(-50%);
+    border-radius: var(--r-full);
+    /* over the artwork, so these colours are fixed rather than themed */
+    background: rgba(21, 22, 18, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #f8f9f3;
+    /* Always present, not hover-revealed. Hiding them until hover leaves
+       touch users with only an undiscoverable swipe, and makes the control
+       depend on a `hover` media query that is awkward to verify. Quiet by
+       default, solid on interaction. */
+    opacity: 0.7;
+    transition: opacity var(--animation-timing) var(--animation-curve),
+      background-color var(--animation-timing) var(--animation-curve);
+  }
+  .reel__frame:hover .reel__nav {
+    opacity: 1;
+  }
+  .reel__nav:hover,
+  .reel__nav:focus-visible {
+    opacity: 1;
+    background: rgba(21, 22, 18, 0.85);
+  }
+  .reel__nav:focus-visible {
+    outline: 2px solid #f8f9f3;
+    outline-offset: 2px;
+  }
+
+  .reel__nav--prev {
+    left: var(--small-padding);
+  }
+  .reel__nav--prev svg {
+    transform: rotate(180deg);
+  }
+  .reel__nav--next {
+    right: var(--small-padding);
   }
 
   /* ------------------------------------------------------------ caption bar */
@@ -67,22 +119,34 @@
     color: var(--text-2);
   }
 
-  /* ---------------------------------------------------------------- ticks */
-  .reel__ticks {
+  /* ----------------------------------------------------------------- dots */
+  .reel__dots {
     display: flex;
     gap: 6px;
     flex: none;
     align-self: center;
   }
 
-  .reel__tick {
+  /* The indicator doubles as the control: a wide, thin hit area that also
+     shows how long the current slide has left. */
+  .reel__dot {
     position: relative;
     width: 28px;
     height: 2px;
+    padding: 0;
+    border: 0;
     background: var(--opacity-25);
     overflow: hidden;
+    transition: background-color var(--animation-timing) var(--animation-curve);
   }
-  .reel__tick.is-active::after {
+  .reel__dot:hover {
+    background: var(--opacity-50);
+  }
+  .reel__dot:focus-visible {
+    outline: 2px solid var(--text-1);
+    outline-offset: 4px;
+  }
+  .reel__dot.is-active::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -100,19 +164,15 @@
     }
   }
 
-  /* A reel that moves on its own is the first thing to go. Reduced motion
-     gets the opening frame, captioned, and nothing animates. */
+  /* A carousel that advances on its own is the first thing to go. Reduced
+     motion keeps the controls — they are the point — but nothing slides and
+     nothing advances by itself. */
   @media (prefers-reduced-motion: reduce) {
-    .reel__slide {
-      clip-path: none;
+    .reel__track {
+      transition: none;
     }
-    .reel__slide:not(.is-active) {
-      display: none;
-    }
-    .reel__slide.is-active {
+    .reel__dot.is-active::after {
       animation: none;
-    }
-    .reel__ticks {
-      display: none;
+      transform: none;
     }
   }
