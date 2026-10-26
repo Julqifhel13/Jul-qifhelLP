@@ -19,7 +19,7 @@ export default function ThemeToggle() {
 
     // keep the browser chrome in step with the page
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0f1115' : '#f8f9fa');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#1d1e19' : '#f8f9f3');
 
     try {
       localStorage.setItem(STORAGE_KEY, theme);

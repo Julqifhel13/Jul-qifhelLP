@@ -1,41 +1,36 @@
-  /* An editorial project sequence. No cards, no rails, no badges — each
-     project is a large image set against its own column of type, and the
-     sides alternate so the page reads as a spread rather than a list. */
-  .pj {
+  /* The reference's work section: a statement, then 16:9 tiles laid on the
+     16-column grid. The tiles are not cards — there is no fill, border or
+     shadow around them, only the image and the type beneath it. */
+  .projects__intro {
+    max-width: 22ch;
+    margin-bottom: var(--block-spacing);
+    color: var(--text-1);
+  }
+  @media (min-width: 768px) {
+    .projects__intro {
+      max-width: 30ch;
+    }
+  }
+
+  .projects-grid {
     display: grid;
-    gap: var(--sp-4xl);
+    gap: var(--vpad-large) var(--grid-gap);
     margin: 0;
   }
-  @media (min-width: 900px) {
-    .pj {
-      gap: calc(var(--sp-4xl) * 1.3);
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    /* The reference staggers its grid — the first tile runs wide and the
+       pair beneath it splits the row, so the sequence never reads as a
+       plain two-up. */
+    .projects-grid > :first-child {
+      grid-column: 1 / -1;
     }
   }
 
-  .pj__row {
-    display: grid;
-    gap: var(--sp-xl);
-  }
-  @media (min-width: 900px) {
-    .pj__row {
-      /* the image takes the long side of the 12-column grid */
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      gap: var(--sp-3xl);
-      align-items: stretch;
-    }
-    /* Every second project flips, so the eye crosses the page. The track
-       widths swap with it — moving only the element would drop the image
-       into the narrow column and crop it to a third of its width. */
-    .pj__row:nth-child(even) {
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    }
-    .pj__row:nth-child(even) .pj__visual {
-      order: 2;
-    }
-  }
-
-  /* ------------------------------------------------------------- visual */
-  .pj__shot {
+  /* --------------------------------------------------------------- tile */
+  .tile-project__image {
     display: block;
     width: 100%;
     padding: 0;
@@ -43,235 +38,91 @@
     background: none;
     cursor: pointer;
   }
-  .pj__shot:focus-visible {
-    outline: 2px solid var(--secondary);
-    outline-offset: 6px;
-    border-radius: var(--r-lg);
+  .tile-project__image:focus-visible {
+    outline: 2px solid var(--text-1);
+    outline-offset: 4px;
   }
 
-  .pj__frame {
+  .tile-project__format {
     position: relative;
     display: block;
     overflow: hidden;
-    border-radius: var(--r-lg);
-    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
     background: var(--surface-2);
-    aspect-ratio: 16 / 10;
-    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-  }
-  .pj__shot:hover .pj__frame,
-  .pj__shot:focus-visible .pj__frame {
-    border-color: var(--border-strong);
-    box-shadow: var(--shadow-card-hover);
   }
 
-  .pj__img {
+  .tile-project__format img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Page captures run thousands of pixels tall, so the crop starts at the
-       top. Anchoring it left as well keeps the start of a workflow and the
-       sidebar of a dashboard instead of trimming both edges. */
+    max-width: none;
+    display: block;
+    /* page captures are thousands of pixels tall — hold the top-left */
     object-position: top left;
-    transition: transform 700ms var(--ease);
+    transition: transform var(--animation-time-long) var(--animation-curve);
   }
-  .pj__shot:hover .pj__img {
-    transform: scale(1.025);
-  }
-
-  /* On desktop the visual fills the row instead of holding a fixed ratio —
-     a 16:10 box left the image stranded in the middle of a much taller
-     column, which is the opposite of making the work the focus.
-     This block has to sit AFTER the base .pj__frame rule: both are a single
-     class, so source order is what lets `aspect-ratio: auto` win. Above it,
-     the 16/10 ratio held and sized the frame 416 x 1.6 = 666px, overflowing
-     its 523px track by exactly the 111px the overflow check reported. */
-  @media (min-width: 900px) {
-    .pj__visual {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 0;
-    }
-    .pj__shot {
-      display: flex;
-      flex: 1;
-      min-height: 0;
-      min-width: 0;
-    }
-    .pj__frame {
-      aspect-ratio: auto;
-      flex: 1;
-      min-height: 26rem;
-      max-height: 38rem;
-      min-width: 0;
-    }
+  .tile-project__image:hover .tile-project__format img,
+  .tile-project__image:focus-visible .tile-project__format img {
+    transform: scale(1.03);
   }
 
-  .pj__fallback {
+  .tile-project__fallback {
     display: grid;
     place-items: center;
-    height: 100%;
+    aspect-ratio: 16 / 9;
     padding: var(--sp-lg);
     text-align: center;
-    font-size: 0.875rem;
+    font-size: var(--fs-small);
     color: var(--text-2);
   }
 
-  /* Sits over the artwork, so its colours are fixed rather than themed */
-  .pj__cue {
-    position: absolute;
-    right: var(--sp-sm);
-    bottom: var(--sp-sm);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    padding: 0.375rem 0.625rem;
-    border-radius: var(--r-full);
-    background: rgba(15, 17, 21, 0.72);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: #fff;
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(4px);
-    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
-  }
-  .pj__shot:hover .pj__cue,
-  .pj__shot:focus-visible .pj__cue {
-    opacity: 1;
-    transform: none;
-  }
-  /* Touch has no hover, so the cue is simply always there */
-  @media (hover: none) {
-    .pj__cue {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  .pj__caption {
-    margin-top: var(--sp-sm);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--text-3);
-  }
-
-  /* --------------------------------------------------------------- info */
-  .pj__index {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--text-1);
-  }
-  .pj__index-total {
-    color: var(--text-3);
-  }
-
-  .pj__title {
-    margin-top: var(--sp-sm);
-    color: var(--text-1);
-    text-wrap: balance;
-  }
-
-  .pj__desc {
-    margin-top: var(--sp-md);
-    max-width: 46ch;
-  }
-
-  .pj__role {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--sp-xs) var(--sp-sm);
-    margin-top: var(--sp-lg);
-    padding-top: var(--sp-sm);
-    border-top: 1px solid var(--border-soft);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-1);
-  }
-
-  /* Hairline-separated key rows — Design.md's case-metric list */
-  .pj__built {
-    margin-top: var(--sp-lg);
-  }
-  .pj__built-item {
-    padding-block: var(--sp-sm);
-    border-top: 1px solid var(--border-soft);
-  }
-  .pj__built-item:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-
-  .pj__built-title {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: -0.015em;
-    color: var(--text-1);
-  }
-
-  .pj__built-body {
-    margin-top: 0.25rem;
-    font-size: 0.8125rem;
-    line-height: 1.46;
-    color: var(--text-2);
-  }
-
-  .pj__result {
-    margin-top: var(--sp-lg);
-    font-size: 0.9375rem;
-    line-height: 1.53;
-    letter-spacing: -0.005em;
-    color: var(--text-1);
-  }
-
-  .pj__foot {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-sm) var(--sp-md);
-    margin-top: var(--sp-lg);
+  /* ------------------------------------------------------------ content */
+  .tile-project__content {
     padding-top: var(--sp-md);
-    border-top: 1px solid var(--border-soft);
   }
 
-  .pj__tags {
+  .tile-project__title {
+    color: var(--text-1);
+  }
+  .tile-project__title button {
+    padding: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-align: left;
+  }
+
+  .tile-project__desc {
+    margin-top: var(--sp-xs);
+    font-size: var(--fs-b);
+    line-height: 1.5;
+    color: var(--text-2);
+    max-width: 48ch;
+  }
+
+  /* Category chips, as the reference labels its work */
+  .cats {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--sp-sm);
-  }
-  .pj__tags li {
-    position: relative;
-  }
-  .pj__tags li + li::before {
-    content: '·';
-    position: absolute;
-    left: calc(var(--sp-sm) / -2 - 2px);
-    color: var(--outline);
+    gap: 4px;
+    margin-top: var(--sp-md);
   }
 
-  .pj__open {
-    font-size: 0.875rem;
-    white-space: nowrap;
+  .cat {
+    padding: 6px 12px;
+    border-radius: var(--r-full);
+    border: 1px solid var(--opacity-25);
+    font-size: var(--fs-caption);
+    line-height: 1.33;
+    color: var(--text-2);
+  }
+  .cat--count {
+    border-style: dashed;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .pj__img {
+    .tile-project__format img {
       transition: none;
     }
-    .pj__shot:hover .pj__img {
+    .tile-project__image:hover .tile-project__format img {
       transform: none;
     }
   }

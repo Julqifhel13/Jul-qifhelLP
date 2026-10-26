@@ -1,21 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import Icon from './Icon.jsx';
 import { hero, profile, stats } from '../data/site.js';
 import './Hero.css';
 
-// Resolve the optional headshot against the configured base path
-const photo = profile.photo
-  ? `${import.meta.env.BASE_URL}/${profile.photo}`.replace(/\/{2,}/g, '/')
-  : '';
-
-/** One masked line of display type. The outer span is the clipping window. */
-function Line({ children, index }) {
-  return (
-    <span className="line" style={{ '--line': index }}>
-      <span>{children}</span>
-    </span>
-  );
-}
+const asset = (src) => `${import.meta.env.BASE_URL}/${src}`.replace(/\/{2,}/g, '/');
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
@@ -36,67 +23,39 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero section section--flush" id="top">
+    <section className="hero-section" id="top">
+      {/* One centred statement, the way the reference opens: no eyebrow, no
+          badges, no portrait — the sentence is the whole first screen. */}
+      <h1 className="t-hero hero" data-enter style={{ '--enter-delay': '120ms' }}>
+        {hero.statement}
+      </h1>
+
+      {/* Full-bleed media, as the reference runs under its statement. */}
+      <div className="hero-media" data-enter style={{ '--enter-delay': '280ms' }}>
+        <img
+          src={asset(hero.lead.src)}
+          alt={hero.lead.alt}
+          className="ar-16x9"
+          width="1600"
+          height="900"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
       <div className="container">
-        {/* Top rule — the hero opens on metadata, the way an editorial
-            spread opens on a folio line rather than straight into the body. */}
-        <div className="hero__rule" data-enter style={{ '--enter-delay': '80ms' }}>
-          <span className="tag">{hero.marker}</span>
-          <span className="tag">{profile.location}</span>
-        </div>
-
-        <div className="hero__grid">
-          <div className="hero__copy">
-            <h1 className="t-hero hero__name lines" data-enter style={{ '--enter-delay': '160ms' }}>
-              <Line index={0}>{profile.name}</Line>
-            </h1>
-
-            <p className="hero__role lines" data-enter style={{ '--enter-delay': '240ms' }}>
-              {hero.roleLines.map((text, i) => (
-                <Line key={text} index={i}>
-                  {text}
-                </Line>
-              ))}
-            </p>
-
-            <p className="t-lead hero__intro" data-enter style={{ '--enter-delay': '480ms' }}>
-              {hero.intro}
-            </p>
-
-            <div className="hero__actions" data-enter style={{ '--enter-delay': '560ms' }}>
-              <a className="btn btn--primary" href={hero.primaryCta.href}>
-                {hero.primaryCta.label}
-              </a>
-              <a className="btn btn--ghost" href={hero.secondaryCta.href}>
-                {hero.secondaryCta.label}
-                <Icon name="arrow" size={16} />
-              </a>
-            </div>
-          </div>
-
-          {/* The portrait balances the type column. It is a plain framed
-              image, not a panel — no chrome, no diagram, no badges. */}
-          {photo && (
-            <div className="hero__portrait" data-enter style={{ '--enter-delay': '320ms' }}>
-              <img src={photo} alt={profile.name} width="640" height="800" />
-            </div>
-          )}
-        </div>
-
-        {/* Availability and the direct line stay present but quiet, sitting
-            on the closing hairline rather than competing with the headline. */}
-        <div className="hero__meta" data-enter style={{ '--enter-delay': '640ms' }}>
-          <p className="hero__available">
+        <div className="hero-meta" data-enter style={{ '--enter-delay': '380ms' }}>
+          <p className="hero-meta__available">
             <span className="dot dot--pulse" />
             {hero.availability}
           </p>
 
-          <div className="hero__contact">
-            <a className="hero__link" href={`tel:${profile.phoneHref}`}>
+          <div className="hero-meta__contact">
+            <a className="link-shift" href={`tel:${profile.phoneHref}`}>
               {profile.phone}
             </a>
             <button
-              className={`hero__link hero__copy-email${copied ? ' is-copied' : ''}`}
+              className={`link-shift${copied ? ' is-copied' : ''}`}
               type="button"
               onClick={copyEmail}
             >
@@ -104,10 +63,7 @@ export default function Hero() {
             </button>
           </div>
         </div>
-      </div>
 
-      {/* -------------------------------------------------------- stat strip */}
-      <div className="container">
         <dl className="stats" data-reveal>
           {stats.map((stat) => (
             <div className="stats__cell" key={stat.label}>

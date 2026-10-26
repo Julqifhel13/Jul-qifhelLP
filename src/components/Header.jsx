@@ -1,20 +1,34 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
+import ShiftText from './ShiftText.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
-import { navLinks, profile, ticker } from '../data/site.js';
+import { navLinks, profile } from '../data/site.js';
 import './Header.css';
+
+/** Local time where he is, in the reference's "12:58 UK" corner marker. */
+function useLocalClock(timeZone) {
+  const read = () =>
+    new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      timeZone,
+    }).format(new Date());
+
+  const [time, setTime] = useState(read);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setTime(read()), 30000);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeZone]);
+
+  return time;
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [stuck, setStuck] = useState(false);
-
-  // condense the bar once the page has scrolled
-  useEffect(() => {
-    const onScroll = () => setStuck(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const clock = useLocalClock('Asia/Manila');
 
   // lock the page behind the mobile panel, and close it on Escape / desktop
   useEffect(() => {
@@ -38,57 +52,48 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className={`header${stuck ? ' is-stuck' : ''}`}>
-      <div className="header__bar">
-        <div className="container header__inner">
-          <a href="#top" className="brand" aria-label={`${profile.name} — home`}>
-            <span className="brand__mark">{profile.initials}</span>
-            <span className="brand__status">
-              <span className="dot dot--pulse" />
-              {profile.availability}
-            </span>
-          </a>
+    <header className="header">
+      <div className="header__inner">
+        {/* The reference's wordmark is simply the studio name, set large.
+            Here that is his own name. */}
+        <a href="#top" className="wordmark" aria-label={`${profile.name} — home`}>
+          Jul-qifhel
+        </a>
 
-          <div className="header__right">
-            <nav className="nav" aria-label="Primary">
-              {navLinks.map((link) => (
-                <a key={link.href} className="nav__link" href={link.href} data-nav-link>
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+        <nav className="nav" aria-label="Primary">
+          {navLinks.map((link) => (
+            <a key={link.href} className="nav__link" href={link.href} data-nav-link>
+              <ShiftText>{link.label}</ShiftText>
+            </a>
+          ))}
+        </nav>
 
-            <ThemeToggle />
+        <div className="header__end">
+          {/* "12:58 UK" in the reference — local time plus region. */}
+          <p className="header__clock">
+            {clock}
+            <sup>PH</sup>
+          </p>
 
-            <button
-              className="nav-toggle"
-              type="button"
-              aria-expanded={open}
-              aria-controls="mobile-nav"
-              onClick={() => setOpen((v) => !v)}
-            >
-              <span className="sr-only">Toggle navigation</span>
-              <Icon name="menu" size={20} className="nav-toggle__open" />
-              <Icon name="close" size={20} className="nav-toggle__close" />
-            </button>
-          </div>
-        </div>
+          <ThemeToggle />
 
-        <div className="ticker" role="note">
-          <div className="container ticker__inner no-scrollbar">
-            {ticker.map((item) => (
-              <span className="ticker__item" key={item.label}>
-                {item.status && <span className="dot" />}
-                <span className="ticker__label">{item.label}</span>
-                <span className="ticker__value">{item.value}</span>
-              </span>
-            ))}
-          </div>
+          <button
+            className="nav-toggle"
+            type="button"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="sr-only">Toggle navigation</span>
+            <Icon name="menu" size={22} className="nav-toggle__open" />
+            <Icon name="close" size={22} className="nav-toggle__close" />
+          </button>
         </div>
       </div>
 
+      {/* Full-screen menu — the reference sets its mobile links at 40px/600. */}
       <div className="mobile-nav" id="mobile-nav" hidden={!open}>
-        <div className="container mobile-nav__inner">
+        <div className="mobile-nav__inner">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -96,18 +101,13 @@ export default function Header() {
               href={link.href}
               onClick={() => setOpen(false)}
             >
-              <span>{link.label}</span>
-              <Icon name="arrow" size={16} />
+              {link.label}
             </a>
           ))}
-          <a
-            className="btn btn--primary mobile-nav__cta"
-            href="#contact"
-            onClick={() => setOpen(false)}
-          >
-            Hire Me
-            <Icon name="arrow" size={16} />
-          </a>
+
+          <p className="mobile-nav__meta">
+            {profile.location} · {profile.email}
+          </p>
         </div>
       </div>
     </header>

@@ -16,10 +16,9 @@ export const profile = {
   phone: '+63 991 986 0758',
   phoneHref: '+639919860758',
   availability: 'Available for New Clients',
-  // Headshot for the hero card. Drop the file into /public and put its
-  // filename here, e.g. 'jul-qifhel.jpg'. Left empty, the card falls back
-  // to the gradient "JC" monogram.
-  photo: 'jul-qifhel.jpg',
+  // Headshot intentionally removed at the owner's request. Put a filename
+  // back here if a portrait is ever wanted again.
+  photo: '',
   resumeUrl: '', // e.g. 'Jul-qifhel-Cana-Resume.pdf' — drop the PDF into /public
   socials: [
     { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/' },
@@ -58,8 +57,23 @@ export const hero = {
   // Availability badge sitting above the headline
   availability: 'Available for Full-time, Part-time & Contract Roles',
 
-  // Small mono marker in the hero's top rule, opposite the location
+  // Small marker in the header, opposite the nav
   marker: 'Portfolio',
+
+  // The single centred sentence the whole first screen is built on. The
+  // reference opens the same way: one statement, sentence case, no full
+  // stop, nothing above it.
+  statement:
+    'An executive virtual assistant building websites, dashboards and CRM automations that keep operations running without constant supervision',
+
+  // Full-bleed image beneath the statement
+  lead: {
+    // Deliberately not the first work tile — the lead should show a
+    // different piece of the work, and this capture is near 16:9 already
+    // so the crop keeps the whole dashboard.
+    src: 'projects/kcg/admin-dashboard/overview.jpg',
+    alt: 'The Kovach Consulting Group admin dashboard: client overview, session tracking and progress panels',
+  },
 
   // The identity statement under the name. Each entry is one rendered line,
   // so the breaks are authored rather than left to the browser — change the
@@ -283,6 +297,10 @@ export const projects = {
   eyebrow: 'Showcase',
   heading: 'Featured Projects & Website Builds',
   note:
+    'Websites, dashboards and automations built for consulting firms, law firms and nonprofits.',
+
+  // The statement the work section opens on, in place of a label + note
+  intro:
     'Websites, dashboards and automations built for consulting firms, law firms and nonprofits.',
   items: [
     {

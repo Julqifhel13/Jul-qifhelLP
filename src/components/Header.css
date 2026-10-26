@@ -1,19 +1,13 @@
+  /* The reference's header: wordmark left, links centre-right, a local-time
+     marker at the far edge. 60px tall, no bar, no border — it sits straight
+     on the canvas. */
   .header {
     position: sticky;
     top: 0;
     z-index: 60;
-  }
-
-  .header__bar {
     background: var(--header-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-soft);
-    transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
-  }
-  .header.is-stuck .header__bar {
-    background: var(--header-bg-solid);
-    border-bottom-color: var(--border);
   }
 
   .header__inner {
@@ -22,68 +16,30 @@
     justify-content: space-between;
     gap: var(--sp-lg);
     height: var(--nav-h);
+    padding-inline: var(--hpad);
   }
 
-  /* nav, theme toggle and the hamburger travel together on the right */
-  .header__right {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-xs);
-  }
-  @media (min-width: 1024px) {
-    .header__right {
-      gap: var(--sp-sm);
-    }
-  }
-
-  /* ------------------------------------------------------------ brand */
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-sm);
+  /* ------------------------------------------------------------ wordmark */
+  .wordmark {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-1);
     flex: none;
   }
-
-  .brand__mark {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: var(--r);
-    background: var(--primary);
-    color: var(--on-primary);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    box-shadow: inset 0 1px 0 var(--specular);
-  }
-
-  .brand__status {
-    display: none;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.3125rem 0.6875rem;
-    border-radius: var(--r-full);
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-2);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-  @media (min-width: 560px) {
-    .brand__status {
-      display: inline-flex;
+  @media (min-width: 1024px) {
+    .wordmark {
+      font-size: 32px;
     }
   }
 
-  /* -------------------------------------------------------------- nav */
+  /* ----------------------------------------------------------------- nav */
   .nav {
     display: none;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--sp-xl);
+    margin-left: auto;
   }
   @media (min-width: 1024px) {
     .nav {
@@ -91,41 +47,50 @@
     }
   }
 
+  /* 18px / 600 at desktop, straight from the reference */
   .nav__link {
-    position: relative;
-    padding: 0.5rem 0.6875rem;
-    border-radius: var(--r);
-    color: var(--text-2);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: -0.005em;
-    transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
-  }
-  .nav__link:hover {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     color: var(--text-1);
-    background: var(--hover-tint);
   }
   .nav__link.is-active {
-    color: var(--text-1);
-  }
-  .nav__link.is-active::after {
-    content: '';
-    position: absolute;
-    left: 0.6875rem;
-    right: 0.6875rem;
-    bottom: 0.125rem;
-    height: 1px;
-    background: var(--secondary);
+    opacity: 0.5;
   }
 
-  /* ----------------------------------------------------- mobile toggle */
+  /* ----------------------------------------------------------- end group */
+  .header__end {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-md);
+    flex: none;
+  }
+
+  .header__clock {
+    display: none;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-1);
+    font-variant-numeric: tabular-nums;
+  }
+  .header__clock sup {
+    font-size: 0.6em;
+    margin-left: 1px;
+  }
+  @media (min-width: 1024px) {
+    .header__clock {
+      display: block;
+    }
+  }
+
+  /* ------------------------------------------------------ mobile toggle */
   .nav-toggle {
     display: grid;
     place-items: center;
-    width: 38px;
-    height: 38px;
-    border-radius: var(--r);
-    border: 1px solid var(--border);
+    width: 32px;
+    height: 32px;
     color: var(--text-1);
     flex: none;
   }
@@ -147,58 +112,11 @@
     display: block;
   }
 
-  /* ----------------------------------------------------------- ticker */
-  .ticker {
-    border-top: 1px solid var(--border-soft);
-    background: var(--panel-bg);
-  }
-  /* Fade the right edge so scrollable overflow reads as intentional rather
-     than clipped. Applies at every width: the strip can outgrow even a
-     desktop container once the status text is long. */
-  .ticker {
-    -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
-    mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
-  }
-
-  .ticker__inner {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-lg);
-    height: 34px;
-    overflow-x: auto;
-  }
-  @media (min-width: 1024px) {
-    .ticker__inner {
-      justify-content: space-between;
-      gap: var(--sp-xl);
-    }
-  }
-
-  .ticker__item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    white-space: nowrap;
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.04em;
-  }
-
-  .ticker__label {
-    color: var(--secondary);
-    text-transform: uppercase;
-  }
-  .ticker__value {
-    color: var(--text-3);
-  }
-
-  /* ------------------------------------------------------- mobile nav */
+  /* -------------------------------------------------------- mobile nav */
   .mobile-nav {
-    background: var(--sheet-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    max-height: calc(100vh - var(--nav-h) - 34px);
+    background: var(--canvas);
+    border-top: 1px solid var(--opacity-10);
+    max-height: calc(100vh - var(--nav-h));
     overflow-y: auto;
   }
   @media (min-width: 1024px) {
@@ -209,33 +127,27 @@
 
   .mobile-nav__inner {
     display: grid;
-    gap: 0.25rem;
-    padding-block: var(--sp-md) var(--sp-lg);
+    gap: var(--sp-sm);
+    padding: var(--vpad) var(--hpad) var(--vpad-large);
   }
 
+  /* 40px / 600 — the reference's mobile menu size */
   .mobile-nav__link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.875rem 0.75rem;
-    border-radius: var(--r);
-    border: 1px solid transparent;
-    color: var(--text-1);
-    font-size: 0.9375rem;
+    display: block;
+    font-size: 40px;
+    line-height: 1.1;
     font-weight: 600;
-    letter-spacing: -0.01em;
-    transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    letter-spacing: -0.03em;
+    color: var(--text-1);
+    transition: opacity var(--animation-timing) var(--animation-curve);
   }
   .mobile-nav__link:hover,
   .mobile-nav__link:focus-visible {
-    background: var(--hover-tint);
-    border-color: var(--border);
-  }
-  .mobile-nav__link svg {
-    color: var(--text-3);
+    opacity: 0.5;
   }
 
-  .mobile-nav__cta {
-    margin-top: var(--sp-sm);
-    width: 100%;
+  .mobile-nav__meta {
+    margin-top: var(--sp-lg);
+    font-size: var(--fs-small);
+    color: var(--text-2);
   }

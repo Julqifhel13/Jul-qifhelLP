@@ -1,161 +1,77 @@
-  /* The hero is type-led: a folio rule, the name at display size, the identity
-     statement beneath it, and a portrait as counterweight. Everything else —
-     availability, phone, email — sits on the closing hairline where it is
-     available without competing. */
+  /* The reference's hero, rule for rule: a centred statement held to 90% of
+     the measure, opened by the nav height plus 1.5em of its own size, and
+     closed by 1.5em. No portrait, no card, no badges. */
+  .hero-section {
+    padding-bottom: var(--block-spacing);
+  }
+
   .hero {
-    padding-top: var(--sp-2xl);
-    padding-bottom: 0;
-  }
-  @media (min-width: 768px) {
-    .hero {
-      padding-top: var(--sp-3xl);
-    }
-  }
-
-  /* ----------------------------------------------------------- folio rule */
-  .hero__rule {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-md);
-    padding-bottom: var(--sp-md);
-    border-bottom: 1px solid var(--border-soft);
-  }
-
-  /* ---------------------------------------------------------------- grid */
-  .hero__grid {
-    display: grid;
-    gap: var(--sp-2xl);
-    padding-block: var(--sp-2xl);
-  }
-  @media (min-width: 900px) {
-    .hero__grid {
-      /* 7/5 of the 12-column grid — the type leads, the portrait answers */
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      gap: var(--sp-3xl);
-      align-items: center;
-      padding-block: var(--sp-3xl);
-    }
-  }
-
-  .hero__name {
+    padding-top: calc(var(--nav-h) + 1.5em);
+    padding-bottom: 1.5em;
+    padding-inline: var(--hpad);
+    margin-inline: auto;
+    max-width: 90%;
+    text-align: center;
+    cursor: default;
     color: var(--text-1);
   }
 
-  .hero__role {
-    margin-top: var(--sp-md);
-    font-size: clamp(1.25rem, 0.95rem + 1.3vw, 1.75rem);
-    line-height: 1.285;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--text-2);
+  /* ------------------------------------------------------------- media */
+  .hero-media {
+    padding-inline: var(--hpad);
   }
-
-  /* The role's line breaks are composed for the desktop measure. On a phone
-     they strand "GoHighLevel" on a line of its own, so below 700px the lines
-     rejoin and wrap to the column instead. */
-  @media (max-width: 699px) {
-    .hero__role .line,
-    .hero__role .line > span {
-      display: inline;
-      overflow: visible;
-      padding: 0;
-      margin: 0;
-      transform: none;
-      animation: none;
-    }
-    .hero__role .line:not(:last-child)::after {
-      content: ' ';
-    }
-  }
-
-  .hero__intro {
-    margin-top: var(--sp-lg);
-    max-width: 46ch;
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-sm);
-    margin-top: var(--sp-xl);
-  }
-
-  /* ------------------------------------------------------------ portrait */
-  .hero__portrait {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--r-lg);
-    border: 1px solid var(--border-soft);
-    background: var(--surface-2);
-    /* Portrait crop. On mobile it would otherwise eat the whole first
-       screen, so it runs wider and shorter until there is room. */
-    aspect-ratio: 3 / 2;
-  }
-  @media (min-width: 900px) {
-    .hero__portrait {
-      aspect-ratio: 4 / 5;
-    }
-  }
-  .hero__portrait img {
+  .hero-media img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 22%;
-    transition: transform 700ms var(--ease);
-  }
-  .hero__portrait:hover img {
-    transform: scale(1.02);
+    /* The width/height attributes reserve space before load, but an explicit
+       height also beats aspect-ratio — without this the 16:9 window never
+       applies and the image lays out 900px tall. */
+    height: auto;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    /* the lead is a full-page capture thousands of pixels tall, so the
+       16:9 window holds its top rather than a slice from the middle */
+    object-position: top center;
   }
 
-  /* --------------------------------------------------------- closing meta */
-  .hero__meta {
+  /* ------------------------------------------------------------ meta */
+  .hero-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: var(--sp-sm) var(--sp-lg);
-    padding-block: var(--sp-md);
-    border-top: 1px solid var(--border-soft);
+    padding-top: var(--vpad);
   }
 
-  .hero__available {
+  .hero-meta__available {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
+    gap: 8px;
+    font-size: var(--fs-small);
     color: var(--text-2);
   }
 
-  .hero__contact {
+  .hero-meta__contact {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--sp-md);
+    gap: var(--sp-lg);
+  }
+  .hero-meta__contact .link-shift {
+    font-size: var(--fs-small);
+  }
+  .link-shift.is-copied {
+    color: var(--green);
   }
 
-  .hero__link {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: -0.01em;
-    color: var(--text-3);
-    transition: color var(--dur) var(--ease);
-  }
-  .hero__link:hover {
-    color: var(--text-1);
-  }
-  .hero__copy-email.is-copied {
-    color: var(--tertiary-bright);
-  }
-
-  /* ----------------------------------------------------------- stat strip */
+  /* ------------------------------------------------------- stat strip */
   .stats {
     display: grid;
-    gap: 0;
+    gap: var(--grid-gap);
     margin: 0;
-    border-top: 1px solid var(--border-soft);
+    padding-top: var(--block-spacing);
   }
-  @media (min-width: 600px) {
+  @media (min-width: 601px) {
     .stats {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -166,55 +82,29 @@
     }
   }
 
-  /* Hairlines between cells rather than around them — Design.md's
-     key-value metric list, not four more cards. */
   .stats__cell {
-    padding: var(--sp-lg) 0;
-    border-bottom: 1px solid var(--border-soft);
-  }
-  @media (min-width: 600px) {
-    .stats__cell {
-      padding-inline: var(--sp-lg);
-      border-bottom: 0;
-      border-left: 1px solid var(--border-soft);
-    }
-    .stats__cell:first-child {
-      padding-left: 0;
-      border-left: 0;
-    }
-  }
-  @media (min-width: 600px) and (max-width: 1023px) {
-    .stats__cell:nth-child(3) {
-      padding-left: 0;
-      border-left: 0;
-    }
-    .stats__cell:nth-child(-n + 2) {
-      padding-bottom: var(--sp-xl);
-    }
+    padding-top: var(--sp-md);
+    border-top: 1px solid var(--opacity-10);
   }
 
   .stats__value {
-    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
-    line-height: 1.1;
-    font-weight: 600;
-    letter-spacing: -0.03em;
+    font-size: var(--fs-h3);
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.012em;
     color: var(--text-1);
   }
 
   .stats__label {
-    margin: var(--sp-xs) 0 0;
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--text-3);
+    margin: 4px 0 0;
+    font-size: var(--fs-caption);
+    color: var(--text-2);
   }
 
   .stats__note {
     margin: var(--sp-sm) 0 0;
-    font-size: 0.8125rem;
-    line-height: 1.46;
+    font-size: var(--fs-small);
+    line-height: 1.5;
     color: var(--text-2);
     max-width: 34ch;
   }
