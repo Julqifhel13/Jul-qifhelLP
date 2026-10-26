@@ -1,3 +1,4 @@
+import Intro from './components/Intro.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
@@ -17,6 +18,8 @@ export default function App() {
 
   return (
     <>
+      <Intro wordmark="Jul-qifhel" />
+
       <a href="#main" className="skip-link">Skip to content</a>
 
       <Header />

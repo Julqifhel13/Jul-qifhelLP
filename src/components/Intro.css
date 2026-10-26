@@ -1,0 +1,74 @@
+  /* The reference's preloader, rule for rule: fixed full-screen panel in
+     --yellow, centred content, clipped by the curved path. The only thing
+     added is the sweep keyframe — theirs is driven from JS, this one runs in
+     CSS so the page can never be left covered by a script that did not run. */
+  .intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 100vh of panel plus an 18vh curved tail that waits below the fold */
+    height: 118vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* centres the wordmark in the visible 100vh rather than in the tail */
+    padding-bottom: 18vh;
+    will-change: transform;
+    background: var(--yellow);
+    clip-path: url(#introClipPath);
+    animation: intro-sweep 1000ms var(--animation-curve-2) 900ms both;
+  }
+
+  /* Travels its full height so the curved tail clears the top of the page. */
+  @keyframes intro-sweep {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-118vh);
+    }
+  }
+
+  .intro__clip {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .intro__mark {
+    padding-inline: var(--hpad);
+    font-size: clamp(2.5rem, 11vw, 9rem);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--off-black);
+    /* the wordmark settles a beat before the panel leaves */
+    animation: intro-mark 700ms var(--animation-curve) both;
+  }
+
+  @keyframes intro-mark {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Hold the page still underneath while the panel is on screen. */
+  html.intro-running,
+  html.intro-running body {
+    overflow: hidden;
+  }
+
+  /* Nothing to sweep away if motion is reduced — the component does not
+     render at all, but this keeps the panel harmless if it ever does. */
+  @media (prefers-reduced-motion: reduce) {
+    .intro {
+      display: none;
+    }
+  }

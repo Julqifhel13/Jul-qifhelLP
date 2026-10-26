@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import Showreel from './Showreel.jsx';
 import { hero, profile, stats } from '../data/site.js';
 import './Hero.css';
-
-const asset = (src) => `${import.meta.env.BASE_URL}/${src}`.replace(/\/{2,}/g, '/');
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
@@ -30,17 +29,9 @@ export default function Hero() {
         {hero.statement}
       </h1>
 
-      {/* Full-bleed media, as the reference runs under its statement. */}
+      {/* Full-bleed reel, where the reference runs its showreel. */}
       <div className="hero-media" data-enter style={{ '--enter-delay': '280ms' }}>
-        <img
-          src={asset(hero.lead.src)}
-          alt={hero.lead.alt}
-          className="ar-16x9"
-          width="1600"
-          height="900"
-          loading="eager"
-          decoding="async"
-        />
+        <Showreel />
       </div>
 
       <div className="container">

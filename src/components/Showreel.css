@@ -1,0 +1,118 @@
+  .reel {
+    margin: 0;
+    padding-inline: var(--hpad);
+  }
+
+  .reel__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--off-black);
+    aspect-ratio: 16 / 9;
+  }
+
+  /* --------------------------------------------------------------- slides */
+  .reel__slide {
+    position: absolute;
+    inset: 0;
+    /* the reference's own wipe: @keyframes mask-up */
+    clip-path: inset(100% 0 0 0);
+  }
+  .reel__slide.is-active {
+    animation: mask-up 900ms var(--animation-curve) both;
+  }
+
+  @keyframes mask-up {
+    0% {
+      clip-path: inset(100% 0 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  .reel__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ------------------------------------------------------------ caption bar */
+  .reel__bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-md);
+    margin-top: var(--sp-sm);
+  }
+
+  .reel__label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px var(--sp-sm);
+    min-width: 0;
+  }
+
+  .reel__title {
+    font-size: var(--fs-b);
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    color: var(--text-1);
+  }
+
+  .reel__meta {
+    font-size: var(--fs-small);
+    color: var(--text-2);
+  }
+
+  /* ---------------------------------------------------------------- ticks */
+  .reel__ticks {
+    display: flex;
+    gap: 6px;
+    flex: none;
+    align-self: center;
+  }
+
+  .reel__tick {
+    position: relative;
+    width: 28px;
+    height: 2px;
+    background: var(--opacity-25);
+    overflow: hidden;
+  }
+  .reel__tick.is-active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--text-1);
+    transform-origin: left center;
+    animation: reel-tick var(--slide-ms) linear both;
+  }
+
+  @keyframes reel-tick {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* A reel that moves on its own is the first thing to go. Reduced motion
+     gets the opening frame, captioned, and nothing animates. */
+  @media (prefers-reduced-motion: reduce) {
+    .reel__slide {
+      clip-path: none;
+    }
+    .reel__slide:not(.is-active) {
+      display: none;
+    }
+    .reel__slide.is-active {
+      animation: none;
+    }
+    .reel__ticks {
+      display: none;
+    }
+  }
