@@ -1,0 +1,146 @@
+  /* The reference's card scroller. Its own values: cards at
+     clamp(300px, 50vw, 400px), a 30px gap and an 8px radius, in a
+     width:max-content row inside a 100vh container.
+
+     The one change is the card ratio. Theirs are square because they hold
+     photography; these hold screens, and a square crop of a 16:9 interface
+     throws away most of it — so the cards are 4:3 and the footprint stays
+     the same. */
+  .cards {
+    position: relative;
+    /* height is set from JS to exactly the row's travel plus one viewport.
+       This is the fallback for before that runs, and for reduced motion. */
+    min-height: 100vh;
+  }
+
+  /* The pin. overflow lives here, not on .cards — an overflow on an
+     ancestor is what silently stops position:sticky from sticking. */
+  .cards__pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .cards__track {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    width: max-content;
+    padding-inline: var(--hpad);
+    will-change: transform;
+  }
+
+  /* ---------------------------------------------------------------- card */
+  .cards__card {
+    --card-w: clamp(280px, 46vw, 400px);
+    display: block;
+    width: var(--card-w);
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    flex: none;
+    cursor: pointer;
+  }
+  .cards__card:focus-visible {
+    outline: 2px solid var(--text-1);
+    outline-offset: 6px;
+  }
+
+  .cards__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--off-black);
+  }
+  .cards__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    transition: transform var(--animation-time-long) var(--animation-curve);
+  }
+  .cards__card:hover .cards__media img,
+  .cards__card:focus-visible .cards__media img {
+    transform: scale(1.03);
+  }
+
+  .cards__label {
+    display: block;
+    padding-top: var(--sp-sm);
+  }
+
+  .cards__name {
+    display: block;
+    font-size: var(--fs-b);
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    color: var(--text-1);
+    white-space: normal;
+  }
+
+  .cards__meta {
+    display: block;
+    margin-top: 2px;
+    font-size: var(--fs-small);
+    color: var(--text-2);
+  }
+
+  /* ------------------------------------------------------------ progress */
+  .cards__progress {
+    position: absolute;
+    left: var(--hpad);
+    right: var(--hpad);
+    bottom: var(--vpad);
+    height: 2px;
+    background: var(--opacity-10);
+  }
+  .cards__progress span {
+    display: block;
+    height: 100%;
+    background: var(--text-1);
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+
+  /* Pinning a section and moving it sideways as you scroll is exactly the
+     kind of motion reduced-motion asks us to drop. It becomes an ordinary
+     horizontal scroller: same cards, same order, swipe or arrow keys, and
+     the page below arrives straight away. */
+  @media (prefers-reduced-motion: reduce) {
+    .cards {
+      min-height: 0;
+      height: auto !important;
+    }
+    .cards__pin {
+      position: static;
+      height: auto;
+      overflow-x: auto;
+      padding-block: var(--vpad);
+    }
+    .cards__track {
+      transform: none !important;
+      scroll-snap-type: x mandatory;
+    }
+    .cards__card {
+      scroll-snap-align: start;
+    }
+    .cards__media img {
+      transition: none;
+    }
+    .cards__card:hover .cards__media img {
+      transform: none;
+    }
+    .cards__progress {
+      display: none;
+    }
+  }

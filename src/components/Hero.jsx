@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import Showreel from './Showreel.jsx';
+import CardScroller from './CardScroller.jsx';
 import Tools from './Tools.jsx';
 import { hero, profile, stats } from '../data/site.js';
 import './Hero.css';
@@ -30,10 +30,9 @@ export default function Hero() {
         {hero.statement}
       </h1>
 
-      {/* Full-bleed reel, where the reference runs its showreel. */}
-      <div className="hero-media" data-enter style={{ '--enter-delay': '280ms' }}>
-        <Showreel />
-      </div>
+      {/* The card row travels sideways as the page scrolls and holds the
+          section until it has finished — the reference's card scroller. */}
+      <CardScroller />
 
       <div className="container">
         <div className="hero-meta" data-enter style={{ '--enter-delay': '380ms' }}>
