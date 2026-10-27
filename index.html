@@ -63,6 +63,19 @@
       </style>
     </noscript>
 
+    <!-- Always open at the top.
+         Browsers restore the previous scroll position on reload, which with
+         a pinned section means a refresh can land mid-animation with no
+         context. Turning restoration off has to happen before the browser
+         does it, so it runs here rather than in the bundle. A real anchor
+         link is left alone. -->
+    <script>
+      (function () {
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        if (!location.hash) window.scrollTo(0, 0);
+      })();
+    </script>
+
     <!-- Resolve the theme before first paint so the page never flashes the
          wrong palette. Runs ahead of the bundle on purpose. -->
     <script>

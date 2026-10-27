@@ -25,13 +25,28 @@ export default function Lightbox({ project, onClose }) {
     (delta) => {
       setIndex((i) => (i + delta + count) % count);
       setWide(false);
-      if (frameRef.current) {
-        frameRef.current.scrollTop = 0;
-        frameRef.current.scrollLeft = 0;
-      }
     },
     [count]
   );
+
+  /**
+   * Return the frame to the top whenever the image changes.
+   *
+   * This has to run after the swap, not with it. Resetting inside go() set
+   * scrollTop while the old screenshot was still in the DOM, and the value
+   * did not survive the re-render — stepping through a gallery left every
+   * tall page capture opening halfway down. An effect on `index` runs once
+   * the new image is in place, and covers the arrows, the thumbnails and
+   * the arrow keys alike.
+   */
+  useEffect(() => {
+    const frame = frameRef.current;
+    if (!frame) return;
+    // behavior:'instant' overrides the frame's CSS scroll-behavior:smooth —
+    // an animated reset gets abandoned the moment the new image changes the
+    // scroll height, which left the position where it started.
+    frame.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [index]);
 
   // keyboard controls
   useEffect(() => {
@@ -128,6 +143,11 @@ export default function Lightbox({ project, onClose }) {
                 // screenshots (~2.2:1), where seeing the whole layout matters
                 // more than pixel scale.
                 setWide(img.naturalWidth / img.naturalHeight > 2.6);
+                // The frame is reset the moment the index changes, but the
+                // screenshot decodes a beat later and resizing it nudged the
+                // view a dozen pixels off the top. Pin it again once the
+                // real height is known.
+                frameRef.current?.scrollTo({ top: 0, left: 0, behavior: 'instant' });
               }}
               onError={() => setFailed((f) => ({ ...f, [shot.src]: true }))}
             />
@@ -143,10 +163,6 @@ export default function Lightbox({ project, onClose }) {
               onClick={() => {
                 setIndex(i);
                 setWide(false);
-                if (frameRef.current) {
-                  frameRef.current.scrollTop = 0;
-                  frameRef.current.scrollLeft = 0;
-                }
               }}
               aria-current={i === index}
             >

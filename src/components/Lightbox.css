@@ -132,7 +132,14 @@
   overflow-y: auto;
   overflow-x: hidden;
   background: var(--surface-inset);
-  scroll-behavior: smooth;
+  /* No smooth scrolling here, deliberately. It animates every scroll of this
+     frame including the browser's own adjustments, and a reset to the top
+     kept settling a dozen pixels short while an animation was still in
+     flight. A screenshot viewer gains nothing from it. */
+  /* Stop the browser compensating for the height change when one screenshot
+     replaces another — that compensation is what dragged the view back down
+     after a reset. */
+  overflow-anchor: none;
 }
 
 .lb__img {
